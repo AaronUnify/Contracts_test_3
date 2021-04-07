@@ -2437,7 +2437,7 @@ function reveal11() {
 
 	<br><br><br>
 
-<p>THERE HAS BEEN A CHANGE</p>
+<p>THERE HAS BEEN A CHANGE 2</p>
 
 	<br><br><br>	<br><br><br>
 
@@ -2446,8 +2446,12 @@ function reveal11() {
     <script> 
         function openWin() { 
             
-            var a = window.open("", "This should be the title", 'height=500, width=500'); 
-   		win.document.body.innerHTML = "This is the test text";
+var divText = document.getElementById("Contract").outerHTML;
+var myWindow = window.open('','','width=200,height=100');
+var doc = myWindow.document;
+doc.open();
+doc.write(divText);
+doc.close();
    
 		
         } 
@@ -3411,7 +3415,7 @@ var button = document.getElementById("button6");
 
 
 
-<div id = "Money Lending Contract" hidden>
+<div id = "Contract" hidden>
 <h3>
 
 				<!-- Panel 1 - User Inputs --!>
