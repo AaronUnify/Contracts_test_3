@@ -2456,10 +2456,54 @@ function reveal11() {
 	
 	<br><br><br><br><br><br><br><br><br>
 
-<a onclick="window.open(this.href); document.getElementById('Contract').style.display='';return false;">THIS IS THE LATEST TEST</a>
+<a href="javascript:alert('Hello World!');">Execute JavaScript</a>
 	
 	
-<br><br><br><br><br><br><br><br><br>
+<br><br><br>
+	
+	<a href="#Contract">Go to Section 2</a>
+	
+	<br><br><br>
+	
+	
+	<p>Paint by holding down the mouse button and moving it.
+  <a href="" download="my_painting.png">Download my painting</a>
+</p>
+	
+
+
+<canvas width="300" height="300"></canvas>
+	
+	
+	<script>
+		
+		var canvas = document.querySelector('canvas'),
+    c = canvas.getContext('2d');
+c.fillStyle = 'hotpink';
+
+function draw(x, y) {
+  if (isDrawing) {
+    c.beginPath();
+    c.arc(x, y, 10, 0, Math.PI*2);
+    c.closePath();
+    c.fill();
+  }
+}
+
+canvas.addEventListener('mousemove', event =>
+  draw(event.offsetX, event.offsetY)
+);
+canvas.addEventListener('mousedown', () => isDrawing = true);
+canvas.addEventListener('mouseup', () => isDrawing = false);
+
+document.querySelector('a').addEventListener('click', event =>
+  event.target.href = canvas.toDataURL()
+);
+		
+	</script>
+	
+	
+	<br><br><br>
 
 
 
