@@ -634,18 +634,6 @@ function reveal1() {
 		<!-- These first two boxes are for the main parties of the contract-->
 
 <br><br>
-<br><br>
-
-<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
-
-<script type="text/javascript">
-    function showAndroidToast(toast) {
-        Android.showToast(toast);
-    }
-</script>
-
-<br><br>
-<br><br>
 
 
 <br>
@@ -3329,9 +3317,26 @@ var button = document.getElementById("button6");
         } 
     </script> 
 
+<input type="button" class = "button" value="Save as HTML"
+                    onclick="download()">  
 
 
 
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    a.href = "data:text/html," + document.getElementById("Contract").innerHTML; // Grab the HTML
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+
+<input type="button" class = "button" value="Save as HTML"
+                    onclick="download()">  
 
 
 <br>
