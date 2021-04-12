@@ -2442,53 +2442,27 @@ function reveal11() {
 	
 	
 	
-	<br><br><br><br><br><br><br><br><br>
-
-<a href="javascript:alert('Hello World!');">Execute JavaScript</a>
-	
-	
 <br><br><br>
 	
-	<a href="#Contract">Go to Section 2</a>
-	
-	<br><br><br>
-	
-	
-	<p>Paint by holding down the mouse button and moving it.
-  <a href="" download="my_painting.png">Download my painting</a>
-</p>
+	   <p>Click button to save the contract</p>
+      <input type='button' onclick=download() value='Save Text Box' /> 
+      <br><br>
+
 	
 
+<script>
 
-<canvas width="300" height="300"></canvas>
-	
-	
-	<script>
-		
-		var canvas = document.querySelector('canvas'),
-    c = canvas.getContext('2d');
-c.fillStyle = 'hotpink';
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.txt";
+    a.href = "data:text/html," + document.getElementById("Contract").innerHTML;
+     a.click();
 
-function draw(x, y) {
-  if (isDrawing) {
-    c.beginPath();
-    c.arc(x, y, 10, 0, Math.PI*2);
-    c.closePath();
-    c.fill();
-  }
 }
+</script>
 
-canvas.addEventListener('mousemove', event =>
-  draw(event.offsetX, event.offsetY)
-);
-canvas.addEventListener('mousedown', () => isDrawing = true);
-canvas.addEventListener('mouseup', () => isDrawing = false);
-
-document.querySelector('a').addEventListener('click', event =>
-  event.target.href = canvas.toDataURL()
-);
-		
-	</script>
 	
 	
 	<br><br><br>
@@ -3320,28 +3294,7 @@ var button = document.getElementById("button6");
 
 
 
-<script>
-function download(){
-    var a = document.body.appendChild(
-        document.createElement("a")
-    );
-    a.download = "export.html";
-    a.href = "data:text/html," + document.getElementById("Contract").innerHTML; // Grab the HTML
-    a.click(); // Trigger a click on the element
-}
-</script>
-
-
-
-<input type="button" class = "button" value="Save as HTML"
-                    onclick="download()">  
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
+<input type="button" class
 
 <div class = "center">
 
@@ -3815,23 +3768,6 @@ Witness:
 
 
   
-
-
-
-
-
-
-
-
-
-<!-- dsafjdslkfjdsalkfjdslkfjdsfjskl; -->
-
-
-
-
-
-
-
 
 
 
