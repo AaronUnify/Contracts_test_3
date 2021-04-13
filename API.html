@@ -3318,16 +3318,62 @@ var button = document.getElementById("button6");
 
 
 
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.html";
+    a.href = "data:text/html," + document.getElementById("Contract").innerHTML; // Grab the HTML
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+      <h3>Click button to save the text box in a file</h3>
+      <input type='button' onclick=download() value='Save Text Box' /> 
+      <br/><br/>
+
+
+<br><br><br><br><br><br><br><br><br>
+
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.txt";
+    a.href = "data:text/html," + document.getElementById("Contract").innerHTML; // Grab the HTML
+    a.click(); // Trigger a click on the element
+}
+</script>
+
+
+      <h3>Click button to save the text box in a file</h3>
+      <input type='button' onclick=download() value='Save Text Box' /> 
+      <br/><br/>
 
 
 
 
 
+<br><br><br><br><br><br><br><br><br>
+
+<script>
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "export.pdf";
+    a.href = "data:text/html," + document.getElementById("Contract").innerHTML; // Grab the HTML
+    a.click(); // Trigger a click on the element
+}
+</script>
 
 
-
-
-
+      <h3>Click button to save the text box in a file</h3>
+      <input type='button' onclick=download() value='Save Text Box' /> 
+      <br/><br/>
 
 
 
