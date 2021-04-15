@@ -1,47 +1,346 @@
+<!--  CSS STYLES -->
+<style>
+	img {
+	max-width: 50%;
+        max-height: 50%;
+  
+      }
+      canvas {
+	max-width: 800px;
+        max-height: 800px;
+      }
+</style>
+<!-- Lines for seperating elements -->
+<style>
+hr.line1{
+	border-top: 1px solid #8c8b8b;
+}
+hr.line2 {
+	border-top: 3px double #8c8b8b;
+}
+hr.line14 { 
+border: 0; 
+  height: 1px; 
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+</style>
+<style>
+input[type='text'] { 
+font-size: 32px; 
+  margin:4px;
+  margin-left: 40px;
+  width: 40%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+  color: rgb(51, 51,51);
+}
+input[type=text]:focus {
+  width: 50%;
+}
+label{
+margin: 40px;
+}
+textarea{
+margin: 40px; 
+ font-size:22px;
+}
+select {
+  width: 28%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  font-size: 25;
+  margin: 40px;
+}
+input[type='number'] { 
+  width: 20%;
+  font-size: 22px; 
+  margin:0px;
+  padding: 6px;
+  transition: width 0.4s ease-in-out;
+}
+input[type='number']:focus {
+  width: 25%;
+</style>
 <style>
 body {
- 
-background: black}
+background: rgb(0,0,0);}
 </style>
-
-
-
-
-
 <style>.container{
 background: rgb(15,15,15);	
 	width: 99.5%;
-	height: 100%;
+	height: 250%;
 	margin:auto;
 	text-align:center;
 	color: white;
 	border:solid #123456;
   	padding: 0px;
-
-
-
-<style>.btn-group{width:80%;margin:auto;text-align:center;</style>
-<style>.btn-group button {
-	background-color:  rgba(255, 255, 255, 0.97);
-  	border: solid 2px #123456;
-  	color: black;
-	font-size: 26; 
-	font-weight: bold;
-  	padding: 40px 46px; /* Some padding */
-  	cursor: pointer; /* Pointer/hand icon */
-  	width: 100%; /* Set a width if needed */
-  	display: block; /* Make the buttons appear below each other */
-}
-
-	.btn-group button:not(:last-child) {
- 	 border-bottom: none; /* Prevent double borders */
-}
-
-	/* Add a background color on hover */
-	.btn-group button:hover {
-  	background-color:  rgba(230, 230, 230);
+  	
+	
 </style>
-
+<style>.header{
+background: rgb(5,5,5);
+border: solid 2px #123456;
+}
+h1 {
+color: rgb(251,251,251);
+font-size: 50px;
+}
+h2 { 
+color: rgb(251, 251,251);
+font-size: 35px;
+}
+h4 {
+color: rgb(251,251,251);
+font-size: 28px; 
+}
+</style>
+<!-- THIS STYLE IS USED TO HIDE FORM SECTIONS-->
+<!-- STYLE FOR PANEL 1-->
+<style>
+#panel, .flip {
+	background: rgba(255, 255, 255, 0.97);  
+	font-size: 16px;
+  	width: 93%;
+  	text-align: center;
+  	color: black;
+  	border: solid 2px #123456; 
+  	margin: auto;
+	
+}
+#panel {
+  display: none;
+}
+#panel {
+  border-radius: 25px 0px;
+  background: rgb(48, 90, 0);
+padding: 0.5%;
+  width: 98%;
+}
+</style>
+<!-- STYLE FOR PANEL 2-->
+<style>
+#panel2, .flip {
+	background: rgba(255, 255, 255, 0.97);  
+	font-size: 16px;
+  	width: 93%;
+  	text-align: center;
+  	color: black;
+  	border: solid 2px #123456; 
+  	margin: auto;
+}
+#panel2 {
+  display: none;
+}
+#panel2 {
+  border-radius: 25px 0px;
+  background: rgb(48, 90, 0);
+padding: 0.5%;
+  width: 98%;
+}
+</style>
+<!-- STYLE FOR PANEL 3-->
+<style>
+#panel3, .flip {
+	background: rgba(255, 255, 255, 0.97);  
+	font-size: 16px;
+  	width: 94%;
+  	text-align: center;
+  	color: black;
+  	border: solid 2px #123456; 
+  	margin: auto;
+}
+#panel3 {
+  display: none;
+}
+#panel3 {
+  border-radius: 25px 0px;
+  background: rgb(48, 90, 0);
+  width: 98%;
+padding: 0.5%;
+}
+</style>
+<!-- STYLE FOR PANEL 4-->
+<style>
+#panel4, .flip {
+	background: rgba(255, 255, 255, 0.97);  
+	font-size: 36px;
+	padding: 5%;
+  	width: 90%;
+  	text-align: center;
+  	color: black;
+  	border: solid 2px #123456; 
+  	margin: auto;
+}
+#panel4 {
+  display: none;
+}
+#panel4 {
+  border-radius: 25px 0px;
+  background: rgb(48, 90, 0);
+padding: 0.5%;
+  width: 98%;
+}
+</style>
+<!-- STYLE FOR PANEL 5-->
+<style>
+#panel5, .flip {
+	background: rgba(255, 255, 255, 0.97);  
+	font-size: 36px;
+	padding: 5%;
+  	width: 90%;
+  	text-align: center;
+  	color: black;
+  	border: solid 2px #123456; 
+  	margin: auto;
+}
+#panel5 {
+  display: none;
+}
+#panel5 {
+  border-radius: 25px 0px;
+  background: rgb(48, 90, 0);
+padding: 0.5%;
+  width: 98%;
+}
+</style>
+<!-- STYLE FOR PANEL 6-->
+<style>
+#panel6, .flip {
+	background: rgba(255, 255, 255, 0.97);  
+	font-size: 36px;
+	padding: 5%;
+  	width: 90%;
+  	text-align: center;
+  	color: black;
+  	border: solid 2px #123456; 
+  	margin: auto;
+}
+h3 { text-align: center;
+}
+p { 
+	text-align: left;
+	margin: 40px;
+}
+#panel6 {
+  display: none;
+}
+#panel6 {
+  border-radius: 25px 0px;
+  background: rgb(48, 90, 0);
+padding: 0.5%;
+  width: 98%;
+}
+</style>
+<style>.form{background: rgb(251,251,251);
+	width:99%;margin:auto;text-align:left;
+	border: solid 2px rgba(70, 150, 32, 0.78);
+	border-radius: 25px 0px;
+	font-size: 36px;
+	
+h3 { 
+font-size: 40px;
+}
+p {
+color:black;
+	text-align: left;
+	margin: 40px;
+}
+	
+</style>
+<style>
+.button {
+  background-color: rgba(20, 130, 20); /* Green */
+  border: none;
+  color: white;
+  padding: 25px 46px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
+}
+</style>
+<style>
+.SigSaveButton 
+{
+	position: relative;
+	background-color: rgba(200, 130, 20);
+	border: none;
+	font-size: 28px;
+	color: #FFFFFF;
+	padding: 20px;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+	margin-left: 40px;
+}
+.SigSaveButton:focus 
+{
+	position: relative;
+	background-color: rgba(20, 130, 20);
+	border: none;
+	font-size: 28px;
+	color: #FFFFFF;
+	padding: 20px;
+</style>
+<style>
+.SigClearButton 
+{
+  position: relative;
+  background-color: rgba(90, 130, 90);
+  border: none;
+  font-size: 28px;
+  color: #FFFFFF;
+  padding: 20px ;
+  width: 200px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+</style>
+<style>
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+	position: relative;
+	background-color: rgba(20, 130, 20);
+	border: none;
+	font-size: 28px;
+	color: #FFFFFF;
+	padding: 20px ;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+}
+</style>
+<!--THIS CENTERS THINGS, PUT THEM IN THESE DIVS TO CENTER-->
+<style>
+.center {
+  margin: 0;
+  position: absolute;
+  
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
 
 
 
