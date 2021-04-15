@@ -800,159 +800,6 @@ function reveal1() {
 <br>
 
 
-				<!-- PHOTO INPUT --!> 
-
-<br>
-<label for="file-upload" class="custom-file-upload">
-    Image <span>&#128247;</span>
-</label>
-<input id="file-upload" type="file"/>
-<br>
-<br>
-
-
-<script>
-  var input = document.querySelector('input[type=file]'); // see Example 4
-  input.onchange = function () {
-    var file = input.files[0];
-    //upload(file);
-    drawOnCanvas(file);   // see Example 6
-    //displayAsImage(file); // see Example 7
-  };
- 
-  function upload(file) {
-    var form = new FormData(),
-        xhr = new XMLHttpRequest();
- 
-    form.append('image', file);
-    xhr.open('post', 'server.php', true);
-    xhr.send(form);
-  }
- 
-  function  drawOnCanvas(file) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var dataURL = e.target.result,
-          c = document.querySelector('canvas'), // see Example 4
-          ctx = c.getContext('2d'),
-          img = new Image();
- 
-      img.onload = function() {
-        c.width = img.width;
-        c.height = img.height;
-        ctx.drawImage(img, 0, 0);
-      };
- 
-      img.src = dataURL;
-    };
- 
-    reader.readAsDataURL(file);
-  }
- 
-  function displayAsImage(file) {
-    var imgURL = URL.createObjectURL(file),
-        img = document.createElement('img');
- 
-    img.onload = function() {
-      URL.revokeObjectURL(imgURL);
-    };
- 
-    img.src = imgURL;
-    document.body.appendChild(img);
-  }
-  </script>
-
-
-				<!-- Insert Picture JS--!>
-
-
-<script>
-
-function signatureCapture() {
-  var canvas = document.getElementById("newSignature5");
-  var context = canvas.getContext("2d");
-  canvas.width = 676;
-  canvas.height = 180;
-  context.fillStyle = "#fff";
-  context.strokeStyle = "#444";
-  context.lineWidth = 1.5;
-  context.lineCap = "round";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-  var disableSave = true;
-  var pixels = [];
-  var cpixels = [];
-  var xyLast = {};
-  var xyAddLast = {};
-  var calculate = false;
- 
-      if (calculate) {
-        var xLast = (xyAddLast.x + xyLast.x + xyAdd.x) / 3;
-        var yLast = (xyAddLast.y + xyLast.y + xyAdd.y) / 3;
-        pixels.push(xLast, yLast);
-      } else {
-        calculate = true;
-      }
-
-      context.quadraticCurveTo(xyLast.x, xyLast.y, xyAdd.x, xyAdd.y);
-      pixels.push(xyAdd.x, xyAdd.y);
-      context.stroke();
-      context.beginPath();
-      context.moveTo(xyAdd.x, xyAdd.y);
-      xyAddLast = xyAdd;
-      xyLast = xy;
-
-    };
-
-    function on_mouseup(e) {
-      remove_event_listeners();
-      disableSave = false;
-      context.stroke();
-      pixels.push('e');
-      calculate = false;
-    };
-  }
-  canvas.addEventListener('touchstart', on_mousedown, false);
-  canvas.addEventListener('mousedown', on_mousedown, false);
-}
-</script>
-
-
-
-<script>
-function signatureSave5() {
-  var canvas = document.getElementById("newSignature5");// save canvas image as data url (png format by default)
-  var dataURL = canvas.toDataURL("image5/png");
-  document.getElementById("saveSignature5").src = dataURL;
-};
-</script>
-
-
-<script>
-function signatureClear5() {
-  var canvas = document.getElementById("newSignature5");
-  var context = canvas.getContext("2d");
-  context.clearRect(0, 0, canvas.width, canvas.height);
-}
-</script>
-
-<!-- END PHOTO JS --!>
-
-
-<!--PHOTO HTML--!>
-
-    <div id="canvas5">
-      <canvas id="newSignature5" 
-      style="position: relative; margin-left: 40px; padding: 0; border: 1px solid #c4caac;"></canvas>
-    </div>
-    <script>signatureCapture();</script>
-    <button class= "SigSaveButton" type="button" onclick="signatureSave5()">Save Image</button>
-    <button class = "SigClearButton" type="button" onclick="signatureClear5()">Clear Image</button>
-    </br>
-    </br>
-
-
-
-
 
 
 <br>
@@ -989,6 +836,99 @@ function signatureClear5() {
 <br>
 <br>
 <hr class = "line14">
+
+
+
+
+<p><input type="file"  accept="image/*" name="imageA1" id="fileA1"  onchange="loadFileA1(event)" style="display: none;"></p>
+<p><label for="fileA1" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA1" width="600" /></p>
+
+
+
+
+<script>
+var loadFileA1 = function(event) {
+	var imageA1 = document.getElementById('outputA1');
+	imageA1.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+<p><input type="file"  accept="image/*" name="imageA2" id="fileA2"  onchange="loadFileA2(event)" style="display: none;"></p>
+<p><label for="fileA2" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA2" width="600" /></p>
+
+
+
+<script>
+var loadFileA2 = function(event) {
+	var imageA2 = document.getElementById('outputA2');
+	imageA2.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
+
+
+<p><input type="file"  accept="image/*" name="imageA3" id="fileA3"  onchange="loadFileA3(event)" style="display: none;"></p>
+<p><label for="fileA3" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA3" width="600" /></p>
+
+
+
+<script>
+var loadFileA3 = function(event) {
+	var imageA3 = document.getElementById('outputA3');
+	imageA3.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
+
+
+
+<p><input type="file"  accept="image/*" name="imageA4" id="fileA4"  onchange="loadFileA4(event)" style="display: none;"></p>
+<p><label for="fileA4" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA4" width="600" /></p>
+
+
+
+<script>
+var loadFileA4 = function(event) {
+	var imageA4 = document.getElementById('outputA4');
+	imageA4.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
+
+
+
+
+<p><input type="file"  accept="image/*" name="imageA5" id="fileA5"  onchange="loadFileA5(event)" style="display: none;"></p>
+<p><label for="fileA5" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA5" width="600" /></p>
+
+
+
+<script>
+var loadFileA5 = function(event) {
+	var imageA5 = document.getElementById('outputA5');
+	imageA5.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
 
 
 
@@ -1063,6 +1003,16 @@ var button = document.getElementById("button1");
 	var TAreaA4 = document.getElementById("TextAreaA4").value; //Textarea
 
 
+	
+	var OutputA1 = document.getElementById("outputA1").src;   //Image
+	var OutputA2 = document.getElementById("outputA2").src;   //Image
+	var OutputA3 = document.getElementById("outputA3").src;   //Image
+	var OutputA4 = document.getElementById("outputA4").src;   //Image
+	var OutputA5 = document.getElementById("outputA5").src;   //Image
+
+
+
+
 	document.getElementById("Input NameA1").textContent += NameA1; //Text
 		document.getElementById("2Input NameA1").textContent += NameA1; //Second Name call on contract	
 		document.getElementById("3Input NameA1").textContent += NameA1; //Third for signature 	
@@ -1103,11 +1053,11 @@ var button = document.getElementById("button1");
 	document.getElementById("Text AreaA4").textContent += TAreaA4; //Textarea
 	
 
-
-
-
-
-
+	document.getElementById("Image OutputA1").src += OutputA1; //Textarea
+	document.getElementById("Image OutputA2").src += OutputA2; //Textarea
+	document.getElementById("Image OutputA3").src += OutputA3; //Textarea
+	document.getElementById("Image OutputA4").src += OutputA4; //Textarea
+	document.getElementById("Image OutputA5").src += OutputA5; //Textarea
 
 	
 
@@ -3462,13 +3412,6 @@ var button = document.getElementById("button6");
 
 
 
-<!-- Image --!> 
-
-
-<span><img  style="max-width: 60%;
-        max-height: 60%;" id="saveSignature5" alt="Saved image png" /></span>
-<br>
-<br>
 
 
 
@@ -3482,9 +3425,20 @@ var button = document.getElementById("button6");
 <br>
 
 
+<span><img  style="max-width: 60%;
+        max-height: 60%;" id="Image OutputA1" alt="Saved image png" /></span> 
 
+<span><img  style="max-width: 60%;
+        max-height: 60%;" id="Image OutputA2" alt="Saved image png" /></span> 
 
+<span><img  style="max-width: 60%;
+        max-height: 60%;" id="Image OutputA3" alt="Saved image png" /></span> 
 
+<span><img  style="max-width: 60%;
+        max-height: 60%;" id="Image OutputA4" alt="Saved image png" /></span> 
+
+<span><img  style="max-width: 60%;
+        max-height: 60%;" id="Image OutputA5" alt="Saved image png" /></span> 
 
 
 
