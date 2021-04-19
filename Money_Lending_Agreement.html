@@ -1524,7 +1524,20 @@ function signatureClear2() {
     </br>
 
 
+<!-- Proof of ID-->
 
+<p><input type="file"  accept="image/*" name="imageA2" id="fileA2"  onchange="loadFileA2(event)" style="display: none;"></p>
+<p><label for="fileA2" style="cursor: pointer;">Proof of ID<span>&#128247;</span></label></p>
+<p><img id="outputA2" width="600" /></p>
+
+
+
+<script>
+var loadFileA2 = function(event) {
+	var imageA2 = document.getElementById('outputA2');
+	imageA2.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 
 
 <br>
@@ -1684,6 +1697,31 @@ function signatureClear1() {
     <button class = "SigClearButton" type="button" onclick="signatureClear1()">Clear signature</button>
     </br>
     </br>
+
+
+
+
+
+
+<p><input type="file"  accept="image/*" name="imageA3" id="fileA3"  onchange="loadFileA3(event)" style="display: none;"></p>
+<p><label for="fileA3" style="cursor: pointer;">Proof of ID<span>&#128247;</span></label></p>
+<p><img id="outputA3" width="600" /></p>
+
+
+
+<script>
+var loadFileA3 = function(event) {
+	var imageA3 = document.getElementById('outputA3');
+	imageA3.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
+
+
+
 
 
 <hr class = "line14">
@@ -2069,6 +2107,9 @@ var button = document.getElementById("button4");
 	var WAddress = document.getElementById("WitnessAddress").value;
 	
 
+	var OutputA2 = document.getElementById("outputA2").src;   //Image
+	var OutputA3 = document.getElementById("outputA3").src;   //Image
+
 
 	document.getElementById("Borrower Name2").textContent += BName2;
 	document.getElementById("Lender Name2").textContent += LName2;
@@ -2077,7 +2118,8 @@ var button = document.getElementById("button4");
 	document.getElementById("Witness Email").textContent += WEmail;
 	document.getElementById("Witness Address").textContent += WAddress;
 
-
+	document.getElementById("Image OutputA2").src += OutputA2; //Image
+	document.getElementById("Image OutputA3").src += OutputA3; //Image
 
   };
 
@@ -2266,6 +2308,8 @@ Lender:
 <div id = "Lender Address"></div>
 <div id = "Lender Email"></div>
 <img id="saveSignature2" alt="Saved image png" width="200"height = "55"/>
+<img  style="max-width: 30%; max-height: 30%; display: block;" id="Image OutputA2" alt="Saved image png" />
+
 <br>
 <br>
 Borrower:
@@ -2273,6 +2317,8 @@ Borrower:
 <div id = "Borrower Address"></div>
 <div id = "Borrower Email"></div>
 <img id="saveSignature1" alt="Saved image png" width="200"height = "55"/>
+<img  style="max-width: 30%; max-height: 30%; display: block;" id="Image OutputA3" alt="Saved image png" />
+
 <br>
 <br>
 Guarantor:
