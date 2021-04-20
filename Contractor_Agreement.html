@@ -659,7 +659,7 @@ function reveal1() {
 
 <div class ="form">
 
-<h3>Details for Panel</h3>  
+<h3>Contact Details for Both Parties</h3>  
 	
 <hr class = "line14">
 
@@ -825,43 +825,79 @@ function reveal2() {
 
 <div class ="form">
 
-<h3>Details for Panel</h3>  
+<h3>Description of Service</h3>  
 	
 <hr class = "line14">
 
 			
 <br>
 
+<table style="width: 95%;">
+<tbody>
 
 
-
-<p><strong>Contract Start Date</strong><p>
-<br>
-
-
-
-
-
-	<label for = "DateB1">Start Date: </label>
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Start date for task: </pre>
+</td>
+<td>
 	<input type = "date" id ="DateB1" style = "font-size:22px">
-<br>
-<br>
+</td>
+</tr>
+
+
+</tbody>
+</table>
 <br>
 
-<label for = "NumberB1">How many days notice are required to cancel the contract prior to the start date: </label>	
-	<input type="number" style = "margin:40px;" id="NumberB1" name="NumberB1" required
-       		minlength="1" maxlength="80" size = "6">
+		
+<br>
+
+<table style="width: 95%;">
+<tbody>
+
+
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Completion date for task: </pre>
+</td>
+<td>
+	<input type = "date" id ="DateB2" style = "font-size:22px">
+</td>
+</tr>
+
+
+</tbody>
+</table>
+<br>
+
 
 <br>
+
+<table style="width: 95%;">
+<tbody>
+
+
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">How many days notice are required to cancel the contract prior to the start date: </pre>
+</td>
+<td>
+	<input type="number" style = "margin:40px; width:80%;" id="NumberB1" name="NumberB1" required
+       		minlength="1" maxlength="80" size = "10">
+</td>
+</tr>
+
+
+</tbody>
+</table>
+<br>
+
 
 
 
 <hr class = "line14">
 
-
-
-<br>
-<br>
 <p style="text-align:left"><strong>Description of Services or Results:</strong></p>
 <br>
 
@@ -878,7 +914,7 @@ function reveal2() {
 
 
 
-<p><strong>Reference Image relating to task if necessary:</strong></p>
+<p><strong>Reference images relating to task if necessary:</strong></p>
 
 
 
@@ -886,10 +922,6 @@ function reveal2() {
 				<!-- PHOTO INPUT --> 
 <br>
 <br>
-
-
-
-
 <br>
 <br>
 
@@ -905,9 +937,6 @@ var loadFileA1 = function(event) {
 
 
 <br><br>
-
-
-
 <div class = "center" style="border: 2px solid #ccc;">
 <br>
 <p><input type="file"  accept="image/*" name="imageA1" id="fileA1"  onchange="loadFileA1(event)" style="display: none;"></p>
@@ -915,9 +944,6 @@ var loadFileA1 = function(event) {
 <img id="outputA1" width="600" />
 <br>
 </div>
-
-
-
 <br><br>
 <br>
 <br>
@@ -925,89 +951,49 @@ var loadFileA1 = function(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br><br>
-
-	<label for = "DateB2">Completion date for task: </label>
-	<input type = "date" id ="DateB2" style = "font-size:22px">
+<div class = "center" style="border: 2px solid #ccc;">
+<p><input type="file"  accept="image/*" name="imageA2" id="fileA2"  onchange="loadFileA2(event)" style="display: none;"></p>
+<p><label for="fileA2" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA2" width="600" /></p>
+</div>
+<br><br>
 <br>
+<br>
+<br>
+
+
+<script>
+var loadFileA2 = function(event) {
+	var imageA2 = document.getElementById('outputA2');
+	imageA2.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
+
 <br><br>
+<div class = "center" style="border: 2px solid #ccc;">
+<p><input type="file"  accept="image/*" name="imageA3" id="fileA3"  onchange="loadFileA3(event)" style="display: none;"></p>
+<p><label for="fileA3" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
+<p><img id="outputA3" width="600" /></p>
+</div>
+<br><br>
+<br>
+<br>
+<br>
+
+
+<script>
+var loadFileA3 = function(event) {
+	var imageA3 = document.getElementById('outputA3');
+	imageA3.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
 
 
 
@@ -1059,7 +1045,8 @@ var button = document.getElementById("button2");
 	var dateB2 = document.getElementById("DateB2").value; //Date
 	var TAreaB1 = document.getElementById("TextAreaB1").value; //Textarea
 	var OutputA1 = document.getElementById("outputA1").src;   //Image
-
+	var OutputA2 = document.getElementById("outputA2").src;   //Image
+	var OutputA3 = document.getElementById("outputA3").src;   //Image
 	
 
 	document.getElementById("Number B1").textContent += NB1; //Number
@@ -1067,7 +1054,8 @@ var button = document.getElementById("button2");
 	document.getElementById("Date B2").textContent += dateB2; //Date
 	document.getElementById("Text AreaB1").textContent += TAreaB1; //Textarea
 	document.getElementById("Image OutputA1").src += OutputA1;
-
+	document.getElementById("Image OutputA2").src += OutputA2; //Image
+	document.getElementById("Image OutputA3").src += OutputA3; //Image
 
   };
 
@@ -1131,7 +1119,7 @@ function reveal3() {
 
 <div class ="form">
 
-<h3>Details for Panel</h3>  
+<h3>Description of Responsibilities</h3>  
 	
 <hr class = "line14">
 
@@ -1145,29 +1133,60 @@ function reveal3() {
 <p><strong>Employer to Contractor Reimbursements: </strong></p>
 
 	
-<label for = "SelectC1">Insurance: </label>
-	<select id="SelectC1"  name="selectC1">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		</select>
-<br><br>
-	
-<label for = "SelectC2">Travel expenses: </label>
-	<select id="SelectC2"  name="selectC2">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		<option value="Option 3">Option 3</option>
- 		<option value="Option 4">Option 4</option>
-  		<option value="Option 5">Option 5</option></select>
-<br><br>
-	
-<label for = "SelectC3">Material costs: </label>
-	<select id="SelectC3"  name="selectC3">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		</select>
 
-<br>	<br>
+
+		
+<br>
+
+<table style="width: 95%;">
+<tbody>
+
+
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:80%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Insurance: </pre>
+</td>
+<td>
+	<select id="SelectC1"  name="selectC1" style ="width:80%;>
+  		  		<option value="Yes">Yes</option>
+  		<option value="No">No</option>
+		<option value="Yes">Yes</option>
+ 		</select>
+</td>
+</tr>
+
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:80%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Travel Expenses: </pre>
+</td>
+<td>
+	<select id="SelectC2"  name="selectC2" style ="width:80%;>
+  		  		<option value="Yes">Yes</option>
+  		<option value="No">No</option>
+		<option value="Yes">Yes</option>
+ 		</select>
+</td>
+</tr>
+
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:80%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Material Costs: </pre>
+</td>
+<td>
+	<select id="SelectC3"  name="selectC3" style ="width:80%;>
+  		  		<option value="Yes">Yes</option>
+  		<option value="No">No</option>
+		<option value="Yes">Yes</option>
+ 		</select>
+</td>
+</tr>
+
+
+</tbody>
+</table>
+<br>
+
+
 
 <div>
 <p style="text-align:left">Information relating to reimbursements:</p>
@@ -1178,7 +1197,7 @@ function reveal3() {
 <hr class = "line14">
 
 
-<p><strong>Title for selection Number 2</strong></p>
+<p><strong>Agreements</strong></p>
 <br>
 <br>
 
@@ -1315,38 +1334,6 @@ function reveal3() {
 
 </tbody>
 </table>
-<br>
-
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr> 
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1487,7 +1474,7 @@ function reveal4() {
 
 <div class ="form">
 
-<h3>Details for Panel</h3>  
+<h3>Payment Agreement</h3>  
 	
 <hr class = "line14">
 
@@ -1501,37 +1488,27 @@ function reveal4() {
   		<option value="Option 2">Lump Sum on completion</option>
   		<option value="Option 3">Lump Sum Upfront</option>
  		<option value="Option 4">Conditional on KPI's</option>
-  		<option value="Option 5"></option></select>
+  		<option value="Option 5">Hourly</option></select>
 
 
+<p>
+The contractor must be paid within __ days after submitting an invoice
+The employer must inspect the work within __ days after completion 
+The Employer must pay a deposit to the contractor
+The Contractor can Lien the following property in the event of non-payment
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+What form of payment (fee or hourly)?
+How often is payment due? 
+What's the amount?
+Is there a minimum amount? Are there times when additional payments need to be made?
+What are the "measureables" or milestones for payment? For example, a "by the job" pay agreement often includes specific deadlines for parts of the project. When the deadline is met, a specific amount of pay is released. 
+What reports are due and when?
+Are subcontractors allowed (people who work for the contractor)?
+What if the work isn't done on time? 
+What if payments are not made on time? 
+What if the work isn't acceptable?4﻿
+</p>
 
 
 
@@ -3123,6 +3100,12 @@ var button = document.getElementById("button6");
 
 
 <img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA1" alt="Saved image png" />
+
+
+<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA2" alt="Saved image png" />
+
+
+<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA3" alt="Saved image png" />
 
 
 
