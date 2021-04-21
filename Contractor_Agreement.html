@@ -859,7 +859,7 @@ function reveal2() {
 
 <tr>
 <td>
-<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Completion date for task: </pre>
+<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Expected completion date: </pre>
 </td>
 <td>
 	<input type = "date" id ="DateB2" style = "font-size:22px">
@@ -912,7 +912,7 @@ function reveal2() {
 <br>
 
 
-
+<div>
 
 <p><strong>Reference images relating to task if necessary:</strong></p>
 
@@ -949,7 +949,7 @@ var loadFileA1 = function(event) {
 <br>
 <br>
 
-
+</div>
 
 <br><br>
 <div class = "center" style="border: 2px solid #ccc;">
@@ -1482,93 +1482,7 @@ function reveal4() {
 
 
 
-<label for = "SelectD1">The Employer agrees to pay the Independent Contractor in the following manner: </label>
-	<select id="SelectD1"  name="selectD1">
-  		<option value="Option 1">Payment Plan</option>
-  		<option value="Option 2">Lump Sum on completion</option>
-  		<option value="Option 3">Lump Sum Upfront</option>
- 		<option value="Option 4">Conditional on KPI's</option>
-  		<option value="Option 5">Hourly</option></select>
-
-
-<p>
-The contractor must be paid within __ days after submitting an invoice
-The employer must inspect the work within __ days after completion 
-The Employer must pay a deposit to the contractor
-The Contractor can Lien the following property in the event of non-payment
-
-
-What form of payment (fee or hourly)?
-How often is payment due? 
-What's the amount?
-Is there a minimum amount? Are there times when additional payments need to be made?
-What are the "measureables" or milestones for payment? For example, a "by the job" pay agreement often includes specific deadlines for parts of the project. When the deadline is met, a specific amount of pay is released. 
-What reports are due and when?
-Are subcontractors allowed (people who work for the contractor)?
-What if the work isn't done on time? 
-What if payments are not made on time? 
-What if the work isn't acceptable?4﻿
-</p>
-
-
-
-
-
-					<!-- Text Input -->
-
-<br>
-
-	<p>text input</p>
-	<input type="text" id="InputNameD1" name="Input NameD1" required
-       		minlength="1" maxlength="80" placeholder="Input Text*" >
-<br>
-
-<p>text input</p>
-	<input type="text" id="InputNameD2" name="Input NameD2*" required
-       		minlength="1" maxlength="80" placeholder="Input Text*" >
-<br>
-
-<p>text input</p>
-	<input type="text" id="InputNameD3" name="Input NameD3*" required
-       		minlength="1" maxlength="80" placeholder="Input Text*" >
-<br>
-
-<p>text input</p>
-	<input type="text" id="InputNameD4" name="Input NameD4*" required
-       		minlength="1" maxlength="80" placeholder="Input Text*" >
-<br>
-
-
-
-
-				<!-- Number Input -->
-
-
-
-	<p>Number Input</p>	
-	<input type="number" style = "margin:40px;" id="NumberD1" name="NumberD1" required
-       		minlength="1" maxlength="80" size = "6">
-<br>
-
-	<p>Number Input</p>	
-	<input type="number" style = "margin:40px;" id="NumberD2" name="NumberD2" required
-       		minlength="1" maxlength="80" size = "6">
-<br>
-
-
-	<p>Number Input</p>	
-	<input type="number" style = "margin:40px;" id="NumberD3" name="NumberD3" required
-       		minlength="1" maxlength="80" size = "6">
-<br>
-
-
-	<p>Number Input</p>	
-	<input type="number" style = "margin:40px;" id="NumberD4" name="NumberD4" required
-       		minlength="1" maxlength="80" size = "6">
-<br>
-
-
-	<p>Number Input</p>	
+	<p>How many hours are estimated?</p>	
 	<input type="number" style = "margin:40px;" id="NumberD5" name="NumberD5" required
        		minlength="1" maxlength="80" size = "6">
 <br>
@@ -1577,150 +1491,115 @@ What if the work isn't acceptable?4﻿
 
 
 
-				<!-- Dropdown Select -->
 
-	
-<label for = "SelectD1">Select: </label>
+
+
+
+
+
+
+
+</p>
+
+
+
+<label for = "SelectD1">What form of payment? </label>
 	<select id="SelectD1"  name="selectD1">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		<option value="Option 3">Option 3</option>
- 		<option value="Option 4">Option 4</option>
-  		<option value="Option 5">Option 5</option></select>
+  		<option value="Option 1">Job Fee</option>
+  		<option value="Option 2">Hourly</option>
+  		</select>
 
 
 <br>	
 
 	
-
-	
-<label for = "SelectD2">Select: </label>
+<label for = "SelectD2">How often is payment due </label>
 	<select id="SelectD2"  name="selectD2">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		<option value="Option 3">Option 3</option>
- 		<option value="Option 4">Option 4</option>
-  		<option value="Option 5">Option 5</option></select>
+  		<option value="Option 1">Weekly</option>
+  		<option value="Option 2">Fortnightly</option>
+  		<option value="Option 3">Monthly</option>
+ 		<option value="Option 4">Yearly</option>
+  		<option value="Option 5">Upon Completion of Task</option></select>
 
 <br>	
 
 
-
-	
-
-	
-<label for = "SelectD3">Select: </label>
-	<select id="SelectD3"  name="selectD3">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		<option value="Option 3">Option 3</option>
- 		<option value="Option 4">Option 4</option>
-  		<option value="Option 5">Option 5</option></select>
-
-<br>	
-
-
-	
-
-	
-<label for = "SelectD4">Select: </label>
-	<select id="SelectD4"  name="selectD4">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		<option value="Option 3">Option 3</option>
- 		<option value="Option 4">Option 4</option>
-  		<option value="Option 5">Option 5</option></select>
-
-
-<br>	
-
-
-	
-
-	
-<label for = "SelectD5">Select: </label>
-	<select id="SelectD5"  name="selectD5">
-  		<option value="Option 1">Option 1</option>
-  		<option value="Option 2">Option 2</option>
-  		<option value="Option 3">Option 3</option>
- 		<option value="Option 4">Option 4</option>
-  		<option value="Option 5">Option 5</option></select>
-
-<br><br><br>	
-
-
-
-				<!-- Date Select-->
-
-
-
-
-	<label for = "DateD1">Date: </label>
-	<input type = "date" id ="DateD1" style = "font-size:22px">
+<p>What is the amount per hour/job?</p>	
+	<input type="number" style = "margin:40px;" id="NumberD1" name="NumberD1" required
+       		minlength="1" maxlength="80" size = "6">
 <br>
 
-
-
-	<label for = "DateD2">Date: </label>
-	<input type = "date" id ="DateD2" style = "font-size:22px">
+<p>Deposit Required by the Contractor:</p>	
+	<input type="number" style = "margin:40px;" id="NumberD2" name="NumberD2" required
+       		minlength="1" maxlength="80" size = "6">
 <br>
-
-
-
-	<label for = "DateD3">Date: </label>
-	<input type = "date" id ="DateD3" style = "font-size:22px">
-<br>
-
-
-
-	<label for = "DateD4">Date: </label>
-	<input type = "date" id ="DateD4" style = "font-size:22px">
-<br>
-
-
-
-
-
-
-<br>
-<br>
-<hr class = "line14">
-<br>
-<br>
-
-
-
-				<!-- Textarea Input -->
 
 
 
 <div>
-<p style="text-align:left">Text Area:</p>
+<p style="text-align:left">What are the milestones or KPI's for the job?</p>
 <textarea id = "TextAreaD1" rows="15" cols="60" name="textAreaD1" placeholder="TextArea"></textarea>
 </div>
 
+
+
+
+
 <div>
-<p style="text-align:left">Text Area:</p>
+<p style="text-align:left">What reports are due and when?</p>
 <textarea id = "TextAreaD2" rows="15" cols="60" name="textAreaD2" placeholder="TextArea"></textarea>
 </div>
 
 
+
+
+
+
 <div>
-<p style="text-align:left">Text Area:</p>
+<p style="text-align:left">What is the work isn't completed by the expected completion date?</p>
 <textarea id = "TextAreaD3" rows="15" cols="60" name="textAreaD3" placeholder="TextArea"></textarea>
 </div>
 
 
+
+
+	<p>How many days after submitting an invoice is payment due?</p>	
+	<input type="number" style = "margin:40px;" id="NumberD3" name="NumberD3" required
+       		minlength="1" maxlength="80" size = "6">
+<br>
+
+
+
+
+
+
+
 <div>
-<p style="text-align:left">Text Area:</p>
+<p style="text-align:left">What happens if payment is not made on time?</p>
 <textarea id = "TextAreaD4" rows="15" cols="60" name="textAreaD4" placeholder="TextArea"></textarea>
 </div>
 
 
+
+
+
+	<p>Work must undergo a final inspection within __ days of completion</p>	
+	<input type="number" style = "margin:40px;" id="NumberD4" name="NumberD4" required
+       		minlength="1" maxlength="80" size = "6">
 <br>
-<br>
-<br>
-<br>
+
+
+
+
+<div>
+<p style="text-align:left">What happens if the work is not acceptable?</p>
+<textarea id = "TextAreaD5" rows="15" cols="60" name="textAreaD5" placeholder="TextArea"></textarea>
+</div>
+
+
+
+﻿
+
 <hr class = "line14">
 
 
@@ -1760,11 +1639,6 @@ var button = document.getElementById("button4");
 
 
 
-	var NameD1 = document.getElementById("InputNameD1").value;   //Text
-	var NameD2 = document.getElementById("InputNameD2").value;   //Text
-	var NameD3 = document.getElementById("InputNameD3").value;   //Text
-	var NameD4 = document.getElementById("InputNameD4").value;   //Text
-
 
 
 	var ND1 = document.getElementById("NumberD1").value; //Number 
@@ -1774,34 +1648,17 @@ var button = document.getElementById("button4");
 	var ND5 = document.getElementById("NumberD5").value; //Number 	
 	
 
-
-	var SelD1 = document.getElementById("SelectD1").value; //select
 	var SelD2 = document.getElementById("SelectD2").value; //select
 	var SelD3 = document.getElementById("SelectD3").value; //select
-	var SelD4 = document.getElementById("SelectD4").value; //select
-	var SelD5 = document.getElementById("SelectD5").value; //select
-
-
-
-	var dateD1 = document.getElementById("DateD1").value; //Date
-	var dateD2 = document.getElementById("DateD2").value; //Date
-	var dateD3 = document.getElementById("DateD3").value; //Date
-	var dateD4 = document.getElementById("DateD4").value; //Date
-
-
+	
 
 	var TAreaD1 = document.getElementById("TextAreaD1").value; //Textarea
 	var TAreaD2 = document.getElementById("TextAreaD2").value; //Textarea
 	var TAreaD3 = document.getElementById("TextAreaD3").value; //Textarea
 	var TAreaD4 = document.getElementById("TextAreaD4").value; //Textarea
+	var TAreaD5 = document.getElementById("TextAreaD5").value; //Textarea
 
-
-	document.getElementById("Input NameD1").textContent += NameD1; //Text
-	document.getElementById("Input NameD2").textContent += NameD2; //Text	
-	document.getElementById("Input NameD3").textContent += NameD3; //Text
-	document.getElementById("Input NameD4").textContent += NameD4; //Text
-
-
+	
 
 	document.getElementById("Number D1").textContent += ND1; //Number
 	document.getElementById("Number D2").textContent += ND2; //Number
@@ -1811,26 +1668,15 @@ var button = document.getElementById("button4");
 
 
 
-	document.getElementById("Selection D1").textContent += SelD1; //select
 	document.getElementById("Selection D2").textContent += SelD2; //select
 	document.getElementById("Selection D3").textContent += SelD3; //select
-	document.getElementById("Selection D4").textContent += SelD4; //select
-	document.getElementById("Selection D5").textContent += SelD5; //select
-
-
-
-	document.getElementById("Date D1").textContent += dateD1; //Date
-	document.getElementById("Date D2").textContent += dateD2; //Date
-	document.getElementById("Date D3").textContent += dateD3; //Date
-	document.getElementById("Date D4").textContent += dateD4; //Date
-
-
+	
 
 	document.getElementById("Text AreaD1").textContent += TAreaD1; //Textarea
 	document.getElementById("Text AreaD2").textContent += TAreaD2; //Textarea
 	document.getElementById("Text AreaD3").textContent += TAreaD3; //Textarea
 	document.getElementById("Text AreaD4").textContent += TAreaD4; //Textarea
-	
+	document.getElementById("Text AreaD5").textContent += TAreaD5; //Textarea	
 
 
 
