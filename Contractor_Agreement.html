@@ -902,28 +902,23 @@ function reveal2() {
 <br>
 
 
-<div>
+
 <label for ="TextAreaB1">Task to be undertaken by the contractor:</label>
 <textarea id = "TextAreaB1" rows="15" cols="60" name="textAreaB1" placeholder="Employer to describe the work to be undertaken by the contractor"></textarea>
-</div>
 
 
 
 <br>
 
 
-<div>
 
 <p><strong>Reference images relating to task if necessary:</strong></p>
 
 
 
 
+
 				<!-- PHOTO INPUT --> 
-<br>
-<br>
-<br>
-<br>
 
 
 
@@ -935,32 +930,15 @@ var loadFileA1 = function(event) {
 </script>
 
 
-
-<br><br>
-<div class = "center" style="border: 2px solid #ccc;">
-<br>
 <p><input type="file"  accept="image/*" name="imageA1" id="fileA1"  onchange="loadFileA1(event)" style="display: none;"></p>
 <p><label for="fileA1" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
 <img id="outputA1" width="600" />
-<br>
-</div>
-<br><br>
-<br>
-<br>
-<br>
 
-</div>
 
-<br><br>
-<div class = "center" style="border: 2px solid #ccc;">
 <p><input type="file"  accept="image/*" name="imageA2" id="fileA2"  onchange="loadFileA2(event)" style="display: none;"></p>
 <p><label for="fileA2" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
 <p><img id="outputA2" width="600" /></p>
-</div>
-<br><br>
-<br>
-<br>
-<br>
+
 
 
 <script>
@@ -973,17 +951,10 @@ var loadFileA2 = function(event) {
 
 
 
-
-<br><br>
-<div class = "center" style="border: 2px solid #ccc;">
 <p><input type="file"  accept="image/*" name="imageA3" id="fileA3"  onchange="loadFileA3(event)" style="display: none;"></p>
 <p><label for="fileA3" style="cursor: pointer;">Upload Image <span>&#128247;</span></label></p>
 <p><img id="outputA3" width="600" /></p>
-</div>
-<br><br>
-<br>
-<br>
-<br>
+
 
 
 <script>
@@ -992,11 +963,6 @@ var loadFileA3 = function(event) {
 	imageA3.src = URL.createObjectURL(event.target.files[0]);
 };
 </script>
-
-
-
-
-
 
 
 <hr class = "line14">
@@ -1009,16 +975,13 @@ var loadFileA3 = function(event) {
 <!-- BUTTON FOR SUBMIT -->
 
 
-<br>
-<br>
-<br>
-<br>
 <div class = "center">
 <button class = "button" onclick="reveal2()"id="button2" type="button">Next</button>
 </div>
+<br><br>
+<br><br>
 
-<br>
-<br>
+
 
 </div>
 </div>
