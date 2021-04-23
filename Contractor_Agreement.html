@@ -1867,7 +1867,7 @@ function reveal8() {
 
 
 <br>
-<p>Signature: <span id = "3Input NameA1"></span>
+<p>Employer Signature: <span id = "3Input NameA1"></span>
 
 <br><br>
 
@@ -1876,7 +1876,7 @@ function reveal8() {
 
 
 
-<!--Lender SIGNATURE JS-->
+<!--Employer SIGNATURE JS-->
 
 
 <script>
@@ -2007,10 +2007,10 @@ function signatureClear2() {
 }
 </script>
 
-<!-- Lender END SIGNATURE JS -->
+<!-- Employer END SIGNATURE JS -->
 
 
-<!--Lender SIGNATURE HTML-->
+<!--Employer SIGNATURE HTML-->
 
     <div id="canvas2">
       <canvas class="roundCorners" id="newSignature2" 
@@ -2023,6 +2023,19 @@ function signatureClear2() {
     </br>
 
 
+<!-- Proof of ID-->
+
+<p><input type="file"  accept="image/*" name="imageA4" id="fileA4"  onchange="loadFileA4(event)" style="display: none;"></p>
+<p><label for="fileA4" style="cursor: pointer;">Proof of ID<span>&#128247;</span></label></p>
+<p><img id="outputA4" width="600" /></p>
+
+
+<script>
+var loadFileA4 = function(event) {
+	var imageA4 = document.getElementById('outputA4');
+	imageA4.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 
 
 
@@ -2032,13 +2045,13 @@ function signatureClear2() {
 <br>
 	
 <br>
-<p>Signature: <span id = "3Input NameA2"></span>
+<p>Contractor Signature: <span id = "3Input NameA2"></span>
 
 <br><br>
 
 
 
-<!--Borrower SIGNATURE JS-->
+<!--Contractor SIGNATURE JS-->
 
 
 <script>
@@ -2169,10 +2182,10 @@ function signatureClear1() {
 }
 </script>
 
-<!-- Borrower END SIGNATURE JS -->
+<!-- Contractor END SIGNATURE JS -->
 
 
-<!--Borrower SIGNATURE HTML-->
+<!--Contractor SIGNATURE HTML-->
 
     <div id="canvas1">
       <canvas class="roundCorners" id="newSignature1" 
@@ -2183,6 +2196,27 @@ function signatureClear1() {
     <button class = "SigClearButton" type="button" onclick="signatureClear1()">Clear signature</button>
     </br>
     </br>
+
+
+
+
+
+<p><input type="file"  accept="image/*" name="imageA5" id="fileA5"  onchange="loadFileA5(event)" style="display: none;"></p>
+<p><label for="fileA5" style="cursor: pointer;">Proof of ID<span>&#128247;</span></label></p>
+<p><img id="outputA5" width="600" /></p>
+
+
+
+<script>
+var loadFileA5 = function(event) {
+	var imageA5 = document.getElementById('outputA5');
+	imageA5.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+
+
+
+
 
 
 <hr class = "line14">
@@ -2405,12 +2439,16 @@ var button = document.getElementById("button6");
 	var WEmail = document.getElementById("WitnessEmail").value;
 	var WAddress = document.getElementById("WitnessAddress").value;
 	
+	var OutputA2 = document.getElementById("outputA4").src;   //Image
+	var OutputA3 = document.getElementById("outputA5").src;   //Image
 
 
 	document.getElementById("Witness Name").textContent += WName;
 	document.getElementById("Witness Email").textContent += WEmail;
 	document.getElementById("Witness Address").textContent += WAddress;
 
+	document.getElementById("Image OutputA4").src += OutputA2; //Image
+	document.getElementById("Image OutputA5").src += OutputA3; //Image
 
 
   };
@@ -2763,6 +2801,14 @@ Witness:
 
 
 
+
+
+
+<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA4" alt="Saved image png" />
+
+
+
+<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA5" alt="Saved image png" />
 
 
 
