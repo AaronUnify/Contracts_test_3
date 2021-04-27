@@ -1300,6 +1300,25 @@ function reveal3() {
 
 
 
+<table style="width: 95%;">
+<tbody>
+
+<tr>
+<td><pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 1px solid #c4caac; font-size:36px;">The Independent Contractor is required to have insurance:
+ </pre></td>
+<td><select id="SelectC10"  name="selectC10" style = "width:100%;>
+  		<option value = "Yes">Yes </option>
+  		<option value = "No">No </option>
+		<option value="Yes">Yes</option>
+  		</select>
+</td>
+</tr>
+
+
+</tbody>
+</table>
+
+
 
 <hr class = "line14">
 
@@ -1347,7 +1366,7 @@ var button = document.getElementById("button3");
 	var SelC7 = document.getElementById("SelectC7").value; //select	
 	var SelC8 = document.getElementById("SelectC8").value; //select
 	var SelC9 = document.getElementById("SelectC9").value; //select
-
+	var SelC10 = document.getElementById("SelectC10").value; //select
 
 	var TAreaC1 = document.getElementById("TextAreaC1").value; //Textarea
 	
@@ -1362,7 +1381,7 @@ var button = document.getElementById("button3");
 	document.getElementById("Selection C7").textContent += SelC7; //select
 	document.getElementById("Selection C8").textContent += SelC8; //select
 	document.getElementById("Selection C9").textContent += SelC9; //select
-
+	document.getElementById("Selection C10").textContent += SelC10; //select
 
 
 
@@ -2045,7 +2064,7 @@ var loadFileA4 = function(event) {
 <br>
 	
 <br>
-<p>Contractor Signature: <span id = "3Input NameA2"></span>
+<p>Independent Contractor Signature: <span id = "3Input NameA2"></span>
 
 <br><br>
 
@@ -2476,7 +2495,7 @@ var button = document.getElementById("button6");
 <!-- Script to print/save as pdf the content of a div -->
     <script> 
         function printDiv() { 
-            var divContents = document.getElementById("Money Lending Contract").innerHTML; 
+            var divContents = document.getElementById("Contractor Agreement").innerHTML; 
             var a = window.open('', '', 'height=500, width=500'); 
             a.document.write('<html><body style = background:rgba(14,70,172,0.75);>');  
             a.document.write('<div  style="background-color:rgb(14,14,14);"> ');
@@ -2696,15 +2715,16 @@ var button = document.getElementById("button6");
 
 <!-- Selection -->
 
-<span id = "Selection C1"></span> 
-<span id = "Selection C2"></span> 
-<span id = "Selection C3"></span> 
-<span id = "Selection C4"></span> 
-<span id = "Selection C5"></span> 
-<span id = "Selection C6"></span> 
-<span id = "Selection C7"></span> 
-<span id = "Selection C8"></span> 
-<span id = "Selection C9"></span> 
+
+
+
+
+
+
+
+
+
+
 <br>
 <br>
 
@@ -2766,15 +2786,8 @@ var button = document.getElementById("button6");
 
 
 
-
-
-
-
-
-<h3>INDEPENDENT CONTRACTOR AGREEMENT</h3>
-
 <p>
-<br>
+I. ACKNOWLEDGMENT
 <br>
 This Independent Contractor Agreement (“Agreement”) made XX/XX/20XX by and between <span id = "Input NameA1"></span> (The Employer) and <span id = "Input NameA4"></span> (The Independent Contractor). 
 <br>
@@ -2783,11 +2796,17 @@ The Independent Contractor is willing to provide certain skills and abilities to
 In consideration of the mutual terms, conditions, and covenants hereinafter set forth, The Employer and The Independent Contractor agree as follows:
 <br>
 <br>
-1. Work Status. The Employer hereby employs the Independent Contractor as an independent contractor, and the Independent Contractor hereby accepts employment.
+II. WORK STATUS
+<br> 
+The Employer hereby employs the Independent Contractor as an independent contractor, and the Independent Contractor hereby accepts employment.
 <br>
-2. Start Date. The term of this Agreement shall commence on <span id = "Date B1"></span> . Either party may, without cause, terminate this Agreement by giving <span id = "Number B1"></span> day(s’) written notice to the other.
+III. START DATE
 <br>
-3. Services Provided. The Employer shall pay the Independent Contractor the agreed upon compensation for the following services. Any image provided by either The Employer of The Independent Contractor is to be understood by both parties as being communicative and not a direct example of work to be provided:
+The term of this Agreement shall commence on <span id = "Date B1"></span> . Either party may, without cause, terminate this Agreement by giving <span id = "Number B1"></span> day(s’) written notice to the other.
+<br>
+IV. SERVICES
+<br>
+The Employer shall pay the Independent Contractor the agreed upon compensation for the following services. Any image provided by either The Employer of The Independent Contractor is to be understood by both parties as being communicative and not a direct example of work to be provided:
 <br>
 <pre id = "Text AreaB1"></pre> 
 <br>
@@ -2800,112 +2819,124 @@ In consideration of the mutual terms, conditions, and covenants hereinafter set 
 <img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA3" alt="Saved image png" />
 <br>
 <br>
-4. Compensation. The Employer shall compensate the Independent Contractor in the following manner: 
+V. COMPENSATION. 
 <br>
-
+The Employer shall compensate the Independent Contractor in the following manner: 
+<br>
 The Independent Contractor will be compensated for this job by <span id = "Selection D1"></span>. Payment is due <span id = "Selection D2"></span> . The Independent contractor estimates this job will require <span id = "Number D1"></span> hours of labor to complete. 
 <br>
 The Independent Contractors fee for the job is <span id = "Number D2"></span>. The Independent Contractor will require a deposit of <span id = "Number D3"></span> before commencing work. 
 <br>
 <br>
+VI. INSURANCE 
+<br>
+The Independent Contractor shall be required to have insurance  <span id = "Selection C10"></span> to have insurance attributed to their service provided. 
+Such insurance shall be reimbursed by the employer. <span id = "Selection C1"></span> 
 
-
-
-
-
-5. Insurance. The Independent Contractor shall:
-<br><br>
-☐ be required 
-☐ not be required 
-<br><br>
-to have insurance attributed to their service provided. Such insurance shall 
-<br><br>
-☐ be reimbursed 
-☐ not be reimbursed 
-<br><br>
-by the Employer.
-<br><br>
-6. Travel Expenses. The Independent Contractor’s travel expenses shall 
-<br><br>
-☐ be reimbursed 
-☐ not be reimbursed 
-<br><br>
-by the Employer.
+VII. TRAVEL EXPENSES
+<br>
+The Independent Contractor’s travel expenses shall be reimbursed by the employer. <span id = "Selection C2"></span> 
 <br><br>
 
-7. Materials. The Independent Contractor’s materials used for providing the services shall 
+VIII. MATERIALS. 
+<br>
+The Independent Contractor’s costs for materials used providing the services shall <span id = "Selection C3"></span> be reimbursed
 <br><br>
-☐ be reimbursed 
-☐ not be reimbursed by the Employer.
-<br><br>
-8. Other Business Activity. 
+
+IX. INTELLECTUAL PROPERTY. 
+The Work created by the independent contractor within the terms of the employment is the intellectual property of the Employer: <span id = "Selection C4"></span>. 
+
+X. OTHER BUSINESS ACTIVITY. 
 <br><br>
 The Independent Contractor may engage in other business
 activities provided, however, that Independent Contractor shall not during the term of this
 Agreement solicit the Employer’s employees, clients, accounts, or other related business
-endeavors of the Employer.
+endeavors of the Employer. <span id = "Selection C5"></span> 
 <br><br>
-9. Unplanned Events. 
+
+
+XI. UNPLANNED EVENTS 
 <br><br>
 If for reasons beyond the control of the Employer and Independent
 Contractor should affect this Agreement, this Agreement shall terminate immediately. Such
 events include, but are not limited to, illness, incapacitation, death, or other “Acts of God”.
 <br><br>
 
-10. Assignment. 
+
+XII. ASSIGNMENT
+<br>
+The Employer may assign this Agreement without the express written consent of the other party. <span id = "Selection C6"></span> 
+<br>
+The Independent Contractor may assign this Agreement without the express written consent of the other party. <span id = "Selection C7"></span> 
 <br><br>
-Neither the Employer nor the Independent Contractor may assign this
-Agreement without the express written consent of the other party.
-<br><br>
-11. Relationship Defined. 
-<br><br>
+
+
+XIII. RELATIONSHIP DEFINED
+<br>
 Nothing in this Agreement shall indicate the Independent Contractor is a partner, agent, or employee of the Employer.
 <br><br>
-12. Final Agreement. 
+
+
+
+XIV. NON-DISCLOSURE AGREEMENT
+The Terms of this employment are subject to the signing of a non-disclosure agreement. <span id = "Selection C8"></span> 
+<br><br>
+
+
+
+XV. INDEMNITY 
+The Independent Contractor agrees to indemnify, defend and hold harmless The Employer against all losses arising from: 
+	
+    1. any violation of this Agreement by The Independent Contractor
+	
+    2. the inaccurate or untruthful Content or other information provided by The Independent Contractor to The Employer that the Independent contractor submits, transmits or otherwise makes available during the employment
+	
+    3. any intentional or willful violation of any rights of another or harm the independent contractor may have caused to another. The Employer will have sole control of the defense of any such damage or claim.
+<span id = "Selection C9"></span> 
+
+
+XVI. FINAL AGREEMENT. 
 <br><br>
 It is agreed between the parties that there are no other agreements or
 understandings between them relating to the subject matter of this Agreement. This Agreement supersedes all prior agreements, oral or written, between the parties and is intended as a complete and exclusive statement of the agreement between the parties. No change or modification of this Agreement shall be valid unless the same be in writing and signed by the parties.
 <br><br>
-13. Legal Notice. 
-<br><br>
+XVII. LEGAL NOTICE. 
+<br><br> 
 All notices or required or permitted to be given hereunder shall be in writing and may be delivered personally or by Certified Mail – Return Receipt Requested, postage prepaid, addressed to the party's last known address listed below:
 <br><br>
 Employer’s Address: __________________________________________
 <br><br>
 Independent Contractor’s Address: _______________________________
 <br><br>
-14. Governing Law. This Agreement shall be construed in accordance with and governed by the laws under the State of _______________________.
+XVIII. GOVERNING LAW. This Agreement shall be construed in accordance with and governed by the laws under the State of _______________________.
 <br><br>
 IN WITNESS WHEREOF, the Parties have indicated their acceptance of the terms of this
 Agreement by their signatures below on the dates indicated. 
 <br><br>
-15. Intellectual Property. 
-<br><br>
-16. Indemnity
-<br><br>
-17. Non-Disclosure Agreement
+XVI. 
 <br><br>
 
+<br><br>
+XIX. 
 
 
 
-
-
+XX. SIGNED 
 <br>
-X. SIGNED 
-<br>
-Lender:
+Employer:
 <div id = "2Input NameA1"></div>
 <div id = "Lender Address"></div>
 <div id = "Lender Email"></div>
 <img id="saveSignature2" alt="Saved image png" width="200"height = "55"/>
+<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA4" alt="Saved image png" />
 <br>
 <br>
-Borrower:
+Independent Contractor:
 <div id = "2Input NameA2"></div>
 <div id = "Borrower Address"></div>
 <div id = "Borrower Email"></div>
 <img id="saveSignature1" alt="Saved image png" width="200"height = "55"/>
+<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA5" alt="Saved image png" />
 <br>
 <br>
 
@@ -2924,14 +2955,8 @@ Witness:
 
 
 
-<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA4" alt="Saved image png" />
 
-
-
-<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA5" alt="Saved image png" />
-
-
-</div
+</div>
 
 
 
