@@ -13,7 +13,7 @@ a:link {
 }
 
 /* visited link */
-a:visited {
+a:visited { 
   color: rgb(251,251,251);
 }
 
@@ -1287,24 +1287,15 @@ function reveal3() {
 	<br>    3. any intentional or willful violation of any rights of another or harm the independent contractor may have caused to another. The Employer will have sole control of the defense of any such damage or claim.
 
 <td><select id="SelectC9"  name="selectC9" style = "width:100%;>
-  		<option value = "The Independent Contractor agrees to indemnify, defend and hold harmless The Employer against all losses arising from: 
-	   1. any violation of this Agreement by The Independent Contractor
-	   2. the inaccurate or untruthful Content or other information provided by The Independent Contractor to The Employer that the Independent contractor submits, transmits or otherwise makes available during the employment
-	   3. any intentional or willful violation of any rights of another or harm the independent contractor may have caused to another. The Employer will have sole control of the defense of any such damage or claim.">Yes </option>
-  		<option value = "The Independent Contractor DOES NOT agree to indemnify, defend and hold harmless The Employer against all losses arising from: 
-	   1. any violation of this Agreement by The Independent Contractor
-	   2. the inaccurate or untruthful Content or other information provided by The Independent Contractor to The Employer that the Independent contractor submits, transmits or otherwise makes available during the employment
-	   3. any intentional or willful violation of any rights of another or harm the independent contractor may have caused to another. The Employer will have sole control of the defense of any such damage or claim.">No </option>
-		<option value="The Independent Contractor agrees to indemnify, defend and hold harmless The Employer against all losses arising from: 
-	   1. any violation of this Agreement by The Independent Contractor
-	   2. the inaccurate or untruthful Content or other information provided by The Independent Contractor to The Employer that the Independent contractor submits, transmits or otherwise makes available during the employment
-	   3. any intentional or willful violation of any rights of another or harm the independent contractor may have caused to another. The Employer will have sole control of the defense of any such damage or claim. ">Yes</option>
+  		<option value = "The Independent Contractor agrees to indemnify, ">Yes </option>
+  		<option value = "The Independent Contractor DOES NOT agree to indemnify, >No </option>
+		<option value="The Independent Contractor agrees to indemnify, >Yes</option>
   		</select>
 </td>
 </tr>
 
 
-</tbody>
+</tbody>s
 </table>
 
 
@@ -1496,8 +1487,8 @@ function reveal4() {
 
 <label for = "SelectD1">What form of payment? </label>
 	<select id="SelectD1"  name="selectD1">
-  		<option value="Option 1">Job Fee</option>
-  		<option value="Option 2">Hourly</option>
+  		<option value="by the payment of a fee upon completion.">Fee Upon Completion </option>
+  		<option value="through hourly pay.">Paid Hourly</option>
   		</select>
 
 
@@ -1506,11 +1497,11 @@ function reveal4() {
 	
 <label for = "SelectD2">How often is payment due </label>
 	<select id="SelectD2"  name="selectD2">
-  		<option value="Option 1">Weekly</option>
-  		<option value="Option 2">Fortnightly</option>
-  		<option value="Option 3">Monthly</option>
- 		<option value="Option 4">Yearly</option>
-  		<option value="Option 5">Upon Completion of Task</option></select>
+  		<option value="each week. ">Weekly</option>
+  		<option value="fortnightly. ">Fortnightly</option>
+  		<option value="monthly. ">Monthly</option>
+ 		<option value="yearly. ">Yearly</option>
+  		<option value="upon completion of task. ">Upon Completion of Task</option></select>
 
 <br>	
 
@@ -1547,7 +1538,7 @@ function reveal4() {
 
 
 <div>
-<p style="text-align:left">What is the work isn't completed by the expected completion date?</p>
+<p style="text-align:left">What if the work isn't completed by the expected completion date?</p>
 <textarea id = "TextAreaD3" rows="15" cols="60" name="textAreaD3" placeholder="TextArea"></textarea>
 </div>
 
@@ -1583,7 +1574,9 @@ function reveal4() {
 
 
 <div>
-<p style="text-align:left">What happens if the work is not acceptable?</p>
+<p style="text-align:left">The work completed should be of higher quality than that of an amatuer, functional and aesthectic within the time and budgetary constraints of the employer. 
+Specific to the task at hand, what would be an indication of low quality work that would result in the Independent Contractor failing a final inspection?
+</p>
 <textarea id = "TextAreaD5" rows="15" cols="60" name="textAreaD5" placeholder="TextArea"></textarea>
 </div>
 
@@ -2508,7 +2501,7 @@ var button = document.getElementById("button6");
             var a = window.open('', '', 'height=500, width=500'); 
             a.document.write('<html><body style = background:rgba(14,70,172,0.75);>');  
             a.document.write('<div  style="background-color:rgb(14,14,14);"> ');
-            a.document.write('<h1 style= "color:rgb(251,251,251); text-align: center;" >Unify - Contracts </h1><h2 style="color:rgb(251,251,251); text-align: center;"> Money Lending Agreement</h2><br>'); 
+            a.document.write('<h1 style= "color:rgb(251,251,251); text-align: center;" >Unify - Contracts </h1><h2 style="color:rgb(251,251,251); text-align: center;"> Contractor Agreement</h2><br>'); 
             a.document.write('</div>'); 
             a.document.write('<div  style="background-color:rgb(251,251,251);"> '); 
             a.document.write(divContents); 
@@ -2655,56 +2648,10 @@ var button = document.getElementById("button6");
 
 
 <div id = "Contractor Agreement" hidden>
-<h3> 
-				<!-- Panel 1 - User Inputs -->
-
-
-
-				<!-- Panel 2 - User Inputs -->
-
-
-
-
-
-
-<!--Text Area -->
-
-<pre id = "Text AreaC1"></pre> 
-
-			
-
-				<!-- Panel 4 - User Inputs -->
-
-
-
-
-<span id = "Number D4"></span>
-<span id = "Number D5"></span>
-<br>
-<br>
-
-
-
-
-<!--Text Area -->
-
-<pre id = "Text AreaD1"></pre> 
-<pre id = "Text AreaD2"></pre> 
-<pre id = "Text AreaD3"></pre> 
-<pre id = "Text AreaD4"></pre> 
-<pre id = "Text AreaD5"></pre> 
-<br>
-<br><br>
-<br>
-
-
-
-</h3>
-
 
 
 <p>
-I. ACKNOWLEDGMENT
+I. ACKNOWLEDGMENT.
 <br>
 This Independent Contractor Agreement (“Agreement”) by and between <span id = "Input NameA1"></span> (The Employer) and <span id = "Input NameA2"></span> (The Independent Contractor). 
 <br><br>
@@ -2715,7 +2662,7 @@ In consideration of the mutual terms, conditions, and covenants hereinafter set 
 <br>
 
 
-II. WORK STATUS
+II. WORK STATUS.
 <br> 
 The Employer hereby employs the Independent Contractor as an independent contractor, and the Independent Contractor hereby accepts employment.
 <br><br>
@@ -2727,7 +2674,7 @@ The term of this Agreement shall commence on <span id = "Date B1"></span> . Eith
 <br>
 
 
-IV. SERVICES
+IV. SERVICES.
 <br>
 The Employer shall pay the Independent Contractor the agreed upon compensation for the following services. Any image provided by either The Employer of The Independent Contractor is to be understood by both parties as being communicative and not a direct example of work to be provided:
 <br>
@@ -2743,27 +2690,70 @@ The Employer shall pay the Independent Contractor the agreed upon compensation f
 <br>
 <br>
 
-The Expected Completion date for the task is <span id = "Date B2"></span>.   
+The Expected Completion date for the task is <span id = "Date B2"></span>. The Employer has <span id = "Number D4"></span> day('s)
+to make a final inspection on the completed work. If the inspection is not completed within this timeframe the Idependent Contractor
+is not required to make changes to their work to recieve compensation.  
 <br>
 <br> 
+If during the final inspection the completed work is found to be different from the expectations of the 
+Employer the Independent Contractor should make reasonable effort to correct the differences. Specific to the current task
+the following are examples of a low quality outcome that would result in the work requiring changes post completion.  
+
+<pre id = "Text AreaD5"></pre> 
+
+
+
 V. COMPENSATION. 
 <br>
 The Employer shall compensate the Independent Contractor in the following manner: 
 <br>
-The Independent Contractor will be compensated for this job by <span id = "Selection D1"></span>. Payment is due <span id = "Selection D2"></span> . The Independent contractor estimates this job will require <span id = "Number D1"></span> hours of labor to complete. 
-<br>
-The Independent Contractors fee for the job is <span id = "Number D2"></span>. The Independent Contractor will require a deposit of <span id = "Number D3"></span> before commencing work. 
+<br>         
+The Independent Contractor will be compensated for this job <span id = "Selection D1"></span> Payment is due <span id = "Selection D2"></span> . The Independent contractor estimates this job will require <span id = "Number D5"></span> hour('s) of labor to complete. 
+<br><br>
+The Independent Contractors fee for the job is $<span id = "Number D1"></span> PER HOUR/JOB. The Independent Contractor will require a deposit of $<span id = "Number D2"></span> before commencing work. 
 <br>
 <br>
 
+VI. CONDITIONS FOR COMPENSATION 
 
-VI. INSURANCE 
+The service is subject to the following. 
+
+Payment is subject to the accomplishment of certain KPI's or Milestone. The details of which is stated below.  
+<br>
+<pre id = "Text AreaD1"></pre> 
+<br>
+<br>
+Payment is subject to the submission of reports submitted by the Independent Contractor to the Employer. The details of which is stated below. 
+<br>
+<pre id = "Text AreaD2"></pre>
+<br>
+<br>
+If the work is not finished by the agreed upon date a penalty may apply. The details of the penalty is stated below. 
+<br>
+<pre id = "Text AreaD3"></pre> 
+<br>
+<br>
+Upon completion of the task, the Independent Contractor will provide the Employer with an invoice. 
+Payment of the invoice is due <span id = "Number D3"></span> days after recieving the invoice. 
+If the invoice is not paid after the agreed upon time period a penalty may apply. 
+The details of the penalty is stated below. 
+<br>
+<pre id = "Text AreaD4"></pre>
+ 
+
+
+
+
+<br>
+<br>
+
+VI. INSURANCE.
 <br> 
 <span id = "Selection C10"></span> attributed to their service provided. 
 <span id = "Selection C1"></span> 
 <br><br>
 
-VII. TRAVEL EXPENSES
+VII. TRAVEL EXPENSES.
 <br>
 <span id = "Selection C2"></span> 
 <br><br>
@@ -2780,13 +2770,18 @@ IX. INTELLECTUAL PROPERTY.
 <span id = "Selection C4"></span>
 <br><br>
 
+IX. ADDITIONAL INFORMATION RELATING TO REIMBURSEMENTS. 
+<br>
+<pre id = "Text AreaC1"></pre> 
+<br><br>
+
 X. OTHER BUSINESS ACTIVITY. 
 <br>
 <span id = "Selection C5"></span> 
 <br><br>
 
 
-XI. UNPLANNED EVENTS 
+XI. UNPLANNED EVENTS.
 <br>
 If for reasons beyond the control of the Employer and Independent
 Contractor should affect this Agreement, this Agreement shall terminate immediately. Such
@@ -2794,7 +2789,7 @@ events include, but are not limited to, illness, incapacitation, death, or other
 <br><br>
 
 
-XII. ASSIGNMENT
+XII. ASSIGNMENT.
 <br>
 <span id = "Selection C6"></span> 
 <br>
@@ -2802,14 +2797,14 @@ XII. ASSIGNMENT
 <br><br>
 
 
-XIII. RELATIONSHIP DEFINED
+XIII. RELATIONSHIP DEFINED.
 <br>
 Nothing in this Agreement shall indicate the Independent Contractor is a partner, agent, or employee of the Employer.
 <br><br>
 
 
 
-XIV. NON-DISCLOSURE AGREEMENT
+XIV. NON-DISCLOSURE AGREEMENT.
 <br>
 <span id = "Selection C8"></span> 
 <br><br>
@@ -2818,7 +2813,10 @@ XIV. NON-DISCLOSURE AGREEMENT
 
 XV. INDEMNITY 
 <br>
-<p id = "Selection C9"></p> 
+<p id = "Selection C9"></p> defend and hold harmless The Employer against all losses arising from: <br>
+<br>	   1. any violation of this Agreement by The Independent Contractor
+<br>	   2. the inaccurate or untruthful Content or other information provided by The Independent Contractor to The Employer that the Independent contractor submits, transmits or otherwise makes available during the employment
+<br>	   3. any intentional or willful violation of any rights of another or harm the independent contractor may have caused to another. The Employer will have sole control of the defense of any such damage or claim.
 <br><br>
 
 
@@ -2848,13 +2846,13 @@ IN WITNESS WHEREOF, the Parties have indicated their acceptance of the terms of 
 Agreement by their signatures below on the dates indicated. 
 <br><br>
 
-XIII. SIGNED 
+XIII. SIGNED.
 <br>
 Employer:
 <div id = "2Input NameA1"></div>
 <span id = "Input NameA3"></span>
 <img id="saveSignature2" alt="Saved image png" width="200"height = "55"/>
-<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA4" alt="Saved image png" />
+<img  style="max-width: 30%; max-height: 30%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA4" alt="Saved image png" />
 <br>
 <br>
 
@@ -2864,7 +2862,7 @@ Independent Contractor:
 <div id = "2Input NameA2"></div> 
 <span id = "Input NameA5"></span>
 <img id="saveSignature1" alt="Saved image png" width="200"height = "55"/>
-<img  style="max-width: 60%; max-height: 60%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA5" alt="Saved image png" />
+<img  style="max-width: 30%; max-height: 30%; display: block; margin-left: auto; margin-right: auto" id="Image OutputA5" alt="Saved image png" />
 <br>
 <br>
 
@@ -2879,67 +2877,4 @@ Witness:
 </p>
 
 
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
