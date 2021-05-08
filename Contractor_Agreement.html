@@ -21,7 +21,7 @@ a:visited {
 a:hover {
   color: rgb(251,251,251);
 }
-
+ 
 /* selected link */
 a:active {
   color: rgb(251,251,251);
@@ -850,27 +850,6 @@ function reveal2() {
 </table>
 <br>
 
-		
-<br>
-
-<table style="width: 95%;">
-<tbody>
-
-
-<tr>
-<td>
-<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Expected completion date: </pre>
-</td>
-<td>
-	<input type = "date" id ="DateB2" style = "font-size:22px">
-</td>
-</tr>
-
-
-</tbody>
-</table>
-<br>
-
 
 <br>
 
@@ -893,26 +872,55 @@ function reveal2() {
 </table>
 <br>
 
+		
+<br>
+
+<table style="width: 95%;">
+<tbody>
+
+
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Expected completion date for task: </pre>
+</td>
+<td>
+	<input type = "date" id ="DateB2" style = "font-size:22px">
+</td>
+</tr>
+
+
+</tbody>
+</table>
+<br>
+
+
 
 
 
 <hr class = "line14">
 
 <p style="text-align:left"><strong>Description of Services or Results:</strong></p>
+
+
+
+
+<p>Describe the task to be undertaken by the contractor:</p>
+<textarea id = "TextAreaB1" rows="15" cols="60" name="textAreaB1" placeholder="Employer to describe the work to be undertaken by the contractor
+
+	1.
+
+	2.
+
+	3."></textarea>
+
+
+
 <br>
 
 
 
-<p>Task to be undertaken by the contractor:</p>
-<textarea id = "TextAreaB1" rows="15" cols="60" name="textAreaB1" placeholder="Employer to describe the work to be undertaken by the contractor"></textarea>
-
-
-
+<p>For additional clarity add reference images relating to task if necessary: </p>
 <br>
-
-
-
-<p><strong>Reference images relating to task if necessary:</strong></p>
 
 
 
@@ -1111,7 +1119,7 @@ function reveal3() {
 </td>
 <td>
 	<select id="SelectC1"  name="selectC1" style ="width:80%;>
-  		  		<option value="Insurance shall be reimbursed by the employer. ">Yes</option>
+  		  		<option value="Insurance costs accrued by the Independent Contractor will be reimbursed by the employer. ">Yes</option>
   		<option value="Insurance is not required to be reimbursed by the employer. ">No</option>
 		<option value="Insurance shall be reimbursed by the employer. ">Yes</option>
  		</select>
@@ -1124,7 +1132,7 @@ function reveal3() {
 </td>
 <td>
 	<select id="SelectC2"  name="selectC2" style ="width:80%;>
-  		  		<option value="The Independent Contractor’s travel expenses shall be reimbursed by the employer. ">Yes</option>
+  		  		<option value="The Independent Contractor’s travel expenses acccrued while providing the service will be reimbursed by the employer. ">Yes</option>
   		<option value="The Independent Contractor’s travel expenses shall not be reimbursed by the employer. ">No</option>
 		<option value="The Independent Contractor’s travel expenses shall be reimbursed by the employer. ">Yes</option>
  		</select>
@@ -1137,7 +1145,7 @@ function reveal3() {
 </td>
 <td>
 	<select id="SelectC3"  name="selectC3" style ="width:80%;>
-  		  		<option value="The Independent Contractor’s costs for materials used providing the services shall be reimbursed. ">Yes</option>
+  		  		<option value="The Independent Contractor’s costs for materials used providing the services will be reimbursed by the Employer. ">Yes</option>
   		<option value="The Independent Contractor’s costs for materials used providing the services shall not be reimbursed. ">No</option>
 		<option value="The Independent Contractor’s costs for materials used providing the services shall be reimbursed. ">Yes</option>
  		</select>
@@ -1152,8 +1160,12 @@ function reveal3() {
 
 
 <div>
-<p style="text-align:left">Information relating to reimbursements:</p>
-<textarea id = "TextAreaC1" rows="15" cols="60" name="textAreaC1" placeholder="TextArea"></textarea>
+<p style="text-align:left">Employer to input additional information relating to reimbursements:</p>
+<textarea id = "TextAreaC1" rows="15" cols="60" name="textAreaC1" placeholder="For example: 
+
+1. Insurance will be reimbursed provided the Independent Contractor uses a specific company
+2. Material Costs will be reimbursed up to $2,000.00 providing that reciepts are provided
+3. Travel costs will be reimbursed up to $100 "></textarea>
 </div>
 
 
@@ -1295,7 +1307,7 @@ function reveal3() {
 </tr>
 
 
-</tbody>s
+</tbody>
 </table>
 
 
@@ -1307,7 +1319,7 @@ function reveal3() {
 <td><pre   style="white-space: pre-wrap; width:100%; margin-left: 40px; padding: 0; border: 1px solid #c4caac; font-size:36px;">The Independent Contractor is required to have insurance:
  </pre></td>
 <td><select id="SelectC10"  name="selectC10" style = "width:100%;>
-  		<option value = "The Independent Contractor shall be required to have insurance">Yes </option>
+  		<option value = "The Independent Contractor shall be required to have insurance relating to the service">Yes </option>
   		<option value = "The Independent Contractor is not required to have insurance ">No </option>
 		<option value="The Independent Contractor shall be required to have insurance ">Yes</option>
   		</select>
@@ -1464,7 +1476,7 @@ function reveal4() {
 
 
 
-	<p>How many hours of labour are estimated?</p>	
+	<p>How many hours of labour does the Independent Contractor estimate the service will require?</p>	
 	<input type="number" style = "margin:40px;" id="NumberD5" name="NumberD5" required
        		minlength="1" maxlength="80" size = "6">
 <br>
@@ -1485,10 +1497,10 @@ function reveal4() {
 
 
 
-<label for = "SelectD1">What form of payment? </label>
+<label for = "SelectD1">Is payment to be Flat Rate or Hourly Pay? </label>
 	<select id="SelectD1"  name="selectD1">
-  		<option value="by the payment of a fee upon completion.">Fee Upon Completion </option>
-  		<option value="through hourly pay.">Paid Hourly</option>
+  		<option value="by the payment of a fee upon completion.">Flat Rate </option>
+  		<option value="through hourly pay.">Hourly Pay</option>
   		</select>
 
 
@@ -1500,18 +1512,18 @@ function reveal4() {
   		<option value="each week. ">Weekly</option>
   		<option value="fortnightly. ">Fortnightly</option>
   		<option value="monthly. ">Monthly</option>
- 		<option value="yearly. ">Yearly</option>
+ 		<option value="Quarterly. ">Quarterly</option>
   		<option value="upon completion of task. ">Upon Completion of Task</option></select>
 
 <br>	
 
 
-<p>What is the amount per hour/job?</p>	
+<p>What is the amount to be paid per hour or the flat rate payment to be paid for the service?</p>	
 	<input type="number" style = "margin:40px;" id="NumberD1" name="NumberD1" required
        		minlength="1" maxlength="80" size = "6">
 <br>
 
-<p>Deposit Required by the Contractor:</p>	
+<p>Is there a deposit required by the Contractor?</p>	
 	<input type="number" style = "margin:40px;" id="NumberD2" name="NumberD2" required
        		minlength="1" maxlength="80" size = "6">
 <br>
@@ -1538,7 +1550,7 @@ function reveal4() {
 
 
 <div>
-<p style="text-align:left">What if the work isn't completed by the expected completion date?</p>
+<p style="text-align:left">What is the penalty if the work isn't completed by the expected completion date?</p>
 <textarea id = "TextAreaD3" rows="15" cols="60" name="textAreaD3" placeholder="TextArea"></textarea>
 </div>
 
@@ -1557,7 +1569,7 @@ function reveal4() {
 
 
 <div>
-<p style="text-align:left">What happens if payment is not made on time?</p>
+<p style="text-align:left">What is the penalty if the employer does not pay the invoice by the due date?</p>
 <textarea id = "TextAreaD4" rows="15" cols="60" name="textAreaD4" placeholder="TextArea"></textarea>
 </div>
 
@@ -1565,7 +1577,7 @@ function reveal4() {
 
 
 
-	<p>Work must undergo a final inspection within __ days of completion</p>	
+<p>The Employer must perform a final inspection within __ days of completion</p>	
 	<input type="number" style = "margin:40px;" id="NumberD4" name="NumberD4" required
        		minlength="1" maxlength="80" size = "6">
 <br>
@@ -1575,7 +1587,7 @@ function reveal4() {
 
 <div>
 <p style="text-align:left">The work completed should be of higher quality than that of an amatuer, functional and aesthectic within the time and budgetary constraints of the employer. 
-Specific to the task at hand, what would be an indication of low quality work that would result in the Independent Contractor failing a final inspection?
+Specific to the task at hand, what would be an indication of low quality work that would result in the Independent Contractors work failing a final inspection?
 </p>
 <textarea id = "TextAreaD5" rows="15" cols="60" name="textAreaD5" placeholder="TextArea"></textarea>
 </div>
@@ -2501,7 +2513,7 @@ var button = document.getElementById("button6");
             var a = window.open('', '', 'height=500, width=500'); 
             a.document.write('<html><body style = background:rgba(14,70,172,0.75);>');  
             a.document.write('<div  style="background-color:rgb(14,14,14);"> ');
-            a.document.write('<h1 style= "color:rgb(251,251,251); text-align: center;" >Unify - Contracts </h1><h2 style="color:rgb(251,251,251); text-align: center;"> Contractor Agreement</h2><br>'); 
+            a.document.write('<h1 style= "color:rgb(251,251,251); text-align: center;" >Unify - Contracts </h1><h2 style="color:rgb(251,251,251); text-align: center;">Contractor Agreement</h2><br>'); 
             a.document.write('</div>'); 
             a.document.write('<div  style="background-color:rgb(251,251,251);"> '); 
             a.document.write(divContents); 
@@ -2878,3 +2890,62 @@ Witness:
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
