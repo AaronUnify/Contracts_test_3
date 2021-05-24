@@ -123,7 +123,7 @@ textarea{
 
 
 select {
- 	 width: 28%;
+ 	 width: 100%;
   	padding: 16px 20px;
   	border: none;
   	border-radius: 4px;
@@ -832,7 +832,7 @@ function reveal2() {
 
 
 
-
+<br>
 	<label for = "DateB1">Start Date for Contract: </label>
 	<input type = "date" id ="DateB1" style = "font-size:22px">
 <br>
@@ -842,111 +842,131 @@ function reveal2() {
 	<label for = "DateB2">End Date for Contract: </label>
 	<input type = "date" id ="DateB2" style = "font-size:22px">
 <br>
-
-
+<br>
+<hr class = "line14">
 
 
 <p>In General this Non-Disclosure Agreement covers the following:
 
+<br><br><br>
+
+<table style="width: 95%;">
+<tbody>
 
 
-<label for = "SelectB1">Processes: Manufacturing, chemical, and engineering processes</label>
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:70%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Processes: Manufacturing, chemical, and engineering processes</pre>
+</td>
+<td>
+	
+
 	<select id="SelectB1"  name="selectB1">
-  		<option value="Yes">Yes</option>
+  		
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
 
+</td>
+</tr>
 
-<br>	
-
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:85%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Business Strategies and Methods: marketing schemes, advertising strategies, and product launch announcements</pre>
+</td>
+<td>
 	
 
-	
-<label for = "SelectB2">Business Strategies and Methods: marketing schemes, advertising strategies, and product launch announcements</label>
 	<select id="SelectB2"  name="selectB2">
-  		<option value="Yes">Yes</option>
+  		
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
 
-<br>	
+</td>
+</tr>
 
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:85%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;"><br>Designs and Specifications: blueprints, drawings, documents for machines, buildings, products, inventions and patent applications</pre>
+</td>
+<td>
+		
 
-
-	
-
-	
-<label for = "SelectB3">Designs and Specifications: blueprints, drawings, documents for machines, buildings, products, inventions and patent applications</label>
 	<select id="SelectB3"  name="selectB3">
-  		<option value="Yes">Yes</option>
+  	
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
+</td>
+</tr>
 
-<br>	
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:85%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Formulas and Ingredients:</pre>
+</td>
+<td>	
 
-
-	
-
-	
-<label for = "SelectB4">Formulas and Ingredients:
-</label>
 	<select id="SelectB4"  name="selectB4">
-  		<option value="Yes">Yes</option>
+  	
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
 
+</td>
+</tr>
 
-<br>	
-
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:85%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Physical Devices: Machines, objects, devices and hardware configurations</pre>
+</td>
+<td>
 
 	
 
-	
-<label for = "SelectB5">Physical Devices: Machines, objects, devices and hardware configurations</label>
 	<select id="SelectB5"  name="selectB5">
-  		<option value="Yes">Yes</option>
+  	
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
+</td>
+</tr>
 
-
-<br>	
-
-
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:85%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Computer Software and Code</pre>
+</td>
+<td>
 	
 
-	
-<label for = "SelectB6">Computer Software and Code</label>
 	<select id="SelectB6"  name="selectB6">
-  		<option value="Yes">Yes</option>
+  	
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
+</td>
+</tr>
 
-
-
-
-<br>	
-
-
+<tr>
+<td>
+<pre   style="white-space: pre-wrap; width:85%; margin-left: 40px; padding: 0; border: 0px solid #c4caac; font-size:36px;">Vendor & Customer Lists:</pre>
+</td>
+<td>
 	
 
-	
-<label for = "SelectB7">Vendor & Customer Lists:</label>
 	<select id="SelectB7"  name="selectB7">
-  		<option value="Yes">Yes</option>
+  		
   		<option value="No">No</option>
   		<option value="Yes">Yes</option>
  		</select>
+</td>
+</tr>
 
-<br><br><br>	
+
+</tbody>
+</table>
 
 
-
-				
 
 
 
@@ -957,6 +977,7 @@ function reveal2() {
 
 <br>
 <br>
+<hr class = "line14">
 <br>
 <br>
 <div class = "center">
@@ -1094,12 +1115,13 @@ function reveal3() {
 <hr class = "line14">
 
 <p>More specifically this Non-Disclosure Agreement relates to the following: 
-
+<br>
 
 
 <div>
-<p style="text-align:left">Disclosing Party to state areas where the NDA has particular importance in relationship to the receiving party.</p>
-<textarea id = "TextAreaC1" rows="15" cols="60" name="textAreaC1" placeholder="Information that can’t be fully protected by an NDA includes;
+<p style="text-align:left">Areas where the NDA has particular importance in relationship to the receiving party.</p>
+<textarea id = "TextAreaC1" rows="15" cols="60" name="textAreaC1" placeholder="
+Information that can’t be fully protected by an NDA includes;
 
   -  Information the other party already has access to prior to signing the NDA.
   -  When the information is already in the public domain.
@@ -1110,9 +1132,12 @@ function reveal3() {
 "></textarea>
 </div>
 
+<hr class = "line14">
+
 <div>
 <p style="text-align:left">Disclosing Party to state areas exempt from the NDA to maximise understanding between the Parties. </p>
-<textarea id = "TextAreaC2" rows="15" cols="60" name="textAreaC2" placeholder="Information can no longer be protected if:
+<textarea id = "TextAreaC2" rows="15" cols="60" name="textAreaC2" placeholder="
+Information can no longer be protected if:
 
    -  The disclosing party did not take reasonable precautions to protect the secrets.
    -  The trade secret can easily be obtained or ascertained from publicly available data.
@@ -1120,9 +1145,7 @@ function reveal3() {
    -  The trade secret is obtained lawfully via reverse engineering."></textarea>
 </div>
 
-<br>
-<br>
-<br>
+
 <br>
 <hr class = "line14">
 
@@ -2049,135 +2072,104 @@ var button = document.getElementById("button6");
 
 
 <div id = "Non-Disclosure Agreement" hidden>
-<h3>
 
-				<!-- Panel 1 - User Inputs --!>
 
-<!-- Text --!>
 
-<span id = "Input NameA1"></span>   
-<span id = "Input NameA2"></span>
-<span id = "Input NameA3"></span>
-<span id = "Input NameA4"></span>
+<span>
+<strong>I.   Parties. </strong>
+This Nondisclosure Agreement (the “Agreement”) is entered into by and between <span id = "Input NameA1"></span> with its principal offices at <span id = "Input NameA2"></span>, (“Disclosing Party“) and <span id = "Input NameA4"></span>, located at <span id = "Input NameA5"></span> (“Receiving Party“) for the purpose of preventing the unauthorized disclosure of Confidential Information as defined below. The parties agree to enter into a confidential relationship with respect to the disclosure of certain proprietary and confidential information (“Confidential Information”).
+This agreement is effective as of <span id = "Date B1"></span> . The end date for this agreement is <span id = "Date B2"></span>. 
+
+
+<br><br>
+<strong>II.   Definition of Confidential Information. </strong>
 <br>
+For purposes of this Agreement, “Confidential Information” shall include all information or material that has or could have commercial value or other utility in the business in which Disclosing Party is engaged. If Confidential Information is in written form, the Disclosing Party shall label or stamp the materials with the word “Confidential” or some similar warning. If Confidential Information is transmitted orally, the Disclosing Party shall promptly provide a writing indicating that such oral communication constituted Confidential Information.
+<br><br>
+<strong>III.   Exclusions from Confidential Information. </strong>
+<br>
+Receiving Party’s obligations under this Agreement do not extend to information that is: (a) publicly known at the time of disclosure or subsequently becomes publicly known through no fault of the Receiving Party; (b) discovered or created by the Receiving Party through legitimate means other than from the Disclosing Party or Disclosing Party’s representatives; or (d) is disclosed by Receiving Party with Disclosing Party’s prior written approval.
+
+The parties agree that the following information wass disclosed prior to the signing of this non-disclosure agreement and falls outside of the protection of this agreement. 
+<br>
+<pre id = "Text AreaC2"></pre> 
 <br>
 
-
-
-
-
-				<!-- Panel 2 - User Inputs --!>
-
-
-
-<!-- Selection --!>
-
+The following areas are generally exempt from this NDA:
+<br>
 <span id = "Selection B1"></span> 
 <span id = "Selection B2"></span> 
 <span id = "Selection B3"></span> 
 <span id = "Selection B4"></span> 
 <span id = "Selection B5"></span>
 <span id = "Selection B6"></span>
-<span id = "Selection B7"></span> 
-<br>
-<br>
-
-
-
-<!-- Date --!>
-
-<span id = "Date B1"></span> 
-<span id = "Date B2"></span> 
+<span id = "Selection B7"></span>  
 
 <br>
+<strong>IV.   Obligations of Receiving Party. </strong>
 <br>
+Receiving Party shall hold and maintain the Confidential Information in strictest confidence for the sole and exclusive benefit of the Disclosing Party. 
+Receiving Party shall carefully restrict access to Confidential Information to employees, contractors and third parties as is reasonably required and shall require those persons to sign nondisclosure restrictions at least as protective as those in this Agreement. 
+Receiving Party shall not, without the prior written approval of Disclosing Party, use for Receiving Party’s own benefit, publish, copy, or otherwise disclose to others, or permit the use by others for their benefit or to the detriment of Disclosing Party, any Confidential Information. 
+Receiving Party shall return to Disclosing Party any and all records, notes, and other written, printed, or tangible materials in its possession pertaining to Confidential Information immediately if Disclosing Party requests it in writing. 
+<br>
+The following information is highlighted as the key information protected by this non-disclosure agreement. This is done to provide clarity between the two parties in relationship to the areas of special importance. The following is not the only information protected by the agreement.  
 
+<br>
+<pre id = "Text AreaC1"></pre> 
+<br>
 
 
 <br><br>
+<strong>V.   Time Periods. </strong>
 <br>
-
-
-
-
-
-
-
-
-
-
-
-				<!-- Panel 3 - User Inputs --!>
-
-
-
-
-
-
-<!--Text Area --!>
-
-<pre id = "Text AreaC1"></pre> 
-<pre id = "Text AreaC2"></pre> 
-
-
-
-
-</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-<span>
-
-This Nondisclosure Agreement (the “Agreement”) is entered into by and between _______________ with its principal offices at _______________, (“Disclosing Party“) and _______________, located at _______________ (“Receiving Party“) for the purpose of preventing the unauthorized disclosure of Confidential Information as defined below. The parties agree to enter into a confidential relationship with respect to the disclosure of certain proprietary and confidential information (“Confidential Information”).
-
-1.   Definition of Confidential Information. For purposes of this Agreement, “Confidential Information” shall include all information or material that has or could have commercial value or other utility in the business in which Disclosing Party is engaged. If Confidential Information is in written form, the Disclosing Party shall label or stamp the materials with the word “Confidential” or some similar warning. If Confidential Information is transmitted orally, the Disclosing Party shall promptly provide a writing indicating that such oral communication constituted Confidential Information.
-
-2.   Exclusions from Confidential Information. Receiving Party’s obligations under this Agreement do not extend to information that is: (a) publicly known at the time of disclosure or subsequently becomes publicly known through no fault of the Receiving Party; (b) discovered or creat  eiving Party through legitimate means other than from the Disclosing Party or Disclosing Party’s representatives; or (d) is disclosed by Receiving Party with Disclosing Party’s prior written approval.
-
-3.   Obligations of Receiving Party. Receiving Party shall hold and maintain the Confidential Information in strictest confidence for the sole and exclusive benefit of the Disclosing Party. Receiving Party shall carefully restrict access to Confidential Information to employees, contractors and third parties as is reasonably required and shall require those persons to sign nondisclosure restrictions at least as protective as those in this Agreement. Receiving Party shall not, without the prior written approval of Disclosing Party, use for Receiving Party’s own benefit, publish, copy, or otherwise disclose to others, or permit the use by others for their benefit or to the detriment of Disclosing Party, any Confidential Information. Receiving Party shall return to Disclosing Party any and all records, notes, and other written, printed, or tangible materials in its possession pertaining to Confidential Information immediately if Disclosing Party requests it in writing.
-
-4.   Time Periods. The nondisclosure provisions of this Agreement shall survive the termination of this Agreement and Receiving Party’s duty to hold Confidential Information in confidence shall remain in effect until the Confidential Information no longer qualifies as a trade secret or until Disclosing Party sends Receiving Party written notice releasing Receiving Party from this Agreement, whichever occurs first.
-
-5.   Relationships. Nothing contained in this Agreement shall be deemed to constitute either party a partner, joint venturer or employee of the other party for any purpose.
-
-6.  Severability. If a court finds any provision of this Agreement invalid or unenforceable, the remainder of this Agreement shall be interpreted so as to best to effect the intent of the parties.
-
-7.   Integration. This Agreement expresses the complete understanding of the parties with respect to the subject matter and supersedes all prior proposals, agreements, representations, and understandings. This Agreement may not be amended except in a writing signed by both parties.
-
-8.   Waiver. The failure to exercise any right provided in this Agreement shall not be a waiver of prior or subsequent rights.
-
-9.   Notice of Immunity [OPTIONAL]. Employee is provided notice that an individual shall not be held criminally or civilly liable under any federal or state trade secret law for the disclosure of a trade secret that is made (i) in confidence to a federal, state, or local government official, either directly or indirectly, or to an attorney; and (ii) solely for the purpose of reporting or investigating a suspected violation of law; or is made in a complaint or other document filed in a lawsuit or other proceeding, if such filing is made under seal. An individual who files a lawsuit for retaliation by an employer for reporting a suspected violation of law may disclose the trade secret to the attorney of the individual and use the trade secret information in the court proceeding, if the individual (i) files any document containing the trade secret under seal; and (ii) does not disclose the trade secret, except pursuant to court order.
-
+The nondisclosure provisions of this Agreement shall survive the termination of this Agreement and Receiving Party’s duty to hold Confidential Information in confidence shall remain in effect until the Confidential Information no longer qualifies as a trade secret or until Disclosing Party sends Receiving Party written notice releasing Receiving Party from this Agreement, whichever occurs first.
+<br><br>
+<strong>VI.   Relationships. </strong>  
+<br>
+Nothing contained in this Agreement shall be deemed to constitute either party a partner, joint venturer or employee of the other party for any purpose.
+<br><br>
+<strong>VII.  Severability. </strong>
+<br>
+If a court finds any provision of this Agreement invalid or unenforceable, the remainder of this Agreement shall be interpreted so as to best to effect the intent of the parties.
+<br><br>
+<strong>VIII.   Integration. </strong>
+<br>
+This Agreement expresses the complete understanding of the parties with respect to the subject matter and supersedes all prior proposals, agreements, representations, and understandings. This Agreement may not be amended except in a writing signed by both parties.
+<br><br>
+<strong>IX.   Waiver. </strong>
+<br>
+The failure to exercise any right provided in this Agreement shall not be a waiver of prior or subsequent rights.
+<br><br>
+<strong>X.   Notice of Immunity [OPTIONAL]. </strong>
+<br>
+Employee is provided notice that an individual shall not be held criminally or civilly liable under any federal or state trade secret law for the disclosure of a trade secret that is made (i) in confidence to a federal, state, or local government official, either directly or indirectly, or to an attorney; and (ii) solely for the purpose of reporting or investigating a suspected violation of law; or is made in a complaint or other document filed in a lawsuit or other proceeding, if such filing is made under seal. An individual who files a lawsuit for retaliation by an employer for reporting a suspected violation of law may disclose the trade secret to the attorney of the individual and use the trade secret information in the court proceeding, if the individual (i) files any document containing the trade secret under seal; and (ii) does not disclose the trade secret, except pursuant to court order.
+<br><br>
+<strong>XI. Representatives. </strong>
+<br>
 This Agreement and each party’s obligations shall be binding on the representatives, assigns and successors of such party. Each party has signed this Agreement through its authorized representative.
+<br><br><br>
 
 
 
 
 
-
-X. SIGNED 
+<strong>XII. Signed. </strong>
 <br>
 Disclosing Party:
 <div id = "2Input NameA1"></div>
-<div id = "Lender Address"></div>
-<div id = "Lender Email"></div>
+<span id = "Input NameA3"></span>
 <img id="saveSignature2" alt="Saved image png" width="200"height = "55"/>
+
+
 <br>
 <br>
 Receiving Party :
 <div id = "2Input NameA2"></div>
-<div id = "Borrower Address"></div>
-<div id = "Borrower Email"></div>
+<span id = "Input NameA6"></span>
 <img id="saveSignature1" alt="Saved image png" width="200"height = "55"/>
+
+
 <br>
 <br>
 Witness:
@@ -2185,6 +2177,8 @@ Witness:
 <div id = "Witness Email"></div>
 <div id = "Witness Address"></div>
 <img id="saveSignature3" alt="Saved image png" width="200"height = "55"/>
+
+
 <br>
 <br>
 
