@@ -5,6 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  font-size:24px;
 }
 
 #tbl td, #tbl th {
@@ -537,6 +538,39 @@ color:black;
 }
 
 
+.TblSaveButton 
+{
+	position: relative;
+	background-color: rgba(200, 130, 20);
+	border: none;
+	font-size: 28px;
+	color: #FFFFFF;
+	padding: 20px;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+
+}
+
+
+.TblSaveButton:focus 
+{
+	position: relative;
+	background-color: rgba(20, 130, 20);
+	border: none;
+	font-size: 28px;
+	color: #FFFFFF;
+	padding: 20px;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+
+}
+
 
 
 </style>
@@ -686,27 +720,27 @@ function reveal1() {
 		<!-- These first six boxes are for the main parties of the contract-->
 <br>
 
-	<p>Disclosing Party:</p>
+	<p>Lessor Party (the lending party):</p>
 	<input type="text" id="InputNameA1" name="Input NameA1" required
-       		minlength="1" maxlength="80" placeholder="Disclosing Party Name" >
+       		minlength="1" maxlength="80" placeholder="Lessor Party Name" >
 <br>
 	<input type="text" id="InputNameA3" name="Input NameA3" required
-       		minlength="1" maxlength="80" placeholder="Disclosing Party Address" >
+       		minlength="1" maxlength="80" placeholder="Lessor Party Address" >
 <br>
 	<input type="text" id="InputNameA4" name="Input NameA4" required
-       		minlength="1" maxlength="80" placeholder="Disclosing Party Email" >
+       		minlength="1" maxlength="80" placeholder="Lessor Party Email" >
 <br>
 
 <br>
-<p>Receiving Party:</p>
+<p>Lessee Party (the borrowing party):</p>
 	<input type="text" id="InputNameA2" name="Input NameA2" required
-       		minlength="1" maxlength="80" placeholder="Receiving Party Name" >
+       		minlength="1" maxlength="80" placeholder="Lessee Party Name" >
 <br>
 	<input type="text" id="InputNameA5" name="Input NameA5" required
-       		minlength="1" maxlength="80" placeholder="Receiving Party Address" >
+       		minlength="1" maxlength="80" placeholder="Lessee Party Address" >
 <br>
 	<input type="text" id="InputNameA6" name="Input NameA6" required
-       		minlength="1" maxlength="80" placeholder="Receiving Party Email" >
+       		minlength="1" maxlength="80" placeholder="Lessee Party Email" >
 <br>
 
 
@@ -814,10 +848,6 @@ var button = document.getElementById("button1");
 
 
 
-
-
-
-
 			<!--******** Panel 2 *********--!>
 
 
@@ -858,6 +888,12 @@ function reveal2() {
 <br>
 <hr class = "line14">
 
+
+
+
+
+
+
  
 <table id = "tbl">
         <thead>
@@ -893,10 +929,37 @@ function reveal2() {
         </tbody>
     </table>
 <br><br>
+
+
+
+
 <div class ="center">
 <input type="button" class="button add_another" value="Add Equipment"/>
-
 </div>
+
+
+<br><br><br>
+
+
+<div class ="center">
+<button class = "TblSaveButton" onclick="SaveTbl()">Save Table</button>
+</div>
+
+
+<br><br><br>
+
+
+<div class = "center">
+
+<button class = "button" onclick="reveal2()"id="button2" type="button">Next</button>
+
+
+
+
+
+
+
+
 
 
 <script   src="https://code.jquery.com/jquery-1.12.1.js"   integrity="sha256-VuhDpmsr9xiKwvTIHfYWCIQ84US9WqZsLfR4P7qF6O8="   crossorigin="anonymous"></script>
@@ -919,21 +982,10 @@ window.SomeDeleteRowFunction = function SomeDeleteRowFunction(o) {
 
 
 
-<!-- BUTTON FOR SUBMIT --!>
-
-
-<br>
-<br>
-<br>
-<br>
-<div class = "center">
-<button class = "button" onclick="Geeks()">Save Table</button>
-<button class = "button" onclick="reveal2()"id="button2" type="button">Next</button>
-
 
   
 <script>
-        function Geeks() {
+        function SaveTbl() {
           
             // Getting the table
             var tble = document.getElementById('tbl'); 
@@ -956,7 +1008,7 @@ window.SomeDeleteRowFunction = function SomeDeleteRowFunction(o) {
 <br>
 <br>
 
-</div>
+</div>  
 </div>
 
 
@@ -2728,6 +2780,117 @@ var button = document.getElementById("button6");
 
 
 
+Equipment Renting Agreement - Example
+
+           
+
+EQUIPMENT RENTAL AGREEMENT (LEASE)
+
+
+THIS AGREEMENT, made XX/XX/20XX, by and between <span id = "Input NameA1"></span> hereafter called the Lessee, and the <span id = "Input NameA2"></span>, hereafter called the Lessor.
+
+
+Lessee and Lessor, for the consideration hereafter named, agree as follows:
+
+Under the General Conditions of Lease, Lessor hereby leases to Lessee all equipment  named and identified in the following “List of Equipment,” for use at such location and at such rental rate for approximately such time as is therein stated. Lessor shall furnish such equipment, in operative condition.
+
+
+<table id = "Table1"><table> 
+
+
+
+
+
+
+
+
+
+Lessor and Lessee, for themselves, their successors, executors, administrators and assigns, agree to the full performance of the covenants herein contained.
+
+
+
+
+X. SIGNED 
+<br>
+Lessor:
+<div id = "2Input NameA1"></div>
+<span id = "Input NameA3"></span>
+<span id = "Input NameA4"></span>
+<img id="saveSignature2" alt="Saved image png" width="200"height = "55"/>
+<br>
+<br>
+Lessee:
+<div id = "2Input NameA2"></div>
+<span id = "Input NameA5"></span>
+<span id = "Input NameA6"></span>
+<img id="saveSignature1" alt="Saved image png" width="200"height = "55"/>
+<br>
+<br>
+Guarantor:
+<div id = "Guarantor Name2"></div>
+<div id = "Guarantor Address"></div>
+<div id = "Guarantor Email"></div>
+
+<img id="saveSignature" alt="Saved image png" width="200"height = "55"/>
+<br>
+<br>
+Witness:
+<div id = "Witness Name"></div>
+<div id = "Witness Email"></div>
+<div id = "Witness Address"></div>
+<img id="saveSignature3" alt="Saved image png" width="200"height = "55"/>
+<br>
+<br>
+
+
+                                                   
+
+GENERAL CONDITIONS OF EQUIPMENT LEASE
+
+
+The conditions of lease here below stated, together with the Agreement above of this sheet, constitute a contract between the parties therein named which contract is hereafter referred to as “this Agreement”.
+
+
+    1) RENTAL PERIOD. The Rental period shall cover all time consumed in transporting the equipment, including the date of delivery and the date of return. This Rental shall begin on the above date and shall terminate on return in fully working condition to the Lessor. If the equipment has to be repaired to return it to a fully working state the equipment will continue to be rented until it is repaired. The Rental period will end only when the equipment has been returned to a fully working state.
+
+
+    2) RENTAL CHARGES. Lessee shall pay rental for the entire Rental Period on each article of equipment named in the List of Equipment, at the rate set forth herein.
+
+
+    3) PAYMENT. The rent for any and every item of equipment described in the List of Equipment shall be the amount therein designated and is payable in    advance or ( if advance is not selected) upon the return of the equipment. Lessee shall pay Lessor interest at ten percent (10%) or the highest lawful rate, whichever is greater, on any delinquent payment from the date when such payment was due until paid and on any other sum for breach of this Agreement, from the date of the breach, and expenses of collection or suit, including attorneys’ fees.
+
+
+    4) SECURITY DEPOSIT. Any security deposit paid by Lessee to Lessor is paid to guarantee Lessee’s full and faithful performance of all terms, conditions and provisions of this Agreement. If Lessee shall so perform, an equal sum shall be repaid without interest to Lessee at the termination of this Agreement.
+
+
+    5) FEES, ASSESSMENTS, AND TAXES PAID BY LESSEE. Lessee shall pay all license fees, assessments, and sales, use, property and excise, and other taxes or hereafter imposed, and relating to Lessee’s use or possession of the equipment.
+
+
+    6) RISK OF LOSS OR DAMAGE. The Lessee assumes all risk of loss or damage to the equipment from any cause, and agrees to return it to the Lessor in the condition received from the Lessor, with the exception of normal wear and tear. The Lessor or their appointed agent will determine normal wear and tear. All determinations made by the Lessor are final. If the equipment is not returned to the Lessor for any reason, Lessee shall pay to the Lessor the Replacement Cost of the equipment. If no Replacement Cost is designated herein, Lessee shall pay the actual cost of replacing the equipment at the time of replacement.
+
+
+    7) MAINTENANCE AND OPERATION. Lessee shall see that the equipment is not subjected to careless, unusually or needlessly rough usage; and Lessee shall at Lessee’s own expense maintain the equipment and its appurtenances in good repair and operative condition, and return it in such to Lessor in the same condition as received, ordinary and reasonable wear and tear resulting from proper use thereof excepted.
+
+
+    8) REPAIRS. The expense of all repairs made during the Rental Period, including labor, material, parts and other items shall be paid by Lessee.
+
+    9) CARE AND OPERATION OF EQUIPMENT. The equipment may only be used and operated in a careful and proper manner and at the location set forth herein. Its use must comply with all laws, ordinances, and regulations relating to the possession, use, or maintenance of the equipment, including registration and/or licensing requirements, if any.
+
+
+    10) DISCLAIMER OF WARRANTIES. LESSOR, BEING NEITHER THE MANUFACTURER, NOR A SUPPLIER, NOR A DEALER IN THE EQUIPMENT, MAKES NO WARRANTIES, EXPRESS OR IMPLIED, AS TO ANY MATTER WHATSOEVER, INCLUDING, WITHOUT LIMITATION, THE CONDITION OF THE EQUIPMENT, ITS MERCHANTABILITY, ITS DESIGN, ITS CAPACITY, ITS PERFORMANCE, ITS MATERIAL, ITS WORKMANSHIP, ITS FITNESS FOR ANY PARTICULAR PURPOSE, OR THAT IT WILL MEET THE REQUIREMENTS OF ANY LAWS, RULES, SPECIFICATIONS, OR CONTRACTS WHICH PROVIDE FOR SPECIFIC APPARATUS OR SPECIAL METHODS. LESSOR FURTHER DISCLAIMS ANY LIABILITY WHATSOEVER FOR LOSS, DAMAGE, OR INJURY TO LESSEE OR THIRD PARTIES AS A RESULT OF ANY DEFECTS, LATENT OR OTHERWISE, IN THE EQUIPMENT. AS TO LESSOR, LESSEE LEASES THE EQUIPMENT “AS IS”. LESSOR SHALL NOT BE LIABLE IN ANY EVENT TO LESSEE FOR ANY LOSS, DELAY, OR DAMAGE OF ANY KIND OR CHARACTER RESULTING FROM DEFECTS IN, OR INEFFICIENCY OF, EQUIPMENT HEREBY LEASED OR ACCIDENTAL BREAKAGE THEREOF.
+
+
+    11) INDEMNITY. Lessee shall indemnify Lessor, and its agents and employees against, and hold Lessor and its agents and employees harmless from, any and all claims, actions, suits, proceedings, costs, expenses, damages, and liabilities, including attorney’s fees, arising out of, connected with, or resulting from the equipment or the Lease, including without limitation, the manufacture, selection, delivery, leasing, renting, control, possession, use, operation, maintenance or return of the equipment. Lessee shall further indemnify Lessor, and hold Lessor harmless from all loss and damage to the equipment during the rental period. Lessee recognizes and agrees that included in this indemnity clause, but not by way of limitation, is Lessee’s assumption of any and all liability for injury: disability and death of workmen and other persons caused by the operation, use, control, handling, or transportation of the equipment during the Rental Period.
+
+
+    12) ASSIGNMENT. The Lessee shall not assign or sublet any interest in this Rental or the equipment or permit the equipment to be used by anyone other than the Lessee or Lessee’s employees, without Lessor's prior written consent.
+
+
+    13) ENTIRE AGREEMENT AND MODIFICATION. This contract constitutes the entire agreement between the parties. No modification or amendment of this contract shall be effective unless in writing and signed by both parties. This contract replaces any and all prior agreements bet ween the parties.
+
+
+    14) GOVERNING LAW. This contract shall be construed in accordance with the laws of the State of Ohio
+
 
 
 
@@ -2809,22 +2972,13 @@ var button = document.getElementById("button6");
 
 <!-- Text --!>
 
-<span id = "Input NameA1"></span>   
-<span id = "Input NameA2"></span>
-<span id = "Input NameA3"></span>
-<span id = "Input NameA4"></span>
+ 
+
+
+
 <br>
 <br>
 
-<!-- Number --!>
-
-<span id = "Number A1"></span>
-<span id = "Number A2"></span>
-<span id = "Number A3"></span>
-<span id = "Number A4"></span>
-<span id = "Number A5"></span>
-<br>
-<br>
 
 
 
@@ -2832,7 +2986,7 @@ var button = document.getElementById("button6");
 
 <!-- Text --!>
 
-<table id = "Table1"><table> 
+
 
 
 
@@ -2970,41 +3124,6 @@ var button = document.getElementById("button6");
 
 
 
-
-
-
-
-X. SIGNED 
-<br>
-Lender:
-<div id = "2Input NameA1"></div>
-<div id = "Lender Address"></div>
-<div id = "Lender Email"></div>
-<img id="saveSignature2" alt="Saved image png" width="200"height = "55"/>
-<br>
-<br>
-Borrower:
-<div id = "2Input NameA2"></div>
-<div id = "Borrower Address"></div>
-<div id = "Borrower Email"></div>
-<img id="saveSignature1" alt="Saved image png" width="200"height = "55"/>
-<br>
-<br>
-Guarantor:
-<div id = "Guarantor Name2"></div>
-<div id = "Guarantor Address"></div>
-<div id = "Guarantor Email"></div>
-
-<img id="saveSignature" alt="Saved image png" width="200"height = "55"/>
-<br>
-<br>
-Witness:
-<div id = "Witness Name"></div>
-<div id = "Witness Email"></div>
-<div id = "Witness Address"></div>
-<img id="saveSignature3" alt="Saved image png" width="200"height = "55"/>
-<br>
-<br>
 
 
 
