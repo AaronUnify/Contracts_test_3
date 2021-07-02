@@ -20,6 +20,7 @@ header{
 p{
     margin-top: 0;
     margin-bottom: 20px;
+    text-align: left;
 }
 .head{
     text-align: center;
@@ -27,6 +28,15 @@ p{
 
 
 }
+
+img{ 
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
 
 .headerobjectswrapper{
 }
@@ -64,13 +74,14 @@ p{
 .collumn{
     font-size: 14px;
     line-height: 20px;
-    width: 100%;
+    width: 75%;
     display: inline-block;
     padding: 0 1% 0 1%;
     vertical-align: top;
     margin-bottom: 50px;
     transition: all .7s;
 border-right: 1px solid #333;
+border-left: 1px solid #333;
 }
 .collumn + .collumn { 
   border-left: 1px solid #2f2f2f;
@@ -244,7 +255,7 @@ border-right: 1px solid #333;
     -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
     filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
     mix-blend-mode: multiply;
-    
+    width: 45%;
 }
 /*________________________________________________________________________________________________________________________________*/
 /*MEDIAQUERIES*/
@@ -256,19 +267,19 @@ border-right: 1px solid #333;
 }
 @media only all and (max-width: 1200px) {
     .collumn{
-     width: 100%;   
+        width: 75%;
     }
 
 }
     @media only all and (max-width: 900px) {
     .collumn{
-       width: 100%;
+        width: 75%;
     }
 
 }
 @media only all and (max-width: 600px) {
     .collumn{
-        width: 100%;
+        width: 75%;
     }
 	.collumn + .collumn {
 				border-left: none;
@@ -280,6 +291,7 @@ border-right: 1px solid #333;
         line-height: 54px;
         overflow: hidden;
     }
+
 
 }
 
@@ -332,6 +344,7 @@ border-right: 1px solid #333;
 
 
 
+
 /* unvisited link */
 a:link {
   color: #333;
@@ -380,8 +393,6 @@ hr.line14 {
 	
 	
 </style>
-
-
 
 
 
