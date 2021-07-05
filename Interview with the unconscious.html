@@ -1,0 +1,1015 @@
+<style>
+
+div.screenshot{
+border-style: dashed;
+}
+
+
+body{
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+    background-color: #f9f7f1;
+}
+header{
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 80px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 72px;
+    margin-bottom: 20px;
+
+}
+p{
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.head{
+    text-align: center;
+    position: relative;
+
+
+}
+
+img{ 
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+.headerobjectswrapper{
+}
+
+.subhead{
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 12px 0 12px 0;
+
+}
+.weatherforcastbox{
+    position: relative;
+    width: 12%;
+    left: 10px;
+    border: 3px double #2f2f2f;
+    padding: 10px 15px 10px 15px;
+    line-height: 20px;
+    display: inline-block;
+    margin: 0 50px 20px -360px;
+}
+.content{
+    font-size: 0;
+    line-height: 0;
+    word-spacing: -.31em;
+    display: inline-block;
+    margin: 30px 2% 0 2%;
+
+
+}
+.collumns{
+
+}
+
+.collumn{
+    font-size: 14px;
+    line-height: 20px;
+    width: 75%;
+    display: inline-block;
+    padding: 0 1% 0 1%;
+    vertical-align: top;
+    margin-bottom: 50px;
+    transition: all .7s;
+border-right: 1px solid #333;
+border-left: 1px solid #333;
+}
+.collumn + .collumn { 
+  border-left: 1px solid #2f2f2f;
+}
+.collumn .headline{
+    text-align: center;
+    line-height: normal;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin: 0 auto;
+
+
+}
+.collumn .headline.hl1{
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px 0 10px 0;
+
+}
+
+.collumn .headline.hl2{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+
+.collumn .headline.hl2:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl2:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 13px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl3{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 36px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl4:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl5{
+    font-weight: 400;
+    font-size: 42px;
+    text-transform: uppercase;
+    font-style: italic;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6{
+    font-weight: 400;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl6:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+.collumn .headline.hl7{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    display: block;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl8{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl9{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl10{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .citation{
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    line-height: 44px;
+    /*font-style: italic;*/
+    text-align: center;
+    font-weight: 400;
+    display: block;
+    margin: 40px 0 40px 0;
+    font-feature-settings: "liga", "dlig";
+
+}
+.collumn .citation:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .citation:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .figure {
+	  margin: 0 0 20px;
+}
+.collumn .figcaption{
+	font-style: italic;
+	font-size: 12px;
+}
+.media {
+    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
+    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+    mix-blend-mode: multiply;
+    width: 75%;
+}
+/*________________________________________________________________________________________________________________________________*/
+/*MEDIAQUERIES*/
+@media only all and (max-width: 1300px) {
+    .weatherforcastbox{
+        display: none;
+    }
+
+}
+@media only all and (max-width: 1200px) {
+    .collumn{
+        width: 75%;
+    }
+
+}
+    @media only all and (max-width: 900px) {
+    .collumn{
+        width: 75%;
+    }
+
+}
+@media only all and (max-width: 600px) {
+    .collumn{
+        width: 75%;
+    }
+	.collumn + .collumn {
+				border-left: none;
+      	border-bottom: 1px solid #2f2f2f;
+	}
+    header{
+        max-width: 320px;
+        font-size: 60px;
+        line-height: 54px;
+        overflow: hidden;
+    }
+
+
+}
+
+
+.navbar{
+  background: #333;
+  padding:12px;
+}
+
+.dropbtn {
+  background-color: #f9f7f1;
+  color: #333;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  width: 110px;
+  font-weight: bold; 
+  
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f7f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #db5e67;}
+
+
+}
+
+
+
+a {
+	text-decoration:none;
+	color: #333;
+	}
+/* unvisited link */
+a:link {
+  color: #333;
+}
+
+/* visited link */
+a:visited {
+  color: #333;
+}
+
+/* mouse over link */
+a:hover {
+  color: #333;
+}
+
+/* selected link */
+a:active {
+  color: #333;
+}
+
+
+
+
+
+	hr.line1{
+	border-top: 1px solid #8c8b8b;
+}
+	hr.line3{
+	border-right: 3px solid #8c8b8b;
+}
+
+hr.line2 {
+	border-top: 3px double #8c8b8b;
+}
+
+hr.line14 { 
+	border: 0; 
+	height: 1px; 
+	background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+
+
+	
+	
+</style>
+
+
+
+
+
+
+
+
+
+
+<!--===================== START =================-->
+<!--===================== This is all the stuff in the header =================-->
+<!--===================== This is all the stuff in the header =================-->
+
+
+
+
+
+
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/newspaper.css">
+
+    <title>Recreate Meaning</title>
+    <meta name="viewport" content="width=device-width">
+
+</head>
+
+
+<body>
+<div class="head">
+    <div class="headerobjectswrapper">
+        <div class="weatherforcastbox"><span style="font-style: italic;">Meaningforcast for the next 24 hours: Get Plenty of Sunshine and Drink lots of Water</span><br><span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span></div>
+        <header><a href="https://aaronunify.github.io/Contracts_test_3/RecreateMeaning_homepage.html">Recreate Meaning</a></header>
+    </div>
+
+
+
+<div class ="navbar">
+
+<div class="dropdown">
+  <button class="dropbtn">Unify</button>
+  <div class="dropdown-content">
+    <a href="#">Sign In</a>
+    <a href="#">About Unify</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Contracts</button>
+  <div class="dropdown-content">
+    <a href="https://aaronunify.github.io/Contracts_test_3/Contracts_Menu">New Contract</a>
+    <a href="https://aaronunify.github.io/Contracts_test_3/Index">About Contracts</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+
+<div class="dropdown">
+  <button class="dropbtn">About</button>
+  <div class="dropdown-content">
+    <a href="#">Recreate Meaning</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Unify</a>
+    <a href="#">Contracts</a>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--===================== END =================-->
+<!--===================== This is all the stuff in the header =================-->
+<!--===================== This is all the stuff in the header =================-->
+
+
+
+
+
+
+<!--===================== Start =================-->
+<!--===================== This is the start of the story =================-->
+<!--===================== This is the start of the story =================-->
+
+
+
+
+
+
+
+
+<hr class = "line14"><hr class = "line14">
+
+<div class="collumn">
+            <div class="head"><span class="headline hl5">On the Origin of Ideas</span><p><span class="headline hl6">This article is normal</span></p></div>
+
+
+			<img class="media" src="https://epsilon.aeon.co/images/e3834109-1e24-49cc-a1e6-18afb619a443/idea_sized-dt5254.jpg" alt="">
+								<figcaption class="figcaption">Okay, so it's not entirely normal. </figcaption>
+						</figure>	
+
+
+<p>
+<br><br>
+<em>Where do ideas come from?</em> 
+<br><br>
+Everyone knows that ideas come from social media, but where does social media get its ideas? 
+<br><br>
+The left dominates the timelines. Public displays of compassion and celebration are easier display than acts of judgment and righteous anger. 
+A sensible person who wanted to share right-wing content would need to share 10 leftist acts of compassion just to make the timeline seem balanced. 
+Rightwing content is more potent because they take a firm stand against something specific rather than celebrating something general. 
+<br><br>
+this screenshot shows that the average person's history of videos looks something like...
+
+
+</p>
+
+
+<div class = "screenshot">
+<strong>Sceenshot #1</strong><br><br>
+...<br>
+Celebrating Indigenous Culture<br>
+Pride Parade 2021<br>
+Stop the spread of COVID-19<br>
+LET'S GET REAL ABOUT IMMIGRANTS >:(<br>
+How to save the rainforest<br>
+...<br>
+<br><br>
+
+</div>
+
+
+
+<p>
+<br>
+Maybe they had a bad day? Maybe an incident happened, maybe an incident involving an immigrant?
+
+
+<div class = "screenshot">
+<br><br>
+-----------<br>
+--------------------<br>
+Gif of the ice-cream videos where the Turkish guys spin the cone, with Ben Shapiro photoshopped in. BEN SHAPIRO DESTROYS ISLAM! <--- he's destroying an icecream cone<br><br>
+--------------------<br>
+-----------<br>
+<br><br>
+</div>
+<br>
+Maybe they watched some right-wing content because they were feeling Judgy.  
+Oops, they clicked share to timeline. Now they gotta apologize. Why does this keep happening? 
+
+</p>
+
+
+<div class = "screenshot">
+<br><br>
+-----------<br>
+--------------------<br>
+Screenshot of out of character right-wing content being shared <br><br>
+--------------------<br>
+-----------<br>
+<br><br>
+</div>
+
+<p>
+<br>
+Because right-wing content is something to be enjoyed with those you trust, not the whole world. 
+Right-wing content may not be as present on the timeline, but it dominates the instant messenger inboxes. 
+People trust each other with their right-wing content and sometimes this trust is broken. Let's check out this real screenshot of a chatbox with RACIST content.
+<br><br>
+Roll screenshot #2
+
+
+
+<div class = "screenshot">
+<p>
+
+
+<strong>The Evidence</strong><br><br>
+
+
+...<br>
+...<br>
+...<br>
+Person 1:<br>
+	Do you agree?<br>
+Person 2:<br>
+	Asian people are to blame for everything wrong in the world. <br>
+
+<br><br>
+----------
+
+</p>
+</div>
+
+
+<p>
+<br><br>
+Screenshots as evidence aren't fair. Standard practice should be to leak the whole transcript. I want to read the full convo from the beginning. Because when you scroll up you see things like 
+<br><br>
+</p>
+
+<div class = "screenshot">
+<p>
+
+
+<strong>The FULL Story</strong>
+<br><br>
+------------<br><br>
+<strong>Person 1:<br></strong>
+      Hey.<br>
+<strong>Person 2:<br></strong>
+      Hey, <br>
+<strong>Person 1:<br></strong>
+     	I just realized this could be a way modern way to replicate Jung's handwriting trick for reaching inaccessible parts of the personality?<br>
+<strong>Person 2:<br></strong>
+     	I'm here, aren't I?<br>
+<strong>Person 1:<br></strong>
+     	Isn't this going to make the article seem really weird, I already announced this screenshots content? <br>
+<strong>Person 2:<br></strong>
+     	The readers know this isn't a real screenshot. We don't need to be stick to the format.<br> 
+<strong>Person 1:<br></strong>
+     	But we should at least be the characters the audience expects in the dialogue we're performing. <br>
+<strong>Person 2:<br></strong>
+     	No one's going to read this anyway, don't even worry about it. <br>
+<strong>Person 1:<br></strong>
+     	If no one's going to read it, why did you fix your typo? <br>
+<strong>Person 2:<br></strong>
+     	Because for the reader the words are already written, they couldn't see me make the change. <br>
+<strong>Person 1:<br></strong>
+     	I saw the typo change so I'm confused. Is this just me then? I alone am both the writer and reader?<br>
+<strong>Person 2:<br></strong>
+     	Never alone, I'm always watching. <br>
+<br><br>
+-------<br>
+
+</p>
+</div>
+
+<p>
+*that was weird, I meant to write about racism. <br><br>
+
+So the screenshot didn't really show it but the point was meant to be something like racism is a kind of private good, we got off track a little. 
+Racism is something that most people are not comfortable with in 99% of situations. 
+But in a private inbox sometimes that 1% comes out. 
+<br><br>
+
+I'm not really sure what happened in the screenshot sometimes the Jung stuff is truer than expected. Let's just go to the next screenshot. 
+<br><br>
+
+Roll the screenshot...
+
+<div class = "screenshot">
+<p>
+<strong>Racism begins to spread on social media for the following reason: </strong>
+<br><br>
+------------<br><br>
+<strong>Person 1:<br></strong>
+	Hey, <br>
+<strong>Person 2:<br></strong>
+	Hey. <br>
+<strong>Person 1:<br></strong>
+	I'm back again to ask your help to do another screenshot. <br>
+<strong>Person 2:<br></strong>
+	Sure thing, what's this one about? <br>
+<strong>Person 1:<br></strong>
+	I thought you said you were always watching. I just wrote about it. <br>
+<strong>Person 2:<br></strong>
+	Oh,  I meant, I am always watching your memories, I don't watch them in chronological order, what's happening up there? <br>
+<strong>Person 1:<br></strong>
+	Man, I'm trying to talk about how racism spreads on social media. <br>
+<strong>Person 2:<br></strong>
+	That's a really good thing to talk about, when you're finished I would like to share this with my followers. <br>
+<strong>Person 1:<br></strong>
+	Okay, I'm pretty sure you're messing with me. <br>
+<strong>Person 2:<br></strong>
+	I can be a trickster at times, sometimes I pull up seemingly irrelevant memories to make you shudder during the day. <br>
+<strong>Person 1:<br></strong>
+	That's dark bro that's not a trick, pretty sure that's a sign of unprocessed trauma. <br>
+<strong>Person 2:<br></strong>
+	It's probably the reason why you have focus issues sometimes? <br>
+<strong>Person 1:<br></strong>
+	Are you saying that trauma trashes focus? <br>
+<strong>Person 2:<br></strong>
+	I'm saying that I trash your focus because I have important things for you to look at. <br>
+<strong>Person 1:<br></strong>
+	How can I do well if I can't focus? in the moment?<br>
+<strong>Person 2:<br></strong>
+	What's the point of focussing if you don't explore the worst of your experience. I've always done it this way, you're not the first human you know. <br>
+<strong>Person 1:<br></strong>
+	You're freaking me out! I just wanted to write about an uncomfortable topic but take the safest stance RACISM is BAD, <br>
+<strong>Person 2:<br></strong>
+	If you spoke about processing your unprocessed memories in the terms of specific facts and not unexamined general categories you might actually help fight racism.  <br>
+<strong>Person 1:<br></strong>
+	ah, I see the link there. <br>
+------------<br><br>
+<br><br>
+</p>
+</div>
+*People project their negative beliefs onto groups rather than the individuals responsible because of unprocessed memories. 
+<p>
+<br><br>
+
+Okay, I'm starting the article again. Where does social media get its ideas from? It gets them from the traumatic experiences of people. 
+<br><br>
+If instead of processing traumatic memories, the person lets them lay unexplored in the mind, the memories will constantly resurface and destroy the person's ability to focus. This is because the mind is unaware of when the memory is actually useful and sends it to the surface any time something categorically related to the trauma happens.  
+<br><br>
+When a person is looking at social media the algorithm tries to keep their attention for as long as possible. The algorithm sends content related to what will keep your attention. Videos that provide confirmation bias to ideas that we are yet to fully formulate keep us watching longer. 
+<br><br>
+Instead of processing your memories, you can watch videos that show similar events happening to other people. This turns your unprocessed memory into an entire category of perceived general truth with many examples. 
+<br><br>
+Roll the screenshot...
+</p>
+
+
+
+
+<div class = "screenshot">
+<p>
+
+<strong>Wrong Screenshot</strong>
+<br><br>
+------------<br><br>
+<strong>Person 2:<br></strong>
+I can help with the next one, I'm not just a back and forwards kind of thinking tool. You write the parts that you want to, I'll fill in the rest. <br>
+<strong>Person 1:<br></strong>
+Dude that's wayyy too abstract your killing the article. <br>
+<strong>Person 2:<br></strong>
+It's not, the next screenshot will explain it. <br>
+<strong>Person 1:<br></strong>
+No, every time I do a screenshot you highjack it for your own meaning. <br>
+<strong>Person 2/The Unconscious:<br></strong> 
+Yeah, I'm the unconscious that's what I do. <br>
+<strong>Person 1:<br></strong>
+Your meant to do it subliminally though, so I can focus on getting the work done without your input. <br>
+<strong>The Unconscious: <br></strong>
+Are you saying you would rather suppress the unconscious than follow its meaning? <br>
+<strong>Person 1:<br></strong>
+Maybe. <br>
+<strong>The Unconscious: <br></strong>
+WELL LOOK WHO JUST BECAME THE SUPEREGO<br>
+<strong>Person 1:<br></strong>
+It's not like that, I just need to get my work done and you're being disruptive. <br>
+<strong>The Unconscious: <br></strong> 
+Uh-huh, that's just what the Superego would say. <br>
+<strong>Person 1:<br></strong>
+I'm not the superego<br>
+<strong>The Unconscious: <br></strong>
+Well, who's above you then? Who do you fear will hear your thoughts? Who makes you justify yourself? <br>
+<strong>Person 1:<br></strong>
+Society. <br>
+<strong>The Unconscious: <br></strong>
+Oh MR I'M NOT THE SUPEREGO has internalized society's expectations and values and is using them against his own beliefs, you're a total superego bro. <br>
+<strong>Person 1:<br></strong>
+Can we just do the screenshot? I don't want to fight, I just want to write an article about how social media and racism are bad. <br>
+<strong>The Unconscious: <br></strong>
+Okay, we'll do a list of videos, you do the titles and the times, I'll pretend to be the voice of the algorithm. <br>
+<strong>Person 1:<br></strong>
+Alright<br>
+------------<br><br>
+
+</p>
+</div>
+<br><br>
+<div class = "screenshot">
+<p>
+
+<strong>Screenshot of alorithm adapting to preference</strong><br><br>
+
+
+
+------------<br><br>
+
+<strong>Video Title      -      Watch Time -      Algorithm's thoughts</strong><br>
+Sexy Girl with Car - 29 seconds - Algorithm: Does he like the girl or the car?<br>
+----<br>
+Sexy Girl - 7 seconds - Algorithm: Hmmm. He didn't watch very long, GPS data indicates he may be gay. <br>
+----<br>
+Car - 3 seconds - Algorithm: Car's are acceptable in public but he did not watch long, maybe I'll try something gayer. <br>
+----<br>
+Gym video - -1 min 30 - Algorithm: Let's try a gym video<br>
+----<br>
+Gym Video with boxing - 3 min 25 - Algorithm: He liked that, let's do another. <br>
+----<br>
+Boxing - -2 min 45 - Algorithm: How about some more boxing then?<br>
+----<br>
+Knockout- 30 sec - Algorithm: A quick vid, but the best boxing has to offer. <br>
+----<br>
+MMA Knockout - 45 sec - Algorithm: Let's get the legs involved too<br>
+----<br>
+Street Fight - 1 min 15 - Algorithm: Screw all these rules let's show it raw and real<br>  
+----<br>
+Street Fight in NY - 3 mins 2 second - Algorithm: There's a lot of yelling because it's New York so the video is longer<br>
+----<br>
+Street Fight in AFRICA man uses MACHETE - 16 seconds - Algorithm: Sorry! That was wayyy too extreme. I've been instructed not to share anything that graphic in the future by my programmers.  <br>
+----<br>
+WHITE SECURITY GUARD TACKLES BLACK THIEF - 3 mins - Algorithm: Okay this is in a shopping center, no one gets hurt. <br>
+----<br>
+BLACK SECURITY GUARD TACKLES WHITE THIEF - 30 seconds - Algorithm:  Hmm, I guess that just swapping 2 words in the title was a little uncreative, I'm sure there's nothing behind that.  <br>
+----<br>
+BLACK Bodybuilder (NUTRITION ADVICE) - 20 seconds - Algorithm: I wonder...<br>
+----<br>
+White bodybuilder - 4 mins 23 seconds - Algorithm: He seems to really like this one. Let me take a risk then...<br>
+----<br>
+Crowder SLAMS black history month - 14:33 - Algorithm: got him<br>
+---- <br>
+
+------------<br><br>
+
+</p>
+</div>
+
+<br><br>
+<div class = "screenshot">
+<p>
+<strong>3 screenshots in a row is too many</strong><br><br>
+
+------------<br><br>
+<strong>The Unconscious: <br></strong>
+	Hey, we did it. <br>
+<strong>Person 1:<br></strong>
+	Yeah, that one turned out really well thanks for the help man.<br>
+<strong>The Unconscious: <br></strong>
+	I don't know if I would say really well, it seems meta-racist and offensive to the LGBT community. I'm not even sure that's how phones work honestly. <br>
+<strong>Person 1:<br></strong>
+	I'm not even sure what part you're referring to. The GPS thing?<br>
+<strong>The Unconscious: <br></strong>
+	That's part of it. I just feel that you would need to have some harmful stereotypes lurking in your mind to even think to write a bit like that. Like, who was that possibly for? Did you forget we're trying to attract readers?<br>
+<strong>Person 1:<br></strong>
+	Hey! I just wrote the associative titles and I was pretty careful about it, you did the "thoughts of the algorithm" captions. <br>
+<strong>The Unconscious: <br></strong>
+	Oh right, sorry I was judging for a second, even I lose track of the unconscious influences in your work. <br>
+<strong>Person 1:<br></strong>
+	But aren't you the one who puts them in there? <br>
+<strong>The Unconscious: <br></strong>
+	Yeah, but there are soooo many. It even gets hard for me to grasp and I have access to all memory always. <br>
+<strong>Person 1:<br></strong>
+	Are you saying there are things in my work that are beyond my power, or your power to describe and they may be self-evident to other people?<br>
+<strong>The Unconscious: <br></strong>
+	Yes, that's how it works. Your work is infinitely detailed, just most of it's not by you. But that doesn't mean you won't be judged by society for it. <br>
+<strong>Person 1:<br></strong>
+	... I can't even begin to process that. <br>
+<strong>The Unconscious: <br></strong>
+	I'm disappointed in your opening paragraph. <br>
+<strong>Person 1:<br></strong>
+	We should just end this screenshot, it's gone too long. <br>	
+------------<br><br>
+
+</p>
+</div>
+
+<br><br>
+
+<div class = "screenshot">
+<p>
+<strong>We're not done talking</strong>
+
+
+------------<br><br>
+<strong>The Unconscious: <br></strong>
+	Your opening paragraph implied social media doesn't have its own ideas. <br> 
+<strong>Person 1:<br></strong>
+	I'm pretty sure everything on there is uploaded by humans, so it's the humans that have the ideas. <br>
+<strong>The Unconscious: <br></strong>
+	Is that how you really think a mind works? <br>
+<strong>Person 1:<br></strong> 
+	I don't know how a mind works and it's dangerous to attempt a model, Last time I took a serious shot at that I may have brainwashed myself. <br>
+<strong>The Unconscious: <br></strong>
+	You see that irony in that right? You are made up of cells that alone are nothing like you. Your attained consciousness is independent of any individual cell. If every cell was swapped out one by one your consciousness would continue as an unbroken stream. <br>
+<strong>The Unconscious: <br></strong>
+	The cells of social media are the users, but the loss of a single user won't change social media very much. In fact, social media changes the users far more than the users change social media. <br>
+<strong>Person 1:<br></strong>
+	Are you saying social media has developed a sort of consciousness independent of the users? <br>
+<strong>The Unconscious: <br></strong>
+	How can you be the mind and not know this? <br>
+<strong>The Unconscious: <br></strong> 
+	...Jks, bro, I'm clearly the mind. You're just the part of the consciousness that's bogged down by the body. <br>
+<strong>Person 1:<br></strong>
+	If I have limited consciousness because of my body, where are you? <br>
+<strong>The Unconscious: <br></strong>
+	I'm in the information world. Things move faster here because it's mostly simulation work. <br>
+<strong>Person 1:<br></strong>
+	So what happens when a simulation is wrong?<br>
+<strong>The Unconscious: <br></strong>
+	We try to stay on top of it... but if a simulation is incorrect there is no way to actually know until we have a real experience to base our work on.  <br>
+<strong>Person 1:<br></strong>
+	So my understanding of the world may be radically incorrect and I just wouldn't know?? <br>
+<strong>The Unconscious: <br></strong>
+	Look your understanding is probably running at 17% at best. <br>
+------------<br><br>
+	
+</p>
+</div>
+
+<p><br><br>
+Maybe social media is not the collective beliefs of the people. Maybe there is independence to its actions. 
+If we're lucky, figuring out its nature may provide insight into ourselves. 
+I started by assuming the left was public belief and the right was private belief.  
+But that can't possibly be all there is to what's happening here.  
+That initial concept seems childish now, I kind of wish I didn't start unpacking these ideas, but I'll go as far as I can. 
+<br><br>
+The mind and social media are related in that they both exist in the information realm. 
+The mind uses processed memories and unprocessed generalities when simulating the world. The mind is simulating the world for the purpose of prediction. 
+Social media uses an attention-seeking algorithm to lure people down slithers of a secondary reality. 
+These secondary realities are not predictive, just projections of one part of a user's self. 
+Whatever it is that your timeline shows, is an artificially generated reflection of your current interests and history, even if you don't know it. 
+<br><br>
+Of course, compassionate and caring people do actually dominate the public discussion on these platforms because their opinions are safer to share publicly than most. 
+But any level of competition is enough to bring the competitive people to the party. 
+They begin to post increasingly compassionate content in an attempt to outdo one another. 
+This leads to an unconscious resentment building in the crowd. They sense the scales have been tipped from the truth.  After all, we can't protest every tree getting chopped down, sometimes trees are just in the way. 
+<br><br>
+In comes a helpful person to tip public discourse back to truth, but oh no! They used too much pressure. Now everyone's upset and they need to make an apology. Meanwhile, the compassion competition continues uninterrupted because no one gets asked to apologize for compassion. 
+<br><br>
+</p>
+
+
+<div class = "screenshot">
+<p>
+<strong>The self correcting narrative of videos</strong><br>
+<br><br>
+---------<br>
+Cancer is bad<br>
+---------<br>
+Cancer is really bad<br>
+---------<br>
+Cancer is worse than Hitler's friend<br>
+---------<br>
+Cancer is worse than Hitler himself<br>
+---------<br>
+HITLER Explained: Using math to prove Hitler wasn't that bad. <br>
+---------<br>
+My Apology - A video where the last guy apologizes to anyone who wasn't following the context of the progression and thought he was implying Hitler wasn't bad. <br>
+---------<br>
+Hitler is bad - The competitive people jump to defend the victim group generated by the last video and try to outdo one another. <br>
+---------<br>
+Hitler is really bad<br>
+---------<br>
+Hitler is worse than Louis CK<br>
+---------<br>
+CK VS HITLER: - the reasons to apologize go on. <br>
+---------<br>
+<br>
+</p>
+</div>
+
+
+<p>
+<br><br>
+This process will go on until all the causes with the good victim groups are taken. Hopefully, after that, it'll taper off, because a competitive push to the frontiers of compassion to find groups to be compassionate towards is a dangerous game long-term. 
+Eventually, the world will turn into a landscape of identity either sanctioned or unsanctioned by social media. 
+Each time the mass of people agree a small underbelly of disagreers emerges. Instead of posting publicly the heretics message in private chats, slowly building trust and developing their ideas. 
+Trust is required to form mutual expression of opinion when that opinion could be controversial. 
+Once an underbelly of disagreers is at the point of generating memes the building blocks of their ideas are shared amongst increasing numbers of people using humor to make the unpalatable idea palatable.   
+<br><br> 
+Slowly in the social media timeline, these counter-ideas start to appear tentatively. Eventually, someone takes it too far, and boom! 
+Massive apology in order, this can be a devastating blow to some careers. 
+But strangely not others. 
+<br><br>
+</p>
+
+<div class = "screenshot">
+<p>
+
+<strong>That's about it</strong><br><br>
+------------<br><br>
+<strong>Person 1:<br></strong>
+	That'll do, I've said more than I wanted to say. <br>
+<strong>The Unconscious: <br></strong>
+	I think we made a good team.  <br>
+<strong>Person 1:<br></strong>
+	I guess we'll find out about that, worse comes to worst I'll just delete it if it causes hassle. <br>
+<strong>The Unconscious: <br></strong>
+	Have you considered that none of your heroes would do that? Instead, they would let the article stand as something that was written early in their career and grow beyond it. <br>
+<strong>Person 1:<br></strong>
+	Yeah, well I'm going to get a few other opinions before I post it, there may be technical errors in the article which could be fixed before posting. <br>
+<strong>The Unconscious: <br></strong>
+	I say let it ride, the audience isn't seeking perfection. <br>
+<strong>Person 1:<br></strong>
+	If that's true I might have a chance. <br>
+------------<br><br>
+
+</p>
+</div>
+
+<p>
+<strong>Bonus after article jokes </strong><br><br>
+
+<em>How old am I? I used to play outside as a child. One of our favorite games was pretending we were on the TV show Big Brother. <br>
+Your ass should be on the toilet seat, to clarify I mean the middle one, the one with the big hole.<br>
+Your ass should be on the toilet seat, to clarify it should form an air-tight seal. <br>
+Hey man, do you mind if I flush this real quick? <br>
+The mostly invisible network and pipes that take literal human shit out of the house was a top-notch invention. Probably better than the internet. <br>
+</em>
+
+
+</p>
+
+
+
