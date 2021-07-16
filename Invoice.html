@@ -1,6 +1,6 @@
 					<!--CSS STYLES--!>
 
-<style> 
+<style>
 #tbl {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -119,7 +119,7 @@ input[type='text'] {
   	font-size: 32px; 
   	margin:4px;
   	margin-left: 40px;
-  	width: 40%;
+  	width: 50%;
  	 box-sizing: border-box;
   	border: 2px solid #ccc;
   	border-radius: 4px;
@@ -133,7 +133,7 @@ input[type='text'] {
 
 
 input[type=text]:focus {
-  	width: 50%;
+  	width: 70%;
 }
 
 label{
@@ -660,8 +660,8 @@ input[type="file"] {
 <div class = "header">
 
 
-	<h1><a href="https://aaronunify.github.io/Contracts_test_3/Index">Unify - Contracts<a></h1>
-	<h2>Invoices</h2>
+	<h1><a href="https://aaronunify.github.io/Contracts_test_3/Index">Recreate Meaning<a></h1>
+	<h2>Invoice Generator</h2>	
 	<h4>Fill out form to generate Invoice</h4>
 
 
@@ -734,7 +734,6 @@ var loadFileA1 = function(event) {
 
 	
 
-		<!-- These first six boxes are for the main parties of the contract-->
 <br>
 
 	<p>Company Details</p>
@@ -817,7 +816,6 @@ var button = document.getElementById("button1");
 	document.getElementById("Input NameA5").textContent += NameA5; //Address
 	document.getElementById("Input NameA6").textContent += NameA6; //Email
 	document.getElementById("Image OutputA1").src += OutputA1;
-
 
 
 
@@ -1188,21 +1186,17 @@ function reveal3() {
 <br>
 
 
+<p>Invoice Number: #</p>
+	<input type="text" id="InputNameC1" name="Input NameC1" required
+       		minlength="1" maxlength="80" placeholder="Company Name" >
+<br>
 
 
+<p>ABN: #</p>
+	<input type="text" id="InputNameC2" name="Input NameC2" required
+       		minlength="1" maxlength="80" placeholder="Company Name" >
 
-	<p>Invoice Number: 
-	<input type="number" style = "margin:40px;" id="NumberC1" name="NumberC1" required
-       		minlength="1" maxlength="80" size = "6"></p>	
-
-
-	<p>ABN: 
-	<input type="number" style = "margin:40px;" id="NumberC2" name="NumberC2" required
-       		minlength="1" maxlength="80" size = "6"></p>
-
-
-
-
+<br>
 
 	
 <label for = "SelectC1">Taxes Included: </label>
@@ -1271,11 +1265,8 @@ var button = document.getElementById("button3");
 // Step 2: Define the event listener function     
   var onButtonClick = function() {
 
-
-
-
-	var NC1 = document.getElementById("NumberC1").value; //Number 
-	var NC2 = document.getElementById("NumberC2").value; //Number 
+	var NameC1 = document.getElementById("InputNameC1").value;   //Name
+	var NameC2 = document.getElementById("InputNameC2").value;   //Address
 
 
 
@@ -1287,11 +1278,9 @@ var button = document.getElementById("button3");
 	var dateC2 = document.getElementById("DateC2").value; //Date
 
 
-	
+	document.getElementById("Input NameC1").textContent += NameC1; //Name
+	document.getElementById("Input NameC2").textContent += NameC2; //Address	
 
-
-	document.getElementById("Number C1").textContent += NC1; //Number
-	document.getElementById("Number C2").textContent += NC2; //Number
 
 
 	document.getElementById("Selection C1").textContent += SelC1; //select
@@ -1303,7 +1292,8 @@ var button = document.getElementById("button3");
 
 
 
-
+	
+	
 
 	
 
@@ -1379,21 +1369,16 @@ function reveal4() {
 	
 <hr class = "line14">
 
-			
+	
+<div>
+<p style="text-align:left">Notes to Customer: </p>
+<textarea id = "TextAreaD3" rows="15" cols="60" name="textAreaD3" placeholder="Any additional information relevant to this order. "></textarea>
+</div>
+		
 
 <div>
 <p style="text-align:left">Additional Services available: </p>
-<textarea id = "TextAreaD1" rows="15" cols="60" name="textAreaD1" placeholder="TextArea"></textarea>
-</div>
-
-<div>
-<p style="text-align:left">Services not included in invoice: </p>
-<textarea id = "TextAreaD2" rows="15" cols="60" name="textAreaD2" placeholder="TextArea"></textarea>
-</div>
-
-<div>
-<p style="text-align:left">Notes to Customer: </p>
-<textarea id = "TextAreaD3" rows="15" cols="60" name="textAreaD3" placeholder="TextArea"></textarea>
+<textarea id = "TextAreaD1" rows="15" cols="60" name="textAreaD1" placeholder="Let the client know about additional services they may be interested purchasing in the future. "></textarea>
 </div>
 
 <hr class = "line14">
@@ -1608,7 +1593,7 @@ Company Logos must be larger than 200x120px
             var a = window.open('', '', 'height=500, width=500'); 
             a.document.write('<html><body style = background:rgba(14,70,172,0.75);>');  
             a.document.write('<div  style="background-color:rgb(14,14,14);"> ');
-            a.document.write('<h1 style= "color:rgb(251,251,251); text-align: center;" >Recreate Meaning - Contracts </h1><h2 style="color:rgb(251,251,251); text-align: center;">Invoice</h2><br>'); 
+            a.document.write('<h1 style= "color:rgb(251,251,251); text-align: center;" >Recreate Meaning - Invoice </h1><h2 style="color:rgb(251,251,251); text-align: center;">Invoice</h2><br>'); 
             a.document.write('</div>'); 
             a.document.write('<div  style="background-color:rgb(251,251,251);"> '); 
             a.document.write(divContents); 
@@ -1827,8 +1812,8 @@ font-size: 16px;
 									</td>
 
 								<td style = "text-align: right;" >
-									Invoice #: <span id = "Number C1"></span><br />
-									ABN: <span id = "Number C2"></span><br />
+									Invoice : #<span id = "Input NameC1"></span><br />
+									ABN: #<span id = "Input NameC2"></span><br />
 
 									Created: <span id = "Date C1"></span> <br />
 									Due: <span id = "Date C2"></span> 
@@ -1869,8 +1854,8 @@ font-size: 16px;
 							<tr>
 <td></td>
 								<td>
-							
-<p style = "border:solid 1px black; text-align: right; font-weight: bold; font-size: 32px;"><br>Total Cost: $<span id = "Number B1"></span></p>
+							<br><br><br><br>
+<p style = "text-align: right; font-weight: bold; font-size: 32px;"><br>Total Cost: $<span id = "Number B1"></span></p>
 
 								</td>
 </tr>
@@ -1887,19 +1872,12 @@ font-size: 16px;
 
 </table>
 
-
-<br>
-
-<br>
-<br>
+</div>
+<div class="invoice-box">
 
 
-<p style = "page-break-after: always;">Additional Services available: <br> 
+<p style = "page-break-before: always;">Additional Services available: <br> 
 <pre style = "border:solid black 1px;" id = "Text AreaD1"></pre> </p>
-
-
-<p>Services not included in invoice: <br> 
-<pre style = "border:solid black 1px;" id = "Text AreaD2"></pre> </p>
 
 <p>Notes to Customer: <br> 
 <pre style = "border:solid black 1px;" id = "Text AreaD3"></pre> </p>
