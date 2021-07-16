@@ -1188,13 +1188,13 @@ function reveal3() {
 
 <p>Invoice Number: #</p>
 	<input type="text" id="InputNameC1" name="Input NameC1" required
-       		minlength="1" maxlength="80" placeholder="Company Name" >
+       		minlength="1" maxlength="80" placeholder="" >
 <br>
 
 
 <p>ABN: #</p>
 	<input type="text" id="InputNameC2" name="Input NameC2" required
-       		minlength="1" maxlength="80" placeholder="Company Name" >
+       		minlength="1" maxlength="80" placeholder="" >
 
 <br>
 
@@ -1370,16 +1370,21 @@ function reveal4() {
 <hr class = "line14">
 
 	
-<div>
-<p style="text-align:left">Notes to Customer: </p>
-<textarea id = "TextAreaD3" rows="15" cols="60" name="textAreaD3" placeholder="Any additional information relevant to this order. "></textarea>
-</div>
-		
+
+
 
 <div>
 <p style="text-align:left">Additional Services available: </p>
 <textarea id = "TextAreaD1" rows="15" cols="60" name="textAreaD1" placeholder="Let the client know about additional services they may be interested purchasing in the future. "></textarea>
 </div>
+
+
+<div>
+<p style="text-align:left">Notes to Customer: </p>
+<textarea id = "TextAreaD2" rows="15" cols="60" name="textAreaD2" placeholder="Any additional information relevant to this order. "></textarea>
+</div>
+		
+
 
 <hr class = "line14">
 
@@ -1423,13 +1428,12 @@ var button = document.getElementById("button4");
 
 	var TAreaD1 = document.getElementById("TextAreaD1").value; //Textarea
 	var TAreaD2 = document.getElementById("TextAreaD2").value; //Textarea
-	var TAreaD3 = document.getElementById("TextAreaD3").value; //Textarea
-
+	
 
 
 	document.getElementById("Text AreaD1").textContent += TAreaD1; //Textarea
 	document.getElementById("Text AreaD2").textContent += TAreaD2; //Textarea
-	document.getElementById("Text AreaD3").textContent += TAreaD3; //Textarea	
+	
 
 
 
@@ -1880,7 +1884,7 @@ font-size: 16px;
 <pre style = "border:solid black 1px;" id = "Text AreaD1"></pre> </p>
 
 <p>Notes to Customer: <br> 
-<pre style = "border:solid black 1px;" id = "Text AreaD3"></pre> </p>
+<pre style = "border:solid black 1px;" id = "Text AreaD2"></pre> </p>
 
 
 </div>
