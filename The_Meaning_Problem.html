@@ -1,0 +1,693 @@
+
+<style>
+
+
+	
+	
+	
+	
+a {
+   text-decoration:none;
+   color: #333;
+	}
+	
+
+
+a:link {
+  color: #333;
+	
+}
+
+
+a:visited {
+  color: #333;
+	
+}
+
+a:hover {
+  color: #333;
+	
+	
+}
+
+a:active {
+  color: #333;
+	
+}
+
+
+
+div.screenshot{
+
+	border-style: dashed;
+	background-color: #16161d;
+	color:white;
+	padding:2%;
+}
+
+div.strategy{
+
+	border-style: dashed;
+	background-color: white;
+	color:black;
+	padding:2%;
+}
+
+	
+	
+	
+	
+	
+	
+body{
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+    background-color: #f9f7f1;
+}
+header{
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 80px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 72px;
+    margin-bottom: 20px;
+
+}
+p{
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.head{
+    text-align: center;
+    position: relative;
+
+
+}
+
+img{ 
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+.headerobjectswrapper{
+}
+
+.subhead{
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 12px 0 12px 0;
+
+}
+.weatherforcastbox{
+    position: relative;
+    width: 12%;
+    left: 10px;
+    border: 3px double #2f2f2f;
+    padding: 10px 15px 10px 15px;
+    line-height: 20px;
+    display: inline-block;
+    margin: 0 50px 20px -360px;
+}
+.content{
+    font-size: 0;
+    line-height: 0;
+    word-spacing: -.31em;
+    display: inline-block;
+    margin: 30px 2% 0 2%;
+
+
+}
+.collumns{
+
+}
+
+.collumn{
+    font-size: 14px;
+    line-height: 20px;
+    width: 75%;
+    display: inline-block;
+    padding: 0 1% 0 1%;
+    vertical-align: top;
+    margin-bottom: 50px;
+    transition: all .7s;
+border-right: 1px solid #333;
+border-left: 1px solid #333;
+}
+.collumn + .collumn { 
+  border-left: 1px solid #2f2f2f;
+}
+.collumn .headline{
+    text-align: center;
+    line-height: normal;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin: 0 auto;
+
+
+}
+.collumn .headline.hl1{
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px 0 10px 0;
+
+}
+
+.collumn .headline.hl2{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+
+.collumn .headline.hl2:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl2:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 13px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl3{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 36px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl4:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl5{
+    font-weight: 400;
+    font-size: 42px;
+    text-transform: uppercase;
+    font-style: italic;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6{
+    font-weight: 400;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl6:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+.collumn .headline.hl7{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    display: block;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl8{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl9{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl10{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .citation{
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    line-height: 44px;
+    /*font-style: italic;*/
+    text-align: center;
+    font-weight: 400;
+    display: block;
+    margin: 40px 0 40px 0;
+    font-feature-settings: "liga", "dlig";
+
+}
+.collumn .citation:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .citation:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .figure {
+	  margin: 0 0 20px;
+}
+.collumn .figcaption{
+	font-style: italic;
+	font-size: 12px;
+}
+.media {
+    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
+    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+    mix-blend-mode: multiply;
+    width: 45%;
+}
+/*________________________________________________________________________________________________________________________________*/
+/*MEDIAQUERIES*/
+@media only all and (max-width: 1300px) {
+    .weatherforcastbox{
+        display: none;
+    }
+
+}
+@media only all and (max-width: 1200px) {
+    .collumn{
+        width: 75%;
+    }
+
+}
+    @media only all and (max-width: 900px) {
+    .collumn{
+        width: 75%;
+    }
+
+}
+@media only all and (max-width: 600px) {
+    .collumn{
+        width: 75%;
+    }
+	.collumn + .collumn {
+				border-left: none;
+      	border-bottom: 1px solid #2f2f2f;
+	}
+    header{
+        max-width: 320px;
+        font-size: 60px;
+        line-height: 54px;
+        overflow: hidden;
+    }
+
+
+}
+
+
+.navbar{
+  background: #333;
+  padding:12px;
+}
+
+.dropbtn {
+  background-color: #f9f7f1;
+  color: #333;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  width: 110px;
+  font-weight: bold; 
+  
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f7f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #db5e67;}
+
+
+}
+
+
+
+
+
+	hr.line1{
+	border-top: 1px solid #8c8b8b;
+}
+	hr.line3{
+	border-right: 3px solid #8c8b8b;
+}
+
+hr.line2 {
+	border-top: 3px double #8c8b8b;
+}
+
+hr.line14 { 
+	border: 0; 
+	height: 1px; 
+	background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+
+
+	
+	
+</style>
+
+
+
+
+
+
+
+
+
+
+<!--===================== START =================-->
+<!--===================== This is all the stuff in the header =================-->
+<!--===================== This is all the stuff in the header =================-->
+
+
+
+
+
+
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/newspaper.css">
+
+    <title>Recreate Meaning</title>
+    <meta name="viewport" content="width=device-width">
+
+</head>
+
+
+<body>
+<div class="head">
+    <div class="headerobjectswrapper">
+        <div class="weatherforcastbox"><span style="font-style: italic;">Meaningforcast for the next 24 hours: Get Plenty of Sunshine and Drink lots of Water</span><br><span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span></div>
+               <header><a href="https://aaronunify.github.io/Contracts_test_3/RecreateMeaning_homepage.html">Recreate Meaning</a></header>
+    </div>
+
+
+
+<div class ="navbar">
+
+<div class="dropdown">
+  <button class="dropbtn">Unify</button>
+  <div class="dropdown-content">
+    <a href="#">Sign In</a>
+    <a href="#">About Unify</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Contracts</button>
+  <div class="dropdown-content">
+    <a href="https://aaronunify.github.io/Contracts_test_3/Contracts_Menu">New Contract</a>
+    <a href="https://aaronunify.github.io/Contracts_test_3/Index">About Contracts</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+
+<div class="dropdown">
+  <button class="dropbtn">About</button>
+  <div class="dropdown-content">
+    <a href="#">Recreate Meaning</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Unify</a>
+    <a href="#">Contracts</a>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--===================== END =================-->
+<!--===================== This is all the stuff in the header =================-->
+<!--===================== This is all the stuff in the header =================-->
+
+
+
+
+
+
+<!--===================== Start =================-->
+<!--===================== This is the start of the story =================-->
+<!--===================== This is the start of the story =================-->
+
+
+
+
+
+
+
+
+<hr class = "line14"><hr class = "line14">
+
+<div class="collumn">
+            <div class="head"><span class="headline hl5">The Meaning Problem</span><p><span class="headline hl6">The</span></p></div>
+
+
+			<img class="media" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Cole_Thomas_The_Course_of_Empire_Desolation_1836.jpg/1920px-Cole_Thomas_The_Course_of_Empire_Desolation_1836.jpg" alt="">
+								<figcaption class="figcaption">We live in our history. </figcaption>
+						</figure>	
+
+
+
+<br><br>
+<p>
+The meaning problem is a tricky one to explain. Partly because I face a definition problem that I need to get out of the way before we dive into the concept. 
+One definition of meaning is related to understanding and communication, sometimes we have to discuss the planned meaning of our words because the intended message is failing to surface. 
+In another definition, meaning is related to the feeling of experience.  An experience can be said to be meaningful if it was of notable emotional importance to the individual. 
+
+<br><br>
+Meaning has a subjective quality. 
+One person can find a ceremony boring because of the long speeches and uncomfortable chairs, but someone in the same room can find it deeply meaningful.  
+
+<br><br>
+Despite meaning being subjective it would appear that there is some objective element. 
+A particular song can be deemed meaningful only by a group of people with a shared type of experience.  
+Its as if the musician has captured the essence of the experience in a way that resonates with the group. 
+The individuals can be left with an enhanced understanding of their own past and altered plans for the future. 
+Paintings, movies, books, stories, sculptures, and dance all appear to share this ability to unite groups into shared understanding. 
+
+<br><br>
+Philosophers often write about meaning, sometimes they use the word meaning and assign it their own definition, other times they call it something else.
+ I'm choosing to use the word meaning and assign my own definition. 
+
+<br><br>
+<strong>Meaning: </strong>noun<br>
+Meaning can describe information that alters your expected future for the better. 
+<br>
+Meaning can also describe a feeling that occurs when you are having an experience that is altering your expected future for the better. 
+<br?
+<em>Participating in an experience that brings forward meaning can be described as meaningful. </em>
+
+<br><br>
+The opposite of my definition is when the meaning of an event has negative connotations for the future. 
+I am reminded of the famous anecdote told by Viktor Frankl of the man in the concentration camp who awoke to find his shoes had shrunk overnight and would no longer fit on his feet. 
+The man broke down because he would now have to march barefoot in the snow. 
+The meaning of the shrunken shoe in this scenario was a painful death. 
+The negative meaning of the near future presented itself to the unfortunate man clear as day. 
+
+<br><br>
+I will tell you a short story to illustrate my experience with meaning because it's connected to the reason why I'm sitting at my computer writing today. 
+
+<br><br>
+Around 5-years ago now I was having a rough time of things. 
+I kept on having experiences of negative meaning. No where near as severe as the man in the story above, but in a more day-to-day life kind of way. 
+Problems that were increasingly unsolvable kept emerging. 
+By unsolvable, I mean that I could solve them, but it meant that I would need to sacrifice the future I had been working towards. 
+<br><br>
+I should have just made the sacrifice early and been done with it. 
+But I had to learn the hard way that if you leave problems unsolved long enough the life you built begins to fall away, replaced by a life that you didn't design. 
+The feeling is like being swept away by increasingly turbulent water.  
+<br><br>
+Eventually, the chaos took what it could and I was left with what remained. 
+Once all was lost I still had to go through with the sacrifice, only now I had lost more than I would have had to if I had just made the sacrifice early. 
+<br><br>
+Post sacrifice, determined to stop the losses and get back on top I began to fix every problem in my immediate vicinity and sparks of positive meaning began to fly. 
+Planting gardens, having honest conversations and eating breakfast, life began to get good. 
+<br><br>
+One day, I decided to change the blown lightbulb in the garage. But to do so I needed to clear out a bunch of stuff. 
+In the darkness, I was able to rearrange the gym equipment that was in my road and change the lightbulb. 
+When I turned on the light I realized that this garage had become my gym. 
+<br><br>
+I continued cleaning the room, sweeping, and organising, some things in the room did not belong but were useful in other ways. 
+I had an electric BBQ that was taking up space, I moved it to my front yard. 
+<br><br>
+As I was moving the BBQ an idea struck me, I'll use this BBQ to cook dinner instead of letting it sit in the garage doing nothing. 
+Cooking outside will prevent mess inside. As I continued cleaning I continued to think, I'll invite the guys from work over to lift, we'll have a BBQ afterward. 
+I had such a remarkable sense of meaning thinking these thoughts and tidying the room that it was nearly overwhelming. 
+At the time I needed something to give me a source of positive emotion and this idea seemed to have something to it. 
+<br><br>
+The meaning I felt was an indication that I had begun a series of experiences that meant the future was going to be better than I could have expected. 
+I have chased the feeling for 5 years and am constantly amazed at the level of synchronicity my life has gained. 
+Especially with regard to the sacrifices, I have made while pursuing meaning.  
+<br><br>
+You see a few years back I sold the weights to move closer to the city in pursuit of meaning. 
+A bunch of mostly good things happened and now I'm back living a few streets away from where this story began in a life that's so good compared to where I started I don't even know what to do about it. 
+<br><br>
+Here's the thing though, I received word that the weights I sold are being returned to me. 
+After changing hands a few times they've found their way back to me free of charge. 
+I am constantly suprised that appropriate sacrifice made in the pursuit of meaning is rewarded in the strangest of ways. 
+<br><br>
+At times it feels more like the work of some strange invisible entity complete with a sense of poetic justice, compassion, and humor. 
+This entity seems to have the same capabilities as the thing that's making <a href "https://aaronunify.github.io/Contracts_test_3/The_Problem_Problem.html"> problems emerge. </a>
+For some unknown reason, this entity will join your cause if you are willing to sacrifice to pursue meaning. 
+<br><br>
+The reason I wanted to take the time to specifically define a common word is that meaning when defined as I have defined it, is the only reliable cure to anxiety and depression I have found. 
+If you don't think this could be possible then I'm afraid you're underestimating the power of meaning. 
+<br><br>
+Meaning inspired music, not a song but the whole concept. 
+All of language was constructed to better transfer meaning between individuals. 
+Our brains seem to have evolved in response to meaning. 
+It's not a force to be underestimated.
+<br><br>
+If you fail to accrue positive meaningful experiences your mind turns against itself. 
+Fear and boredom turn to debilitating anxiety and depression. 
+Depression makes solving problems seem pointless, to the point of constant despair. 
+Anxiety makes problems seem larger than they actually are, to the point of everyday activity presenting itself as a paralyzing fear-inducing challenge. 
+
+<br><br>
+This next bit is really important, way more important than money. Meaning grants many favours to those who find it. 
+
+<div class = "strategy">
+<strong>Benefits of meaning</strong><br><br>
+1. Focus: Meaning allows the experiencer to enter into the flow state of focus. All the resources of the mind are directed in a single direction resulting in the clearest thinking possible, time passes without distraction. 
+<br>
+2. Resilience: Meaning reduces feelings of pain, a person experiencing meaning can work for hours and not get tired, gravity simply doesn't register. Although meaning is fleeting it is not fragile. Someone in a meaningful state can really roll with the punches. 
+<br>
+3. Serendipity: Meaningful events unfold beneficially as if the laws of chance are suspended for a brief time. The more often you find yourself in meaningful experiences, the more often seemingly unlikely beneficial events happen. 
+<br>
+</div>
+<br><br>
+Not only will these benefits granted by meaning help you fight your way out of depression and anxiety, they're part of the answer to the love problem.  
+Two people pursuing meaning together may be the best answer to not building a relationship that lasts. 
+The constant positive transformation keeps life fresh and exciting. 
+
+<br><br>
+I am concerned that the current state of the world has caused the majority to lose faith in meaning. 
+This is a terrible tragedy and I have chosen to make it my personal goal to fix this. 
+If you wish to have meaningful experiences but are not sure where to begin Unify is the place to begin. 
+Unify was designed to identify tasks that have a high chance of meaningful experience. 
+
+<br><br>
+
+
+</p>
+
+
+
+</div>
+
+<hr class = "line14">
+
+
+<hr class = "line14">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+© 2021 Recreate Meaning
