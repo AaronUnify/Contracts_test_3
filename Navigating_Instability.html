@@ -1,0 +1,995 @@
+<style>
+
+div.screenshot{
+
+	border-style: dashed;
+	background-color: #16161d;
+	color:white;
+	padding:2%;
+}
+
+div.strategy{
+
+	border-style: dashed;
+	background-color: white;
+	color:black;
+	padding:2%;
+}
+
+
+
+
+body{
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+    background-color: #f9f7f1;
+}
+header{
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 80px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 72px;
+    margin-bottom: 20px;
+
+}
+p{
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.head{
+    text-align: center;
+    position: relative;
+
+
+}
+
+img{ 
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+.headerobjectswrapper{
+}
+
+.subhead{
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 12px 0 12px 0;
+
+}
+.weatherforcastbox{
+    position: relative;
+    width: 12%;
+    left: 10px;
+    border: 3px double #2f2f2f;
+    padding: 10px 15px 10px 15px;
+    line-height: 20px;
+    display: inline-block;
+    margin: 0 50px 20px -360px;
+}
+.content{
+    font-size: 0;
+    line-height: 0;
+    word-spacing: -.31em;
+    display: inline-block;
+    margin: 30px 2% 0 2%;
+
+
+}
+.collumns{
+
+}
+
+.collumn{
+    font-size: 14px;
+    line-height: 20px;
+    width: 95%;
+    display: inline-block;
+    padding: 0 1% 0 1%;
+    vertical-align: top;
+    margin-bottom: 50px;
+    transition: all .7s;
+border-right: 1px solid #333;
+border-left: 1px solid #333;
+}
+.collumn + .collumn { 
+  border-left: 1px solid #2f2f2f;
+}
+.collumn .headline{
+    text-align: center;
+    line-height: normal;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin: 0 auto;
+
+
+}
+.collumn .headline.hl1{
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px 0 10px 0;
+
+}
+
+.collumn .headline.hl2{
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+
+.collumn .headline.hl2:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl2:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 13px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl3{
+  
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl4:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl4:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.collumn .headline.hl5{
+    font-weight: 400;
+    font-size: 42px;
+    text-transform: uppercase;
+    font-style: italic;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6{
+    font-weight: 400;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl6:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 7px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .headline.hl6:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+
+}
+.collumn .headline.hl7{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    display: block;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl8{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl9{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .headline.hl10{
+    font-weight: 700;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 0;
+}
+.collumn .citation{
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    line-height: 44px;
+    /*font-style: italic;*/
+    text-align: center;
+    font-weight: 400;
+    display: block;
+    margin: 40px 0 40px 0;
+    font-feature-settings: "liga", "dlig";
+
+}
+.collumn .citation:before{
+    border-top: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .citation:after{
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.collumn .figure {
+	  margin: 0 0 20px;
+}
+.collumn .figcaption{
+	font-style: italic;
+	font-size: 12px;
+}
+.media {
+    -webkit-filter: sepia(80%) contrast(1) opacity(0.8);
+    filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+    mix-blend-mode: multiply;
+    width: 55%;
+}
+/*________________________________________________________________________________________________________________________________*/
+/*MEDIAQUERIES*/
+@media only all and (max-width: 1300px) {
+    .weatherforcastbox{
+        display: none;
+    }
+
+}
+@media only all and (max-width: 1200px) {
+    .collumn{
+        width: 95%;
+    }
+
+}
+    @media only all and (max-width: 900px) {
+    .collumn{
+        width: 95%;
+    }
+
+}
+@media only all and (max-width: 600px) {
+    .collumn{
+        width: 95%;
+    }
+	.collumn + .collumn {
+				border-left: none;
+      	border-bottom: 1px solid #2f2f2f;
+	}
+    header{
+        max-width: 320px;
+        font-size: 60px;
+        line-height: 54px;
+        overflow: hidden;
+    }
+
+
+}
+
+
+.navbar{
+  background: #333;
+  padding:12px;
+}
+
+.dropbtn {
+  background-color: #f9f7f1;
+  color: #333;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  width: 110px;
+  font-weight: bold; 
+  
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f7f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #db5e67;}
+
+
+}
+
+
+
+a {
+	text-decoration:none;
+	color: #333;
+	}
+/* unvisited link */
+a:link {
+  color: #333;
+}
+
+/* visited link */
+a:visited {
+  color: #333;
+}
+
+/* mouse over link */
+a:hover {
+  color: #333;
+}
+
+/* selected link */
+a:active {
+  color: #333;
+}
+
+
+
+
+
+	hr.line1{
+	border-top: 1px solid #8c8b8b;
+}
+	hr.line3{
+	border-right: 3px solid #8c8b8b;
+}
+
+hr.line2 {
+	border-top: 3px double #8c8b8b;
+}
+
+hr.line14 { 
+	border: 0; 
+	height: 1px; 
+	background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+
+
+	
+	
+</style>
+
+
+
+
+
+
+
+
+
+
+<!--===================== START =================-->
+<!--===================== This is all the stuff in the header =================-->
+<!--===================== This is all the stuff in the header =================-->
+
+
+
+
+
+
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/newspaper.css">
+
+    <title>Recreate Meaning</title>
+    <meta name="viewport" content="width=device-width">
+
+</head>
+
+
+<body>
+<div class="head">
+    <div class="headerobjectswrapper">
+        <div class="weatherforcastbox"><span style="font-style: italic;">Meaningforcast for the next 24 hours: Get Plenty of Sunshine and Drink lots of Water</span><br><span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span></div>
+        <header><a href="https://aaronunify.github.io/Contracts_test_3/RecreateMeaning_homepage.html">Recreate Meaning</a></header>
+    </div>
+
+
+
+<div class ="navbar">
+
+<div class="dropdown">
+  <button class="dropbtn">Unify</button>
+  <div class="dropdown-content">
+    <a href="#">Sign In</a>
+    <a href="#">About Unify</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Contracts</button>
+  <div class="dropdown-content">
+    <a href="https://aaronunify.github.io/Contracts_test_3/Contracts_Menu">New Contract</a>
+    <a href="https://aaronunify.github.io/Contracts_test_3/Index">About Contracts</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+
+<div class="dropdown">
+  <button class="dropbtn">About</button>
+  <div class="dropdown-content">
+    <a href="#">Recreate Meaning</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Unify</a>
+    <a href="#">Contracts</a>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--===================== END =================-->
+<!--===================== This is all the stuff in the header =================-->
+<!--===================== This is all the stuff in the header =================-->
+
+
+
+
+
+
+<!--===================== Start =================-->
+<!--===================== This is the start of the story =================-->
+<!--===================== This is the start of the story =================-->
+
+
+
+
+
+
+
+
+<hr class = "line14"><hr class = "line14">
+
+<div class="collumn">
+            <div class="head"><span class="headline hl5">Navigating Instability</span><p><span class="headline hl6">This ones about the economy</span></p></div>
+
+
+			<img class="media" src="https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU3ODc5MDg2Njk3MTYyMDU3/industrial-revolution-hero.jpg" alt="">
+								<figcaption class="figcation">The Nature of Work is changing</figcaption>
+						</figure>	
+
+
+
+
+<p>
+<br><br>
+<em><strong>What is to be done about the current instability? We must live as if the world has already ended. </strong></em> 
+<br><br>
+It seems that it was only the other day, machines powered by steam revolutionised England. 
+Altering the lifestyles and living situations of just about every human on earth. 
+Just a quick century later and here we go again, everything is set to change and we better do what we can to navigate this transition smoothly. 
+<br><br>
+Right of the bat, it seems our modern cities have fallen prey to one of the systemic risks they generate. 
+For decades, highways have funneled people from rural areas into the closest metropolis. 
+Now we have a disease spreading throughout the cities that make sharing your daily routine with 5,000 strangers unwise. 
+For some of you the city is home and leaving is impossible. 
+For the rest of you, lets get out as quickly and quietly as we can, before the rural properties get too expensive. 
+<br><br>
+I keep thinking thank god all this has happened after the internet has become established. 
+Access to information and the abiliy to communicate with people anywhere and anytime. 
+What an insane advantage over the people of the previous century.  
+<br><br>
+But before we move on I should address the elephant in the room. 
+I'm not going to make this article about Covid, but I have to mention it. 
+Mostly because, I've been crazy forever, now I'm like low-level paranoid. 
+Just when I started to accept that I was going to have to deal with shaking hands and hugs with acquaintances, it all got deleted from the social behaviour repertoire. 
+<br><br>
+I don't mean to be flippant about it. I think covid is a legitimate virus and a proper threat. 
+I also think we must remain vigilant against those who use a crisis for their own gain without concern for others. 
+Problems of human evil and opportunistic behaviour aside, balancing panic and complacency regarding this virus is extremely difficult for groups of strangers in close proximity. 
+One individual can cause a lockdown if they're not careful. 
+There is too many fail-points to realistically expect the lockdowns to stop. 
+<br><br>
+This is going to make our cities increasingly uncomfortable places to live. 
+The thing that makes this virus annoying is the constant social signalling that acompanies it. 
+I don't want to engage in public purity rituals and wearing of a veil to convince strangers I'm free of disease. 
+I'll do it, but I don't enjoy it. I'm holding out for the vaccines to slow the spread. 
+After that I'm hoping we're done with the signalling in public stuff. 
+<br><br>
+Yes, vaccines should cause some relief. So lets just leave it there when it comes to Covid and think ahead. 
+We've got plenty on our plate if we're going to prepare for future crisis's as well as prepare for where the general economic trends are taking us. 
+<br><br>
+Population density is every harmful viruses best friend, not just Covid. 
+Covid probably wasn't the big one, I'm reading it as a signal that it's time to seriously get prepared for what the future has to offer when it comes to disease. 
+Population density is no longer a friend. 
+It's easier for a virus to spread, when there are more hosts within reach. 
+This is why I'm thrilled the internet allows us to connect to each other in real time without the need of physical space. 
+<br><br>
+Many jobs previously bound to a physical space have become bound to virtual space. 
+Some workers sole job is to maintain the infrastructure of the virtual space. 
+Specialised workers can now live anywhere, so long as there contribution to the virtual space continues uninterupted. 
+<br><br>
+Even some workers who could be described as "unskilled" have been working remotely. 
+I'm worried for them because employers have incentive to recruit from nations without minimum wage laws or replace people with machines. 
+I read an article by one of the banks, celebrating the addition of hundereds of artificial employees, during the pandemic. 
+These artifical employees were actually just tasks, that had been entirely automated during the pandemic. 
+<br><br>
+It is likely that now these tasks have left human hands, they're not coming back. 
+1,000's of jobs in one sector gone. 
+Don't be mad at the people for automating things that can be automated. 
+But, don't sit back and let the times leave you behind. 
+<br><br>
+If you're an average student who doesn't interview well, you got some trouble ahead. 
+Don't bank on a job with one of the instituions. 
+Likely there isn't anything in a large corporation or government department for you. 
+I've been living in this trouble for a couple years now and it's not so bad. 
+<br><br>
+It seems very unlikely that in a post-pandemic world (if that ever happens) the entire workforce will return to their offices. 
+Instead things will be scattered or automated. With our technology, that's probably the way things should be. 
+<br><br>
+Times are definitely changing, lets take a look at the first of the economic trends. 
+	
+</p>
+
+
+<div class = "screenshot">
+
+<strong>Trend(s) #1: People are changing jobs and locations</strong><br><br>
+<p>
+1. At the beginning of the pandemic a bunch of people lost their jobs all at once <br>
+2. Companies accelerated the automation of jobs <br>
+3. Everyone who could work from home did work from home <br>
+4. The housing market outperformed the apartment market most places <br>
+5. Threats of widespread shortage entered the public consciousness <br>
+</p>
+</div>
+
+
+
+<br><br>
+<p>
+It is not clear whether or not we will see a desceleration of these trends. 
+The job losses seen at the beginning of the pandemic are only a small fraction of the job losses we'll see due to automation. 
+<br><br>
+My fingers are crossed that new jobs will emerge to replace the ones that are automated. 
+But my intuition tells me this is a tipping point of sorts. 
+I think we're approaching a time where for those of us on the outside of professions, if you want to work, you just go do it. 
+Rather than waiting for a company to sanction your efforts with their brand or an institution to give you a certificate in exchange for $50,000.00. 
+As the good jobs are getting harder to come by, we're going to need to figure out how to look after ourselves in their absence. 
+<br><br>
+<a href = "https://github.com/AaronUnify/Contracts_test_3/blob/main/Contractor_Agreement.html">Contractor Agreement</a><br>
+<a href = "https://aaronunify.github.io/Contracts_test_3/Invoice.html">Invoice Generator</a>
+<br><br>
+If you're on the outside, think of a task you can do to provide value to someone, if they are willing to pay you to do it, write an agreement to make the details of the deal clear. 
+After you finish the task present them with an invoice. 
+Now you're pretty much a business. 
+Remember if you start making some real money, don't forget to tell the government at some point or else you'll probably go to jail for tax-evasion. 
+<br><br>
+As for the other trends, just about everyone wants to work from home as much as possible, I don't see a reversal here. 
+Houses in my area remain in high demand house prices march forward to all time highs every other week. 
+<br><br> 
+The biggest concern is the threat of shortages. I don't think we've seen the end of shortages. 
+We can't easily predict what will be unavailable and for how long. 
+So our best option is to prepare for the worst. 
+</p>
+
+
+
+<div class = "strategy">
+
+<strong>Strategy #1: Wear your seat-belt in every possible way</strong><br><br>
+<p>
+ 
+<br>
+<br>
+1. Expand your skillset with as many skills as possible. <br>
+2. Hold an inventory of supplies where possible <br>
+3. Keep several months living expenses in cash <br>
+4. Own some of the tools and equipment required for you to survive and trade <br>
+5. Know your customers and generate surplus value <br>
+
+<br><br>
+</p>
+</div>
+
+<br><br>
+<p>
+When things go wrong, they can really go wrong. 
+It's not nice to think of your workplace or hometown being devastated by a future crisis. 
+But it's gauranteed that a future crisis will devastate somewhere, often entire nations at once. 
+It may be us up next so we should prepare. If we don't prepare, it'll be much worse. 
+</p>
+
+
+<div class = "screenshot">
+
+<strong>Trend #2: Shortages</strong><br><br>
+<p>
+1. After many years of general abundance, shortages have returned to daily life. <br>
+2. Supply chain disruptions cause widespread shortages as parts of the network grind to a halt. <br>
+3. A supply chain can be disrupted in many ways at multiple levels. <br>
+<br><br>
+</p>
+</div>
+
+<br><br>
+<p>
+Because we can not predict what supply chains will be disrupted and when, we must use our own lives to estimate our need for certain products and prepare accordingly. 
+If there is a product that you absolutely must have, be sure to hold a little extra if possible. 
+But aside from specifics, the following is a rough guide to being resilient to shortages.  
+</p>
+
+
+
+<div class = "Strategy">
+<p>
+<span class="headline hl3"><strong>Strategy #2: Prepare for Shortages</strong><br></span><br><br>
+
+1. Food and supplies: Long-life food, house supplies, garden beds, a place for fishing, laying chickens, a place to hunt. <br>
+2. Skills: Learn to build furniture, repair vehicles and clothing, butcher fresh meat and fish, care for crops. <br>
+3. Equipment: A ute, powertools, fishing rod and tackle, a gun or bow. <br>
+4. Resources: lumber, steel, plywood, corrugated iron, chicken wire, paint, bolts, screws, nails, glue,  ect. <br>
+5. Cash: Good for income shortages. <br>
+6. At least one solar powered, power point and a water tank. <br>
+<br><br>
+</p>
+</div>
+
+
+<p>
+<br><br>
+Why this list? Why not masks, sanitiser and toilet paper. The things that actually were difficult to get your hands on during the pandemic. 
+Because we are not preparing for the current pandemic. We're aiming to prepare for things that could go wrong in the future.  
+<br><br>
+Foods, the big one. Mainly because most of us are clueless as to how to produce it. 
+Let alone the fact that city and surburban life are poor places for actually producing food. 
+The final big concern is that it takes time for plants and animals to grow. 
+That's why, I brought up being aware of the local places to hunt and fish. 
+<br><br>
+Should food go to zero tomorrow, we have some major hurdles to jump. 
+So, stock up a little, get some plants in the ground now, start raising chickens, know where to find the animals and what to do with them if you catch them. 
+Make the effort now because if things go bad and you go straight to canabalism, it's going to make us all look bad on the international news. 
+<br><br>
+Homegrown food tends to be healthier than a lot of the food available at the store. 
+It's satisfying picking your own crops and chickens can be nice little garden buddies. 
+<br><br>
+If you've never really fixed or built anything, now would be the time to learn. 
+Start with the current things that need to be fixed around you and go from there. 
+Starting from no experience, you can be handy with 12 months of effort. 
+The fine folks on YouTube will guide you. You just need some tools. 
+<br><br>
+The 18v power tool ranges are incredible. AEG, Makita, Dewalt ect. All seem to be crushing it. 
+Each company has a range that will allow just about anything to be built and repaired. 
+If this is foreign to you, go to Bunnings or your local hardware and check it out. 
+<br><br>
+I would like to give a shoutout to the Ozito PowerX range. Most the tools are between $50-100 and the quality is far above expectation. 
+<br><br>
+The good thing about tools is that you can purchase attachments for tools that perform multiple tasks. 
+A drill can punch holes of varying sizes, and drive screws. 
+What you may not know is that with the right attachment a drill can also, cut metal, pump water, dig holes, harvest microgreens, polish, scrub and tighten and loosen bolts. 
+The list goes on. 
+<br><br>
+The same battery that powers the drill can usually power a whole range of power tools. Saws, angle grinders, sanders, spray guns, nailguns, compressor, planer, ect. 
+Nearly all the tools have multiple uses. Bradguns shoot both nails and staples, spray guns spray paint and varnish, saws cut wood and steel. 
+<br><br>
+The same battery can also power, lawnmowers, hedgetrimmers, chainsaws, whippersnippers, leafblowers. 
+As well as powering, lights, radio, bluetooth speakers, vaccums and 5v USB power. 
+<br><br>
+The 5v usb charging attachments to the 12v battery mean that your poewr tool batteries can charge/run any USB equipment including mobile phones.  
+<br><br>
+18v Powertool batteries can be charged using a solar setup that will cost about $350.00 from a store like Jaycar. 
+The same solar set up can be used to power any home appliance, however the battery life is going to be the killer here. 
+A more substantial solar setup is required to power the big stuff in a house like hot water, fridge, washing machine, ect.
+<br><br>
+Having access to tools and power in any situation should help you keep things together in the event of a major crisis. 
+This will allow you to fix any problems that arise while minimising the need for outside assistance. 
+It may even allow you to be the outside assistance for other people. 
+<br><br>
+Protecting others from taking the brunt of the crisis is the best way to minimise the long-term effects of a crisis. 
+
+
+</p>
+
+<div class = "screenshot">
+
+<strong>Trend #3: If you can't beat them...</strong>
+<p>
+<br>
+<br>
+1. Many of the people with assets had their net worth increase during the pandemic <br>
+2. Many of the people with debt were sheltered by the governement <br>
+3. Many of these were the same people <br>
+4. Most property owners are leaving the pandemic richer than when it began due to increases in property values. 
+
+</div>
+<br>
+
+<div class = "strategy">
+
+<strong>strategy #3: ... join them</strong><br><br>
+
+<p>
+
+<br>
+<br>
+1. Save around $25,000.00 cash <br>
+2. Go to bank and ask for home loan <br>
+3. Get rejected for some reason, but don't give up! <br>
+4. Address reasons you can not purchase <br>
+5. Purchase house. <br>
+</p>
+</div>
+
+<br><br>
+<p> 
+Based off of some of my interactions in the real world I sense that some people may think that one was insenstive. 
+Although, I'm not sure why it's my problem. 
+I've seen so many people react negatively to the idea that they could own property. 
+All it takes is saving $100 a week for 5 years ($200 for 2.5 years ect.). 
+If you can't do it right now, okay. So long as you're making an effort to get yourself sorted, there's no judgement from me. 
+But if you say you can't do it ever, you really need to think about that, where does that leave you in 10 years? 
+<br><br>
+Besides, I'm hoping anyone who read this far wants to do difficult things if they're worthwhile. 
+Buying property tends to be worthwhile. It's one of the safest and easiest solutions to <a href = "https://github.com/AaronUnify/Contracts_test_3/blob/main/The_Money_Problem.html"> the money problem. </a>
+<br><br>
+That being said it's easier to buy property if you're partnered with someone, so you may need to solve the love problem (no artice yet, I'm working on it) while you're at it. 
+While you're working on that I would make sure you find your <a href "https://aaronunify.github.io/Contracts_test_3/The_Meaning_Problem.html">sense of meaning</a> to avoid feeling like you're swimming upstream. 
+<br><br>
+If you haven't done these things already, I'll just wait here for you to get back and we'll finish the article. 
+
+</p>
+
+
+<div class = "strategy">
+<strong>Strategy #4: Prepare</strong><br><br>
+<p>
+Use Real-Estate to fortify your position 
+<br>
+<br>
+1. Purchase house <br>
+2. Install solar power and water tank. Build garden beds, plant fruit trees, raise chickens. <br>
+3. Fill workshop with tools for servicing and repairing vehicles, and building furniture and homewares <br>
+4. Pay down mortgage. Loans can be refinanced to have lower weekly repayments so long as the principal has decreased. <br>
+
+</p>
+</div>
+
+
+<p>
+<br><br>
+This set up will have you prepared for a variety of crisis. Increased security can be gained by purchasing land and establishing an off grid cabin. 
+If you're outdoors inclined and want some space for the family and a chance to test your building and farming skills, setting up a home away from home might be the thing to do. 
+But off-grid cabin aside, let's consider how we can survive a more temporary economic crisis. 
+</p>
+
+<div class = "strategy">
+
+<strong>Strategy #5: Survive at all costs</strong><br><br>
+<br>
+<p>
+1. Rent out any spare rooms <br>
+2. Refinance mortgage to lower costs <br>
+3. Eat home grown as much as possible <br>
+4. Do any extra work possible* <br>
+5. Use equity to cover expenses if possible* 
+6. Refinance as an interest only loan and rent out house if necessary.  
+</p>
+</div>
+<br>
+
+
+<p>
+*Most money paid off a mortgage or increases in property prices can be accessed in the form of cash through an equity loan. <br>
+*Also, Swapping to an interest only loan is possible in some places. This can massively reduce weekly costs.  
+<br><br>
+Our current economy encourages you to outsource the majority of your production and services to outsiders. 
+But in the future economy this may be less possible. Perhaps even with periods of time where interacting with the economy becomes impossible. 
+<br><br>
+A good example was when the rules for shipping were updated in response to Covid. 
+Ships were waiting off shore to unload for a period of time like a quarantine. 
+In China this was enough to cause a shortage of shipping containers. 
+Then the ports had outbreaks of Covid slowing things further. 
+<br><br>
+Other ports should have been able to pick up the slack but remember that at the same time that ship that got stuck in the Suez canal. 
+Where I live there have been union strikes at the ports at the same time, meaning that ships that are arriving are slower to unload. 
+Because of a combination of reasons, shipping prices have increased 10-fold in many places. 
+<br><br>
+Shipping isn't the only way that goods are transferred but a slowdown in shipping with an increase in price can be enough to temporarily cripple an economy. 
+Remember too that Covid, hasn't gone away and it doesn't just effect shipping.  
+<br><br>
+But covid isn't our only concern anyway. Recent outbreaks of violence in South Africa have demonstrated the damaging effect of instability on the economy. 
+An increase in violence led to dairy farmers being unable to offload their milk in a timely and safe manner, instead they opted to pour out many 100,000's of liters. 
+The loss of so many calories has contributed to the famine in society and increased the levels of violence. 
+This has made the highways unsafe and the dairy farmers can no longer get feed delivered for their cattle. 
+If the cows starve, they will stop producing milk and eventually die. 
+This means that the milk supply will take a long time to return to normal, in the meantime everyone will have to pay higher prices, potentially for years. 
+<br><br>
+That's just for milk, there will be many unexpected and long lasting consequences to the current violence. 
+The loss of human life is too big a tragedy to quantify. 
+Our best chance to prevent this from happening here is to prepare for it. 
+Reinforcing our society at the household level, provide support for when industry and government stumble. 
+Potentially meaning the difference between not having milk for a few days and not having affordable milk for a few years. 
+
+</p>
+
+
+<div class = "screenshot">
+
+<strong>Trend #4: Big Macs are more expensive</strong>
+<p>
+<br>
+<br>
+1. Eating at a restaurant, takeout and groceries have all increased in price
+2. Many food related commodities are trading at an all time high 
+3. Additional inputs to food production, such as energy derived from oil are trading at highs
+4. Shipping is delayed and more expensive. 
+<br><br>
+</div>
+<br><br>
+
+
+<p>
+Concerns about future viruses and societal troubles aside, I have a secondary reason for suggesting that we all begin to take part in the production of our own food. 
+Food is becoming a lot more expensive due to inflation and commodity prices. 
+Economists in the reserve bank are currently debating whether or not inflation has got out of hand. 
+Their current data makes it appear that there hasn't been inflation out of line with their targets. 
+<br><br>
+This has become a somewhat foolish debate as anyone who does the groceries for there household will have noticed that food is more expensive now than it was 3 years ago. 
+Another thing that an observer may have noticed is that proprety prices have increased massively across the same three-year period. 
+So if food and housing is more expensive, who cares what the actual inflation numbers indicate, everyday life feels more expensive because things cost more . 
+<br><br>
+Inflation only represents the average of the increases and decreases in price of goods in the economy. 
+Some goods and services increase in price more than others, it can be tempting to assume 2% inflation means a stable 2% increase in the price of all goods.  
+If that were the case an increase in the price of the inputs of production such as materials and labour should result in an increase in the price the customer pays for the output. 
+The increased cost of labour results in higher wages, meaning everyone could still afford the outputs. But the reality is more volatile. 
+<br><br>
+All physical goods are dependent on commodity prices. 
+Commodity prices are governed by supply and demand, and in the last 12 months Just about everything went up massively (even coal). 
+For some commodities this makes sense, as many people cut back on consumption in 2020, so a return to regular consumption would present itself as a big price increase. 
+But some commodities, particularily related to food are trading at all time highs. 
+<br><br>
+Prices are governed by supply and demand. 
+Most the goods on the shelves in supermarkets are made from combinations of food commodities. 
+The people who transform the raw commodities into products, can lower their costs by changing recipes to take advantage of cheaper inputs and minimise using expensive inputs. 
+They can also alter their methods of production to reduce costs. 
+<br><br>
+Changing prices may cause consumers to choose to purchase different products than usual, has an additional effect on prices. 
+The result of higher commodity prices will be a generalised increase in price, with shoppers filling their baskets with different goods than usual. 
+<br><br>
+So what's going to happen? Ideally more supply will come online while existing producers reduce costs by becoming more efficient. 
+Eventually, all going well we reach a new equilibrium and prices restabalise at an affordable level until the next crisis. 
+<br><br>
+So why does it matter? There may be temporary shortages while we refind equilibrium. Having food at home, as well as the ability to produce food could make all the difference.  
+Your other bills won't disappeer in a crisis, having to a pay extra for food may be the difference between being able to afford your phone bill. 
+<br><br>
+I know you're probably thinking that if you had to, you would just work extra hours to make up the difference in expenses. 
+That will work for some people but we can't all run that strategy at the same time, it just doesn't work. 
+Increased prices means less customers for most industries. 
+You are more likely to lose hours when there is price increases, not gain. 
+Although a loss of several hours a week is desirable compared to the reality. 
+<br><br>
+In a crisis many unfortunate people will suddenly have their employment cut. We saw this at the beginning of Covid. 
+In a two week period in 2020, in the US, 9.9 million people applied for unemployment payments because they had suddenly lost their job. 
+It was not clear what level of crisis Covid would be at the time and it just goes to show how fragile employment can be during a crisis. 
+Remember from earlier many of these people's jobs will have been automated during the crisis. 
+<br><br>
+As a homeowner it's best to be prepared for future crisis because losing your home could be financially devastating, especially if it's your major asset. 
+On top of being prepared to produce food at home, purchasing insurance for income protection, life insurance, ect is probably a good move.  
+
+</p>
+
+<div class = "screenshot">
+
+<strong>Trend #5: Sudden unemployment and closures</strong>
+<p>
+<br>
+<br>
+1. When Covid was announced many were suddenly unemployed
+2. Some businesses closed doors immediately
+3. Other businesses have been choked to death by the new restrictions
+4. The successful adaptation to the new economy of some businesses will kill others  
+
+</div>
+
+<br><br>
+<p>
+The best kinds of job in a crisis is where the customers are already lined up and willing to pay. 
+To have this kind of access to the crisis market you need to have skills, tools, and customers. 
+Owning useful equipment like power tools, a ute and materials is also important. 
+The more successful jobs you've done for people prior to the crisis, the greater the chance of finding work during the crisis. 
+<br><br>
+In a crisis people want reliable, cheap, and quick fixes to their problems, with known prices. 
+If you can keep things running for people and tell them a price upfront, they'll be happy. 
+You should charge for your time, effort and materials to keep yourself secure and able to continue being productive, but you should not price gouge. 
+<br><br>
+Being prepared to go straight to work independent of your workplace can help you capture some benefit should your boss suddenly have to close doors. 
+If possible, you may as well finish the jobs you can, for the customers who have already arranged to have the work done. 
+<br><br><br>
+This article may have sounded crazy to some, to others it may sound woefully insufficient. 
+Whatever your opinion, I saw what Covid did to the supply chains and I don't want to hold out for the next catastrophe before I begin to prepare. 
+No matter what the future brings, you can expect that it won't be the same as the current system. 
+<br><br>
+
+</p>
+
+
+
+
+
+<br><br>
+
+<br><br>
+
+<br><br>
+
+
+
