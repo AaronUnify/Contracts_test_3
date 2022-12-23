@@ -1,0 +1,18 @@
+<form method="post">
+  <label>
+    CH1:
+    <input type="checkbox" name="ch1_state" value="on" {% if ch1_state == "on" %}checked{% endif %}>
+  </label>
+  <br>
+  <label>
+    CH2:
+    <input type="checkbox" name="ch2_state" value="on" {% if ch2_state == "on" %}checked{% endif %}>
+  </label>
+  <br>
+  <label>
+    CH3:
+    <input type="checkbox" name="ch3_state" value="on" {% if ch3_state == "on" %}checked{% endif %}>
+  </label>
+  <br>
+  <input type="submit" value="Submit">
+</form>
