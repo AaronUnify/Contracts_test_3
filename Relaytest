@@ -1,0 +1,36 @@
+import RPi.GPIO as GPIO
+import time
+
+# Set the mode of the GPIO pins to BCM numbering
+GPIO.setmode(GPIO.BCM)
+
+# Set the specified pins as output pins
+ch1_pin = 26  # Corresponds to CH1 on the relay board
+ch2_pin = 20  # Corresponds to CH2 on the relay board
+ch3_pin = 21  # Corresponds to CH3 on the relay board
+GPIO.setup(ch1_pin, GPIO.OUT)
+GPIO.setup(ch2_pin, GPIO.OUT)
+GPIO.setup(ch3_pin, GPIO.OUT)
+
+# Turn on each channel for 3 seconds, then turn it off
+while True:
+    # Turn on relay 1
+    GPIO.output(ch1_pin, 0)
+    time.sleep(3)
+    # Turn off relay 1
+    GPIO.output(ch1_pin, 1)
+
+    # Turn on relay 2
+    GPIO.output(ch2_pin, 0)
+    time.sleep(3)
+    # Turn off relay 2
+    GPIO.output(ch2_pin, 1)
+
+    # Turn on relay 3
+    GPIO.output(ch3_pin, 0)
+    time.sleep(3)
+    # Turn off relay 3
+    GPIO.output(ch3_pin, 1)
+
+# Clean up the GPIO resources
+GPIO.cleanup()
