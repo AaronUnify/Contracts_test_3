@@ -1,0 +1,58 @@
+import RPi.GPIO as GPIO
+import time
+from flask import Flask, render_template, request
+
+# Set the mode of the GPIO pins to BCM numbering
+GPIO.setmode(GPIO.BCM)
+
+# Set the specified pins as output pins
+ch1_pin = 26  # Corresponds to CH1 on the relay board
+ch2_pin = 20  # Corresponds to CH2 on the relay board
+ch3_pin = 21  # Corresponds to CH3 on the relay board
+GPIO.setup(ch1_pin, GPIO.OUT)
+GPIO.setup(ch2_pin, GPIO.OUT)
+GPIO.setup(ch3_pin, GPIO.OUT)
+
+# Create a Flask app
+app = Flask(__name__)
+
+# Define the route for the main page
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    # Set the initial state of the relay channels to off
+    ch1_state = "off"
+    ch2_state = "off"
+    ch3_state = "off"
+
+    # Check if the form has been submitted
+    if request.method == 'POST':
+        # Get the state of each relay from the form
+        ch1_state = request.form['ch1_state']
+        ch2_state = request.form['ch2_state']
+        ch3_state = request.form['ch3_state']
+
+        # Set the output of the relay pins according to the form values
+        if ch1_state == "on":
+            GPIO.output(ch1_pin, 0)
+        else:
+            GPIO.output(ch1_pin, 1)
+
+        if ch2_state == "on":
+            GPIO.output(ch2_pin, 0)
+        else:
+            GPIO.output(ch2_pin, 1)
+
+        if ch3_state == "on":
+            GPIO.output(ch3_pin, 0)
+        else:
+            GPIO.output(ch3_pin, 1)
+
+    # Render the main page template, passing in the current state of the relay channels
+    return render_template('index.html', ch1_state=ch1_state, ch2_state=ch2_state, ch3_state=ch3_state)
+
+# Run the app
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
+
+# Clean up the GPIO resources
+GPIO.cleanup()
