@@ -45,8 +45,27 @@
  
  
  
+  <div class="container">
+    <div class="score">Score: <span id="score">0</span></div>
+    <button class="button" onclick="incrementScore()">Click for a happy dog</button>
+    <img id="dog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10" alt="happy dog">
+  </div>
+  <div id="sad-dog-buttons">
+  
+    <button class="button" onclick="petSadDog()">Pet</button>
+    <button class="button" onclick="feedSadDog()">Feed</button>
+    <button class="button" onclick="playSadDog()">Play</button>
+  </div>
+
+ 
+ 
+ 
+ 
+ 
+ 
   
   <script>
+   
     const images = [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzWbOwcpsL32-9SbkXeKdGhr-oEm_tFtN5qnHkPNTwJPDBOOy4WXN3C2Y&s=10',
@@ -83,12 +102,8 @@
     document.body.className = 'happy-dog';
   }
 }
- </script>   
- 
- 
- 
 
-<script>
+ 
       function petSadDog() {
   const randomNumber = Math.random();
   if (randomNumber < 0.5) {
@@ -121,11 +136,8 @@ function playSadDog() {
   alert('THE DOG LOVED THAT!');
 }
    }
- }
- </script>
- 
- 
-  <script>
+   
+   
   document.getElementById('pet-button').addEventListener('click', function() {
   chooseOption('Pet');
 });
@@ -142,22 +154,11 @@ document.getElementById('sad-dog-buttons').style.display = 'none';
 document.getElementById('happy-dog-buttons').style.display = 'block';
 
    });
- 
+   
   </script>
 
  
  
- <div class="container">
-    <div class="score">Score: <span id="score">0</span></div>
-    <button class="button" onclick="incrementScore()">Click for a happy dog</button>
-    <img id="dog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10" alt="happy dog">
-  </div>
-  <div id="sad-dog-buttons">
-  
-    <button class="button" onclick="petSadDog()">Pet</button>
-    <button class="button" onclick="feedSadDog()">Feed</button>
-    <button class="button" onclick="playSadDog()">Play</button>
-  </div>
 
 </body>
 </html>
