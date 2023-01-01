@@ -47,7 +47,8 @@
     <button class="button" onclick="incrementScore()">Click for a happy dog</button>
     <img id="dog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10" alt="happy dog">
   </div>
-  <div id="sad-dog-buttons" >
+  <div id="sad-dog-buttons" style="display: none;">
+  
     <button class="button" onclick="petSadDog()">Pet</button>
     <button class="button" onclick="feedSadDog()">Feed</button>
     <button class="button" onclick="playSadDog()">Play</button>
@@ -71,7 +72,7 @@
 
     let score = 0;
 
-    function incrementScore() {
+     function incrementScore() {
   score += 1;
   document.getElementById('score').innerHTML = score;
   if (score % 5 === 0) {
@@ -80,63 +81,68 @@
   }
   const randomIndex = Math.floor(Math.random() * images.length);
   document.getElementById('dog-image').src = images[randomIndex];
-     if (randomIndex === images.length - 1) {
+  if (randomIndex === images.length - 1) {
     score -= 15;
     document.getElementById('score').innerHTML = score;
     alert('SAD DOG -15pts');
     document.documentElement.className = 'sad-dog';
     document.getElementById('sad-dog-buttons').style.display = 'block';
-} else {
-  alert(messages[Math.floor(Math.random() * messages.length)]);
-  document.documentElement.className = 'happy-dog';
-  document.getElementById('sad-dog-buttons').style.display = 'none';
-}
   } else {
     alert(messages[Math.floor(Math.random() * messages.length)]);
     document.documentElement.className = 'happy-dog';
+    document.getElementById('sad-dog-buttons').style.display = 'none';
   }
+     }
      
-     function chooseOption(option) {
-  if (option === 'Pet') {
-    const randomNumber = Math.random();
-    if (randomNumber < 0.5) {
-      score -= 15;
-      document.getElementById('score').innerHTML = score;
-      alert('THE DOG DID NOT WANT THAT');
-    } else {
-      score += 30;
-      document.getElementById('score').innerHTML = score;
-      alert('THE DOG LOVED THAT!');
-    }
-  } else if (option === 'Feed') {
-    const randomNumber = Math.random();
-    if (randomNumber < 0.5) {
-      score -= 50;
-      document.getElementById('score').innerHTML = score;
-      alert('THE DOG DID NOT WANT THAT');
-    } else {
-      score += 50;
-      document.getElementById('score').innerHTML = score;
-      alert('THE DOG LOVED THAT!');
-    }
-  } else if (option === 'Play') {
-    score += 5;
+      function petSadDog() {
+  const randomNumber = Math.random();
+  if (randomNumber < 0.5) {
+    score -= 15;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG DID NOT WANT THAT');
+  } else {
+    score += 30;
     document.getElementById('score').innerHTML = score;
     alert('THE DOG LOVED THAT!');
   }
 }
 
-document.getElementById('pet-button').addEventListener('click', function() {
+function feedSadDog() {
+  const randomNumber = Math.random();
+  if (randomNumber < 0.5) {
+    score -= 50;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG DID NOT WANT THAT');
+  } else {
+    score += 50;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG LOVED THAT!');
+  }
+}
+
+function playSadDog() {
+  score += 5;
+  document.getElementById('score').innerHTML = score;
+  alert('THE DOG LOVED THAT!');
+}
+   }
+
+
+  document.getElementById('pet-button').addEventListener('click', function() {
   chooseOption('Pet');
 });
+
 document.getElementById('feed-button').addEventListener('click', function() {
   chooseOption('Feed');
 });
+
 document.getElementById('play-button').addEventListener('click', function() {
   chooseOption('Play');
 });
 
-     
+document.getElementById('sad-dog-buttons').style.display = 'none';
+document.getElementById('happy-dog-buttons').style.display = 'block';
+
      
 }
  
