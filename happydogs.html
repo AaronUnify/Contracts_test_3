@@ -40,7 +40,26 @@
     background-color: red;
   }
 </style>
+ <script>
+  document.getElementById('pet-button').addEventListener('click', function() {
+  chooseOption('Pet');
+});
+
+document.getElementById('feed-button').addEventListener('click', function() {
+  chooseOption('Feed');
+});
+
+document.getElementById('play-button').addEventListener('click', function() {
+  chooseOption('Play');
+});
+
+document.getElementById('sad-dog-buttons').style.display = 'none';
+document.getElementById('happy-dog-buttons').style.display = 'block';
+
+   });
  
+  </script>
+
  
  <div class="container">
     <div class="score">Score: <span id="score">0</span></div>
@@ -125,26 +144,9 @@ function playSadDog() {
   alert('THE DOG LOVED THAT!');
 }
    }
-
-
-  document.getElementById('pet-button').addEventListener('click', function() {
-  chooseOption('Pet');
-});
-
-document.getElementById('feed-button').addEventListener('click', function() {
-  chooseOption('Feed');
-});
-
-document.getElementById('play-button').addEventListener('click', function() {
-  chooseOption('Play');
-});
-
-document.getElementById('sad-dog-buttons').style.display = 'none';
-document.getElementById('happy-dog-buttons').style.display = 'block';
-
-   });
+ </script>
  
-  </script>
+ 
 </body>
 </html>
 
