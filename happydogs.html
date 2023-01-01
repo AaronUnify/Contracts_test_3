@@ -73,15 +73,19 @@
   }
   const randomIndex = Math.floor(Math.random() * images.length);
   document.getElementById('dog-image').src = images[randomIndex];
-  if (randomIndex === images.length - 1) {
+     if (randomIndex === images.length - 1) {
     score -= 15;
     document.getElementById('score').innerHTML = score;
     alert('SAD DOG -15pts');
-    document.body.className = 'sad-dog';
+    document.documentElement.className = 'sad-dog';
   } else {
     alert(messages[Math.floor(Math.random() * messages.length)]);
-    document.body.className = 'happy-dog';
+    document.documentElement.className = 'happy-dog';
   }
+     
+     
+     
+     
 }
  
   </script>
