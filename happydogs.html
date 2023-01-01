@@ -31,6 +31,8 @@
   </head>
 <body>
  
+ 
+ 
  <style>
     .happy-dog {
     background-color: lightblue;
@@ -40,6 +42,48 @@
     background-color: red;
   }
 </style>
+ 
+ 
+ 
+  
+  <script>
+    const images = [
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzWbOwcpsL32-9SbkXeKdGhr-oEm_tFtN5qnHkPNTwJPDBOOy4WXN3C2Y&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_YD1khl2YOF7vNu8kWlKc6gTZtGXvf6fbuAHW3FAsjxfle6XXBmh6ijG-&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0c6OwcpTQgKBGB1GtmZSetoLPTqVdu9K84CGn23d3s3-Dw10abJYtxNuB&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Bfu4SYDbcxLtjckfxhtyWeWbprDpeNKSx0vnU_6a4_A4SP74pd6Y1pc&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYI1IZwt0hIcagg7LxmzMwa_z8ac9-F348g&usqp=CAU',
+    ];
+    const messages = [
+      'Congratulations!',
+      'Well Done!',
+      'Happy DOG',
+      'NO CATS HERE',
+    ];
+
+    let score = 0;
+
+     function incrementScore() {
+  score += 1;
+  document.getElementById('score').innerHTML = score;
+  if (score % 5 === 0) {
+    score += 8;
+    document.getElementById('score').innerHTML = score;
+  }
+  const randomIndex = Math.floor(Math.random() * images.length);
+  document.getElementById('dog-image').src = images[randomIndex];
+  if (randomIndex === images.length - 1) {
+    score -= 15;
+    document.getElementById('score').innerHTML = score;
+    alert('SAD DOG -15pts');
+    document.body.className = 'sad-dog';
+  } else {
+    alert(messages[Math.floor(Math.random() * messages.length)]);
+    document.body.className = 'happy-dog';
+  }
+}
+ </script>   
  
  
  
@@ -113,46 +157,7 @@ document.getElementById('happy-dog-buttons').style.display = 'block';
     <button class="button" onclick="feedSadDog()">Feed</button>
     <button class="button" onclick="playSadDog()">Play</button>
   </div>
- 
-  <script>
-    const images = [
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzWbOwcpsL32-9SbkXeKdGhr-oEm_tFtN5qnHkPNTwJPDBOOy4WXN3C2Y&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_YD1khl2YOF7vNu8kWlKc6gTZtGXvf6fbuAHW3FAsjxfle6XXBmh6ijG-&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0c6OwcpTQgKBGB1GtmZSetoLPTqVdu9K84CGn23d3s3-Dw10abJYtxNuB&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Bfu4SYDbcxLtjckfxhtyWeWbprDpeNKSx0vnU_6a4_A4SP74pd6Y1pc&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYI1IZwt0hIcagg7LxmzMwa_z8ac9-F348g&usqp=CAU',
-    ];
-    const messages = [
-      'Congratulations!',
-      'Well Done!',
-      'Happy DOG',
-      'NO CATS HERE',
-    ];
 
-    let score = 0;
-
-     function incrementScore() {
-  score += 1;
-  document.getElementById('score').innerHTML = score;
-  if (score % 5 === 0) {
-    score += 8;
-    document.getElementById('score').innerHTML = score;
-  }
-  const randomIndex = Math.floor(Math.random() * images.length);
-  document.getElementById('dog-image').src = images[randomIndex];
-  if (randomIndex === images.length - 1) {
-    score -= 15;
-    document.getElementById('score').innerHTML = score;
-    alert('SAD DOG -15pts');
-    document.body.className = 'sad-dog';
-  } else {
-    alert(messages[Math.floor(Math.random() * messages.length)]);
-    document.body.className = 'happy-dog';
-  }
-}
- </script>   
- 
 </body>
 </html>
 
