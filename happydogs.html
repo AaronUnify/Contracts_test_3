@@ -1,166 +1,104 @@
 <!DOCTYPE html>
 <html>
- <style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  .score {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+    .score {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-  .button {
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-</style>
-<head>
-  <title>Happy Dogs</title>
+    .button {
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+  <head>
+    <title>Happy Dogs</title>
   </head>
-<body>
- 
- 
- 
- <style>
-    .happy-dog {
-    background-color: lightblue;
-  }
+  <body>
+    <div class="container">
+      <div class="score">Score: <span id="score">0</span></div>
+      <button id="increment-button" class="button" onclick="incrementScore()">Click for a happy dog</button>
+      <img id="dog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10" alt="happy dog">
+    </div>
+    <div id="sad-dog-buttons">
+      <button class="button" onclick="petSadDog()">Pet</button>
+      <button class="button" onclick="feedSadDog()">Feed</button>
+      <button class="button" onclick="playSadDog()">Play</button>
+    </div>
 
-  .sad-dog {
-    background-color: red;
-  }
-</style>
- 
- 
- 
-  <div class="container">
-    <div class="score">Score: <span id="score">0</span></div>
-    <button class="button" onclick="incrementScore()">Click for a happy dog</button>
-    <img id="dog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10" alt="happy dog">
-  </div>
-  <div id="sad-dog-buttons">
-  
-    <button class="button" onclick="petSadDog()">Pet</button>
-    <button class="button" onclick="feedSadDog()">Feed</button>
-    <button class="button" onclick="playSadDog()">Play</button>
-  </div>
+    <style>
+      .happy-dog {
+        background-color: lightblue;
+      }
 
- 
- 
- 
- 
- 
- 
-  
-  <script>
-   
-    const images = [
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzWbOwcpsL32-9SbkXeKdGhr-oEm_tFtN5qnHkPNTwJPDBOOy4WXN3C2Y&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_YD1khl2YOF7vNu8kWlKc6gTZtGXvf6fbuAHW3FAsjxfle6XXBmh6ijG-&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0c6OwcpTQgKBGB1GtmZSetoLPTqVdu9K84CGn23d3s3-Dw10abJYtxNuB&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Bfu4SYDbcxLtjckfxhtyWeWbprDpeNKSx0vnU_6a4_A4SP74pd6Y1pc&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYI1IZwt0hIcagg7LxmzMwa_z8ac9-F348g&usqp=CAU',
-    ];
-    const messages = [
-      'Congratulations!',
-      'Well Done!',
-      'Happy DOG',
-      'NO CATS HERE',
-    ];
+      .sad-dog {
+        background-color: red;
+      }
+    </style>
 
-    let score = 0;
+    <script>
+      const images = [
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi11eo6V1Q3Ahd72ufTG8xTcsbHiAnQ0hYELd0gPQ4_SLNFTSjLBp7mdbY&s=10',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzWbOwcpsL32-9SbkXeKdGhr-oEm_tFtN5qnHkPNTwJPDBOOy4WXN3C2Y&s=10',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_YD1khl2YOF7vNu8kWlKc6gTZtGXvf6fbuAHW3FAsjxfle6XXBmh6ijG-&s=10',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0c6OwcpTQgKBGB1GtmZSetoLPTqVdu9K84CGn23d3s3-Dw10abJYtxNuB&s=10',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Bfu4SYDbcxLtjckfxhtyWeWbprDpeNKSx0vnU_6a4_A4SP74pd6Y1pc&s=10',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYI1IZwt0hIcagg7LxmzMwa_z8ac9-F348g&usqp=CAU',
+      ];
+      const messages = [
+        'Congratulations!',
+        'Well Done!',
+        'Happy DOG',
+        'NO CATS HERE',
+      ];
 
-     function incrementScore() {
-  score += 1;
-  document.getElementById('score').innerHTML = score;
-  if (score % 5 === 0) {
-    score += 8;
-    document.getElementById('score').innerHTML = score;
-  }
-  const randomIndex = Math.floor(Math.random() * images.length);
-  document.getElementById('dog-image').src = images[randomIndex];
-  if (randomIndex === images.length - 1) {
-    score -= 15;
-    document.getElementById('score').innerHTML = score;
-    alert('SAD DOG -15pts');
-    document.body.className = 'sad-dog';
-  } else {
-    alert(messages[Math.floor(Math.random() * messages.length)]);
-    document.body.className = 'happy-dog';
-  }
-}
+      let score = 0;
 
- 
+      function incrementScore() {
+        score++;
+        document.getElementById('score').textContent = score;
+        if (score < 10) {
+          document.getElementById('dog-image').src = images[Math.floor(Math.random() * images.length)];
+          document.getElementById('dog-image').className = 'happy-dog';
+          document.getElementById('sad-dog-buttons').style.display = 'none';
+        } else {
+          document.getElementById('increment-button').style.display = 'none';
+          document.getElementById('sad-dog-buttons').style.display = 'block';
+          document.getElementById('dog-image').src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYI1IZwt0hIcagg7LxmzMwa_z8ac9-F348g&usqp=CAU';
+          document.getElementById('dog-image').className = 'sad-dog';
+        }
+      }
+
       function petSadDog() {
-  const randomNumber = Math.random();
-  if (randomNumber < 0.5) {
-    score -= 15;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG DID NOT WANT THAT');
-  } else {
-    score += 30;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG LOVED THAT!');
-  }
-}
+        document.getElementById('dog-image').className = 'happy-dog';
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
 
-function feedSadDog() {
-  const randomNumber = Math.random();
-  if (randomNumber < 0.5) {
-    score -= 50;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG DID NOT WANT THAT');
-  } else {
-    score += 50;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG LOVED THAT!');
-  }
-}
+      function feedSadDog() {
+        document.getElementById('dog-image').className = 'happy-dog';
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
 
-function playSadDog() {
-  score += 5;
-  document.getElementById('score').innerHTML = score;
-  alert('THE DOG LOVED THAT!');
-}
-   }
-   
-   
-  document.getElementById('pet-button').addEventListener('click', function() {
-  chooseOption('Pet');
-});
-
-document.getElementById('feed-button').addEventListener('click', function() {
-  chooseOption('Feed');
-});
-
-document.getElementById('play-button').addEventListener('click', function() {
-  chooseOption('Play');
-});
-
-document.getElementById('sad-dog-buttons').style.display = 'none';
-document.getElementById('happy-dog-buttons').style.display = 'block';
-
-   });
-   
-  </script>
-
- 
- 
-
-</body>
+      function playSadDog() {
+        document.getElementById('dog-image').className = 'happy-dog';
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
+  </body>
 </html>
 
-
+       
