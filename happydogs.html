@@ -75,8 +75,10 @@
         score -= 15;
         document.getElementById('score').innerHTML = score;
         alert('SAD DOG -15pts');
+        document.body.className = 'sad-dog';
       } else {
         alert(messages[Math.floor(Math.random() * messages.length)]);
+        document.body.className = 'happy-dog';
       }
     }
   </script>
