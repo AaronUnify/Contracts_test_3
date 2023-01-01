@@ -40,6 +40,9 @@
     background-color: red;
   }
 </style>
+ 
+ 
+ 
  <script>
   document.getElementById('pet-button').addEventListener('click', function() {
   chooseOption('Pet');
@@ -60,6 +63,41 @@ document.getElementById('happy-dog-buttons').style.display = 'block';
  
   </script>
 
+<script>
+      function petSadDog() {
+  const randomNumber = Math.random();
+  if (randomNumber < 0.5) {
+    score -= 15;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG DID NOT WANT THAT');
+  } else {
+    score += 30;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG LOVED THAT!');
+  }
+}
+
+function feedSadDog() {
+  const randomNumber = Math.random();
+  if (randomNumber < 0.5) {
+    score -= 50;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG DID NOT WANT THAT');
+  } else {
+    score += 50;
+    document.getElementById('score').innerHTML = score;
+    alert('THE DOG LOVED THAT!');
+  }
+}
+
+function playSadDog() {
+  score += 5;
+  document.getElementById('score').innerHTML = score;
+  alert('THE DOG LOVED THAT!');
+}
+   }
+ </script>
+ 
  
  <div class="container">
     <div class="score">Score: <span id="score">0</span></div>
@@ -111,41 +149,6 @@ document.getElementById('happy-dog-buttons').style.display = 'block';
   }
 }
  </script>   
-<script>
-      function petSadDog() {
-  const randomNumber = Math.random();
-  if (randomNumber < 0.5) {
-    score -= 15;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG DID NOT WANT THAT');
-  } else {
-    score += 30;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG LOVED THAT!');
-  }
-}
-
-function feedSadDog() {
-  const randomNumber = Math.random();
-  if (randomNumber < 0.5) {
-    score -= 50;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG DID NOT WANT THAT');
-  } else {
-    score += 50;
-    document.getElementById('score').innerHTML = score;
-    alert('THE DOG LOVED THAT!');
-  }
-}
-
-function playSadDog() {
-  score += 5;
-  document.getElementById('score').innerHTML = score;
-  alert('THE DOG LOVED THAT!');
-}
-   }
- </script>
- 
  
 </body>
 </html>
