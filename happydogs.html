@@ -79,22 +79,18 @@
     score += 8;
     document.getElementById('score').innerHTML = score;
   }
-     }
   const randomIndex = Math.floor(Math.random() * images.length);
   document.getElementById('dog-image').src = images[randomIndex];
   if (randomIndex === images.length - 1) {
     score -= 15;
     document.getElementById('score').innerHTML = score;
     alert('SAD DOG -15pts');
-    document.documentElement.className = 'sad-dog';
-  
+    document.body.className = 'sad-dog';
   } else {
     alert(messages[Math.floor(Math.random() * messages.length)]);
-    document.documentElement.className = 'happy-dog';
-  
+    document.body.className = 'happy-dog';
   }
-     }
-     
+}
       function petSadDog() {
   const randomNumber = Math.random();
   if (randomNumber < 0.5) {
