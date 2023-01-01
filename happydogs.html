@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Happy Dogs</title>
-  <style>
+
+ <style>
     .container {
       display: flex;
       flex-direction: column;
@@ -26,8 +27,18 @@
       font-size: 16px;
       cursor: pointer;
     }
+
+    body.happy-dog {
+      background-color: lightblue;
+    }
+
+    body.sad-dog {
+      background-color: red;
+    }
   </style>
-</head>
+  
+ 
+  </head>
 <body>
   <div class="container">
     <div class="score">Score: <span id="score">0</span></div>
