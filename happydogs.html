@@ -25,14 +25,16 @@
       font-size: 16px;
       cursor: pointer;
     }
+  
+.happy-dog {
+  background-color: lightblue;
+}
 
-    .happy-dog {
-      body: lightblue;
-    }
+.sad-dog {
+  background-color: red;
+}
 
-    .sad-dog {
-      body: red;
-    }
+
   </style>
   
  <head>
@@ -80,6 +82,16 @@
         alert(messages[Math.floor(Math.random() * messages.length)]);
         document.body.className = 'happy-dog';
       }
+       if (randomIndex === images.length - 1) {
+    score -= 15;
+    document.getElementById('score').innerHTML = score;
+    alert('SAD DOG -15pts');
+    document.body.className = 'sad-dog';
+  } else {
+    alert(messages[Math.floor(Math.random() * messages.length)]);
+    document.body.className = 'happy-dog';
+  }
+  
     }
   </script>
 </body>
