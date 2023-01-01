@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+  <title>Happy Dogs</title>
   <style>
     .container {
       display: flex;
@@ -26,8 +27,6 @@
       cursor: pointer;
     }
   </style>
-  <head>
-    <title>Happy Dogs </title>
 </head>
 <body>
   <div class="container">
@@ -41,9 +40,15 @@
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzWbOwcpsL32-9SbkXeKdGhr-oEm_tFtN5qnHkPNTwJPDBOOy4WXN3C2Y&s=10',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_YD1khl2YOF7vNu8kWlKc6gTZtGXvf6fbuAHW3FAsjxfle6XXBmh6ijG-&s=10',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0c6OwcpTQgKBGB1GtmZSetoLPTqVdu9K84CGn23d3s3-Dw10abJYtxNuB&s=10',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Bfu4SYDbcxLtjckfxhtyWeWbprDpeNKSx0vnU_6a4_A4SP74pd6Y1pc&s&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Bfu4SYDbcxLtjckfxhtyWeWbprDpeNKSx0vnU_6a4_A4SP&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYI1IZwt0hIcagg7LxmzMwa_z8ac9-F348g&usqp=CAU',
     ];
-    const messages = [      'Congratulations!',      'Well Done!',      'Happy DOG',      'NO CATS HERE',    ];
+    const messages = [
+      'Congratulations!',
+      'Well Done!',
+      'Happy DOG',
+      'NO CATS HERE',
+    ];
 
     let score = 0;
 
@@ -56,7 +61,13 @@
       }
       const randomIndex = Math.floor(Math.random() * images.length);
       document.getElementById('dog-image').src = images[randomIndex];
-      alert(messages[Math.floor(Math.random() * messages.length)]);
+      if (randomIndex === images.length - 1) {
+        score -= 15;
+        document.getElementById('score').innerHTML = score;
+        alert('SAD DOG -15pts');
+      } else {
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
     }
   </script>
 </body>
