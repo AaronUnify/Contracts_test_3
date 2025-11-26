@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDRC Customer Service Call Flow Chart</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        .info-box p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 12px;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .info-box {
+                page-break-inside: avoid;
+            }
+            .footer {
+                page-break-before: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    
+
+        <div class="mermaid">
+flowchart TD
+    Start([Call]) --> Greeting["<b>GREETING</b><br/>SDRC this is Aaron speaking<br/>How can I help you today"]
+    
+    Greeting --> GetReasonVerify["Get reason for calling<br/>Listen to what they need<br/><b>Verify identity</b><br/>Note If difficult use phone number<br/>search in <b>Merit or TechOne</b>"]
+    
+    GetReasonVerify --> Route{CALL TYPE}
+    
+    Route -->|Animals| Animals["<b>ANIMALS</b><br/><br/><b>Lost & Found Animals</b><br/>Add to S:\\Customer Service\\Shared All\\Animals – Lost and Found Register<br/>Notify CS Group + Local Laws by email<br/><br/><b>Dog Registration</b><br/>Email Form - Application for Dog Registration<br/>Request proof of Desexing, Pension Card, Dog Breeder Supply Number<br/><br/><b>Impounded Animals</b><br/>Check S:\\Customer Service\\Shared All\\Animals – Impoundments<br/>Contact Local Laws Officer to arrange collection and confirm release fee<br/><br/><b>Animal Cruelty and Welfare</b><br/>Direct to RSPCA - 1300 264 625 or website<br/><br/><b>Barking Dogs – New</b><br/>Encourage direct contact with owner - letter template available<br/>Merit 'Barking' – provide Merit #<br/>Provide fact sheet + noise diary<br/>Email completed diary to mail@sdrc.qld.gov.au<br/>When diary received local laws will investigate<br/><br/><b>Barking Dogs - Ongoing</b><br/>Add note to Merit with return phone number<br/><br/><b>Private Impoundment Surrender</b><br/>Email Form - Owner's Consent to Privately Impound<br/>Take impoundment fee over phone<br/>Email customer Receipt<br/>Email Local Laws Receipt<br/>Call Pound to arrange surrender time<br/><br/><b>Dog Attack/Menacing Dog</b><br/>Merit 'attack' Record:<br/>Is customer still in danger<br/>Is dog still in area<br/>Exact location of attack<br/>Date and time<br/>Was medical treatment required<br/>Email Form - Statement of Dog Attack Form<br/><br/><b>Wildlife Removal</b><br/>Provide appropriate wildlife carers contact details<br/><br/><b>Straying Dog</b><br/>Merit 'stray' Record: Location, Breed, Direction, Time<br/>Call Local Laws Officer to report<br/><br/><b>Keeping of Animals</b><br/>Numbers allowed in town/rural see Keeping of Animals Factsheet"]
+    
+    Route -->|Building Plumbing| Building["<b>BUILDING & PLUMBING</b><br/><br/><b>BUILDING - New Enquiry</b><br/>Provide Factsheets – Building Info Sheets<br/>Arrange callback Merit 'Building'<br/>Follow Process – provide Merit #<br/><br/><b>BUILDING - Existing Application</b><br/>Transfer to relevant person<br/>If unavailable: Merit 'Building' – provide Merit #<br/><br/><b>Building Inspections</b><br/>Follow Email Template<br/>Notify inspectors sdrcbuilding@sdrc.qld.gov.au<br/><br/><b>PLUMBING - New Enquiry</b><br/>Provide FAQ – Plumbing Approvals<br/>Regulated and minor work by licensed plumber/drainer<br/>They will apply for required approvals<br/>Arrange callback Merit 'Plumbing' – provide Merit #<br/><br/><b>PLUMBING - Existing Application</b><br/>Transfer to relevant person<br/>If unavailable: Merit 'Plumbing' – provide Merit #<br/><br/><b>Plumbing Inspections</b><br/>Get: PD\\XXXX, inspection type, structure type, location, start time<br/>Check plumbing inspector calendar – allow travel time<br/>Add to Calendar<br/>Notify Inspectors sdrcplumbing@sdrc.qld.gov.au<br/><br/><b>Water Leak</b><br/>Check <b>Aqualas</b> to determine leak location<br/>Council side: Place Merit 'leak' contact Maintenance Supervisor<br/>Customer side: Advise contact plumber"]
+    
+    Route -->|Campgrounds Crossings| Camp["<b>CAMPGROUNDS & CROSSINGS</b><br/><br/><b>Washpool Enquiries</b><br/>Eli 'Washpool'<br/>Additional info call caretaker: Vicki Lynam - 0427 026 216<br/>Price: Fees and Charges - CTRL F 523<br/><br/><b>Washpool Bookings</b><br/>Refer to caretaker: Vicki Lynam - 0427 026 216<br/>Instruct to leave voicemail if no answer<br/><br/><b>Connolly Dam Enquiries</b><br/>Eli 'Connolly Dam Camping'<br/>Price: Fees and Charges - CTRL F 523<br/><br/><b>Connolly Dam Bookings</b><br/>Self-Registration on site – Cash, cheque, or credit card<br/>Ensure yellow permit displayed on windscreen<br/><br/><b>Condamine River Road</b><br/>Check <b>Disaster Dashboard</b><br/>If rain forecasted link to dashboard for current info"]
+    
+    Route -->|Cemeteries| Cemetery["<b>CEMETERIES</b><br/><br/><b>Cemetery Plaques</b><br/>New Reserve - Email Form – Reserve Application<br/><br/><b>Roadside Memorial</b><br/>Email Form - Roadside Memorial Application<br/><br/><b>Internment Query</b><br/>Transfer to Cemetery<br/>If unavailable schedule callback<br/><br/><b>Cemetery Database - Location Buried Person</b><br/>Check S:\\Shared All\\Cemetery\\Cemetery Database"]
+    
+    Route -->|Difficult Calls| Difficult["<b>DIFFICULT CALLS</b><br/><br/><b>Written Requests</b><br/>mail@sdrc.qld.gov.au<br/>Use attn:__ to direct communication<br/><br/><b>Merit Complaints</b><br/>Search in <b>Merit</b><br/>Keyword complaint for list<br/>Follow process<br/><br/><b>Complaint Form</b><br/>Provide customer form<br/>Email completed form to mail@sdrc.qld.gov.au"]
+    
+    Route -->|Environmental Health| EnvHealth["<b>ENVIRONMENTAL NUISANCE & POLLUTION</b><br/><br/><b>Step 1</b> Determine council jurisdiction<br/>Eli 'Environmental Nuisance & Environmental Pollution'<br/>and Environmental Nuisance & Pollution webpage<br/><br/><b>Step 2</b> If no jurisdiction<br/>Direct customer to appropriate contact<br/><br/><b>Step 3</b> If council has jurisdiction<br/>Encourage customer to reach out to polluter directly<br/>Attempt to resolve without council assistance<br/><br/><b>Step 4</b> Merit 'Environment'<br/>Choose appropriate option and lodge request<br/><br/><b>Step 5</b> If ongoing nuisance<br/>Provide Environmental Nuisance Diary<br/>For evidence and to guide investigation by Local Laws<br/>Instruct to email completed diary 14 days to mail@sdrc.qld.gov.au<br/>Quote merit number in email"]
+    
+    Route -->|Neighbourly Disputes| Disputes["<b>NEIGHBOURLY DISPUTES</b><br/><br/><b>Determine Council Jurisdiction</b><br/><br/>Dust, Smoke, Noise, Light, Odour, Water Pollution<br/>See Environmental Nuisance & Environmental Pollution<br/><br/>Keeping of Animals, Barking Dogs, Dangerous Dogs<br/>See Animals call type<br/><br/>Illegal Caravan/Tents/Buses Use<br/>Illegal Building Use<br/>Unauthorised Building Works<br/>Merit 'Building'<br/><br/>Unlawful Land Use<br/>Merit 'Planning'<br/><br/><b>Private Property Disputes</b><br/>Refer to QCAT<br/>Housing and neighbours | Your rights, crime and the law | QLD Gov<br/><br/><b>Parking Complaints outside Warwick CBD</b><br/>Refer to Police<br/>Eli 'Regulated Parking'"]
+    
+    Route -->|Payment| Payment["<b>PAYMENT</b><br/><br/><b>BPAY FIELDS</b><br/>Field 1 Customer Name<br/>Field 2 Customer Address<br/>Field 3 Purpose<br/>Merchant Ref Property ID or Licence Number<br/>Check invoice or search <b>ECM</b><br/>Licence in <b>TechOne</b> shows fees"]
+    
+    Route -->|Planning| Planning["<b>PLANNING</b><br/><br/><b>New Enquiry</b><br/>Provide Factsheets – Planning Information Sheets<br/>Arrange callback Merit 'Planning'<br/>Follow Process – provide Merit #<br/><br/><b>Existing Application</b><br/>Take information regarding query<br/>Merit 'Planning' – Follow Process – provide Merit #<br/>Transfer to Duty Planner<br/>If duty planner unavailable<br/>Instruct customer to wait for callback<br/>Max 5 business days"]
+    
+    Route -->|Rates| Rates["<b>RATES - VERIFY IDENTITY FIRST</b><br/><br/><b>Pay Rates</b><br/>Look up property on Intramaps – Confirm identity<br/>Use property ID to search TechOne – Confirm balance<br/>Process payment in BPOINT<br/>Bpoint Ref Number – TechOne/Property Enquiry/Rates/<br/>Contact Phone Number - On phone screen<br/>Merchant reference – Property ID<br/><br/><b>Payment Agreement</b><br/>TechOne/Favourites/Payment Arrangement/<br/><br/><b>Copy of Rates Notice</b><br/>Look up property on Intramaps – Confirm identity<br/>Search Property ID in Payreq<br/>Email PDF to customer<br/>If previous financial year look up fee in Fees and Charges<br/><br/><b>Direct Debit Payments</b><br/>New Direct Debit - Email Form - Direct Debit Request<br/>Alter Direct Debit - Email Form - Direct Debit Authority<br/>Alteration or Cancellation<br/><br/><b>Pensioner Rates Subsidy Scheme</b><br/>Email Form - Pension Subsidy Applications<br/>Request proof of pension card"]
+    
+    Route -->|Roads| Roads["<b>ROADS</b><br/><br/><b>Road Closures</b><br/><b>Disaster Dashboard</b><br/><br/><b>Train Tracks/Railway Crossings</b><br/>Refer to QLD Rail 13 16 17<br/><br/><b>Highway</b><br/>Refer to TMR 13 20 80<br/><br/><b>Road Kill</b><br/>Get details:<br/>>100kg Merit 'Dead'<br/><100kg Lodge Cleanaway request<br/><br/><b>Potholes</b><br/>Merit 'Pothole'<br/>Confirm sealed or unsealed road<br/>Exact location"]
+    
+    Route -->|Speak to Person Dept| Transfers["<b>SPEAK TO PERSON OR DEPT</b><br/><br/><b>Step 1</b> Find out why they called<br/><br/><b>Step 2</b> Look up <b>Corporate Directory</b> or <b>The Who</b><br/><br/><b>Step 3</b> If available <b>Transfer</b><br/><br/><b>Step 4</b> If unavailable Email or <b>Merit</b>"]
+    
+    Route -->|Waste Bins| Bins["<b>WASTE BINS</b><br/><br/><b>Missed Service</b><br/>Check <b>Intramaps</b><br/>Verify <b>Cleanaway</b> 6am to 5pm<br/>Lodge if missed<br/><br/><b>Bin Repair</b><br/>Lodge <b>Cleanaway</b><br/>Leave at curb<br/>New bin before next day<br/><br/><b>Opt In Out</b><br/>Submit in writing<br/>Email mail@sdrc.qld.gov.au<br/><br/><b>Eli</b> lodging a cleanaway request"]
+    
+    Animals --> EmailForm
+    Building --> EmailForm
+    Camp --> EmailForm
+    Cemetery --> EmailForm
+    Difficult --> EmailForm
+    EnvHealth --> EmailForm
+    Disputes --> EmailForm
+    Payment --> EmailForm
+    Planning --> EmailForm
+    Rates --> EmailForm
+    Roads --> EmailForm
+    Transfers --> EmailForm
+    Bins --> EmailForm
+    
+    EmailForm["<b>IF NECESSARY: EMAIL FORM</b><br/><br/>Confirm customer email address<br/>Attach form to email<br/><br/>Find appropriate form<br/><b>Eli</b> Commonly Used Forms<br/>or Eli 'FORMS'<br/><br/>Check if form requires<br/>additional info or factsheets<br/><br/>Instruct customer:<br/>If emailing back send to<br/>mail@sdrc.qld.gov.au<br/>for records to process application"]
+    
+    EmailForm --> Close
+    
+    Close["Anything else I can help with"]
+    Close --> End(["Thank you for calling SDRC<br/>Have a great day"])
+    
+    style Start fill:#e1f5e1
+    style Greeting fill:#fff4e1
+        </div>
+    </div>
+</body>
+</html>
