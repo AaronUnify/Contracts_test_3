@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSW Bushfire Overlay Map - Diagnostic</title>
+    <title>NSW Bushfire Overlay Map</title>
     
     <!-- OpenLayers CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
@@ -54,35 +54,6 @@
 
         .info-panel .stat-label {
             font-weight: 600;
-        }
-
-        .debug-panel {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            max-width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            font-size: 11px;
-        }
-
-        .debug-panel h3 {
-            font-size: 13px;
-            margin-bottom: 10px;
-            color: #d32f2f;
-        }
-
-        .debug-panel pre {
-            background: #f5f5f5;
-            padding: 8px;
-            border-radius: 4px;
-            overflow-x: auto;
-            font-size: 10px;
         }
 
         .legend {
@@ -154,8 +125,8 @@
 
         .refresh-btn {
             position: absolute;
-            top: 120px;
-            left: 10px;
+            top: 10px;
+            right: 10px;
             background: white;
             border: none;
             padding: 10px 15px;
@@ -185,7 +156,6 @@
             bottom: 12px;
             left: -50px;
             min-width: 280px;
-            max-width: 400px;
         }
 
         .ol-popup:after, .ol-popup:before {
@@ -234,7 +204,6 @@
         .popup-content .detail {
             margin: 5px 0;
             font-size: 12px;
-            word-wrap: break-word;
         }
 
         .popup-content .detail strong {
@@ -242,13 +211,31 @@
             min-width: 90px;
         }
 
-        .popup-content pre {
-            background: #f5f5f5;
-            padding: 8px;
+        .popup-content .alert-badge {
+            display: inline-block;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 10px;
-            overflow-x: auto;
-            margin-top: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .badge-emergency {
+            background-color: #d32f2f;
+        }
+
+        .badge-watch {
+            background-color: #f57c00;
+        }
+
+        .badge-advice {
+            background-color: #ffa000;
+        }
+
+        .badge-not-applicable {
+            background-color: #90caf9;
+            color: #333;
         }
     </style>
 </head>
@@ -274,11 +261,6 @@
         </div>
     </div>
 
-    <div class="debug-panel" id="debug-panel">
-        <h3>🔍 Debug Info</h3>
-        <div id="debug-content">Loading...</div>
-    </div>
-
     <button class="refresh-btn" id="refresh-button">🔄 Refresh</button>
 
     <div class="legend">
@@ -297,7 +279,7 @@
         </div>
         <div class="legend-item">
             <div class="legend-color alert-not-applicable"></div>
-            <span>N/A</span>
+            <span>Not Applicable</span>
         </div>
     </div>
 
@@ -310,7 +292,6 @@
         var map;
         var vectorSource;
         var vectorLayer;
-        var allProperties = [];
 
         // Initialize when page loads
         window.addEventListener('load', function() {
@@ -398,43 +379,12 @@
             }
         });
 
-        function updateDebugPanel() {
-            var debugContent = document.getElementById('debug-content');
-            
-            if (allProperties.length === 0) {
-                debugContent.innerHTML = '<p>No data loaded yet</p>';
-                return;
-            }
-
-            var html = '<p><strong>Total Features:</strong> ' + allProperties.length + '</p>';
-            html += '<p><strong>All Property Keys Found:</strong></p>';
-            
-            // Get all unique keys
-            var allKeys = new Set();
-            allProperties.forEach(function(props) {
-                Object.keys(props).forEach(function(key) {
-                    allKeys.add(key);
-                });
-            });
-            
-            html += '<pre>' + Array.from(allKeys).sort().join('\n') + '</pre>';
-            
-            html += '<p><strong>First Feature Sample:</strong></p>';
-            html += '<pre>' + JSON.stringify(allProperties[0], null, 2) + '</pre>';
-            
-            debugContent.innerHTML = html;
-        }
-
         function getAlertColor(props) {
-            // Try multiple possible property names
-            var alertLevel = props.category || props.alertLevel || props.alert || 
-                           props.Category || props.AlertLevel || props.Alert ||
-                           props.councilArea || props.type || '';
+            // The property is called 'alert-level' with a hyphen
+            var alertLevel = props['alert-level'] || '';
             
             // Normalize the string for comparison
             var alert = (alertLevel || '').toLowerCase().trim();
-            
-            console.log('Checking alert level:', alertLevel, '-> normalized:', alert);
             
             // Check for Emergency Warning
             if (alert.includes('emergency')) {
@@ -454,20 +404,33 @@
             }
         }
 
+        function getAlertBadgeClass(alertLevel) {
+            var alert = (alertLevel || '').toLowerCase().trim();
+            
+            if (alert.includes('emergency')) {
+                return 'badge-emergency';
+            } else if (alert.includes('watch')) {
+                return 'badge-watch';
+            } else if (alert.includes('advice')) {
+                return 'badge-advice';
+            } else {
+                return 'badge-not-applicable';
+            }
+        }
+
         function createPopupContent(props) {
-            var html = '<h3>' + (props.title || 'Incident') + '</h3>';
+            var alertLevel = props['alert-level'] || 'Not Applicable';
+            var badgeClass = getAlertBadgeClass(alertLevel);
             
-            // Show all properties
-            var keys = Object.keys(props).sort();
-            keys.forEach(function(key) {
-                if (props[key] && key !== 'guid') {
-                    html += '<div class="detail"><strong>' + key + ':</strong> ' + props[key] + '</div>';
-                }
-            });
-            
-            html += '<pre>' + JSON.stringify(props, null, 2) + '</pre>';
-            
-            return html;
+            return '<h3>' + (props.title || 'Incident') + 
+                '<span class="alert-badge ' + badgeClass + '">' + alertLevel + '</span></h3>' +
+                '<div class="detail"><strong>Type:</strong> ' + (props.type || 'Unknown') + '</div>' +
+                '<div class="detail"><strong>Status:</strong> ' + (props.status || 'Unknown') + '</div>' +
+                '<div class="detail"><strong>Location:</strong> ' + (props.location || 'Unknown') + '</div>' +
+                '<div class="detail"><strong>Council:</strong> ' + (props['council-area'] || 'Unknown') + '</div>' +
+                '<div class="detail"><strong>Size:</strong> ' + (props.size || 'Unknown') + '</div>' +
+                '<div class="detail"><strong>Agency:</strong> ' + (props['responsible-agency'] || 'Unknown') + '</div>' +
+                (props.updated ? '<div class="detail"><strong>Updated:</strong> ' + new Date(props.updated).toLocaleString() + '</div>' : '');
         }
 
         function addFireToMap(feature) {
@@ -475,9 +438,6 @@
             var geom = feature.geometry;
             
             if (!geom) return;
-
-            // Store properties for debugging
-            allProperties.push(props);
 
             var color = getAlertColor(props);
 
@@ -546,8 +506,6 @@
             if (vectorSource) {
                 vectorSource.clear();
             }
-            
-            allProperties = [];
 
             fetch('https://www.beyondtracks.com/contrib/nsw-rfs-majorincidents.geojson')
                 .then(function(response) {
@@ -557,22 +515,13 @@
                     return response.json();
                 })
                 .then(function(data) {
-                    console.log('Full GeoJSON data:', data);
-                    
                     if (data.features && data.features.length > 0) {
-                        console.log('Number of features:', data.features.length);
-                        console.log('First feature:', data.features[0]);
-                        console.log('First feature properties:', data.features[0].properties);
-                        
                         data.features.forEach(function(feature) {
                             addFireToMap(feature);
                         });
 
                         document.getElementById('incident-count').textContent = data.features.length;
                         document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
-
-                        // Update debug panel
-                        updateDebugPanel();
 
                         // Fit map to show all fires
                         var extent = vectorSource.getExtent();
@@ -583,7 +532,6 @@
                     } else {
                         document.getElementById('incident-count').textContent = '0';
                         document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
-                        updateDebugPanel();
                     }
 
                     loading.style.display = 'none';
@@ -591,11 +539,78 @@
                 .catch(function(error) {
                     console.error('Error:', error);
                     loading.classList.add('error');
-                    loading.textContent = 'Error loading data: ' + error.message;
+                    loading.textContent = 'Error loading data. Using demo mode.';
+                    loadDemoData();
                     setTimeout(function() {
                         loading.style.display = 'none';
                     }, 3000);
                 });
+        }
+
+        function loadDemoData() {
+            var demoFires = [
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [151.2093, -33.8688]
+                    },
+                    properties: {
+                        title: 'Demo Fire - Sydney Area',
+                        'alert-level': 'Advice',
+                        status: 'Under Control',
+                        location: 'Near Sydney',
+                        size: '100ha',
+                        type: 'Bush Fire',
+                        'responsible-agency': 'NSW RFS',
+                        'council-area': 'Sydney',
+                        updated: new Date().toISOString()
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [150.8931, -34.4278]
+                    },
+                    properties: {
+                        title: 'Demo Fire - Wollongong',
+                        'alert-level': 'Watch and Act',
+                        status: 'Being Controlled',
+                        location: 'West of Wollongong',
+                        size: '250ha',
+                        type: 'Bush Fire',
+                        'responsible-agency': 'NSW RFS',
+                        'council-area': 'Wollongong',
+                        updated: new Date().toISOString()
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [151.7789, -32.9283]
+                    },
+                    properties: {
+                        title: 'Demo Fire - Newcastle',
+                        'alert-level': 'Emergency Warning',
+                        status: 'Out of Control',
+                        location: 'North of Newcastle',
+                        size: '500ha',
+                        type: 'Bush Fire',
+                        'responsible-agency': 'NSW RFS',
+                        'council-area': 'Newcastle',
+                        updated: new Date().toISOString()
+                    }
+                }
+            ];
+
+            demoFires.forEach(function(fire) {
+                addFireToMap(fire);
+            });
+            
+            document.getElementById('incident-count').textContent = demoFires.length + ' (Demo)';
+            document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
         }
     </script>
 </body>
