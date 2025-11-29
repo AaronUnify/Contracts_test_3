@@ -353,15 +353,24 @@
         });
 
         function getAlertColor(category) {
-            switch(category) {
-                case 'Emergency Warning':
-                    return [211, 47, 47, 0.6];
-                case 'Watch and Act':
-                    return [245, 124, 0, 0.6];
-                case 'Advice':
-                    return [255, 215, 0, 0.6];
-                default:
-                    return [144, 202, 249, 0.6];
+            // Normalize the category string for comparison
+            var cat = (category || '').toLowerCase().trim();
+            
+            // Check for Emergency Warning
+            if (cat.includes('emergency')) {
+                return [211, 47, 47, 0.6];
+            }
+            // Check for Watch and Act
+            else if (cat.includes('watch')) {
+                return [245, 124, 0, 0.6];
+            }
+            // Check for Advice
+            else if (cat.includes('advice')) {
+                return [255, 215, 0, 0.6];
+            }
+            // Default/Not Applicable
+            else {
+                return [144, 202, 249, 0.6];
             }
         }
 
@@ -456,7 +465,12 @@
                     return response.json();
                 })
                 .then(function(data) {
+                    console.log('Loaded data:', data); // Debug log
+                    
                     if (data.features && data.features.length > 0) {
+                        // Log first feature to see structure
+                        console.log('First feature:', data.features[0]);
+                        
                         data.features.forEach(function(feature) {
                             addFireToMap(feature);
                         });
@@ -534,3 +548,4 @@
     </script>
 </body>
 </html>
+
