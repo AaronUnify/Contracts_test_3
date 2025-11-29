@@ -56,6 +56,49 @@
             font-weight: 600;
         }
 
+        .alert-breakdown {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .alert-breakdown-title {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .alert-count {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+            font-size: 12px;
+        }
+
+        .alert-count-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .dot-emergency {
+            background-color: #d32f2f;
+        }
+
+        .dot-watch {
+            background-color: #f57c00;
+        }
+
+        .dot-advice {
+            background-color: #ffd700;
+        }
+
+        .dot-not-applicable {
+            background-color: #90caf9;
+        }
+
         .legend {
             position: absolute;
             bottom: 20px;
@@ -259,6 +302,25 @@
                 <div id="last-update">-</div>
             </div>
         </div>
+        <div class="alert-breakdown">
+            <div class="alert-breakdown-title">Alert Level Breakdown:</div>
+            <div class="alert-count">
+                <div class="alert-count-dot dot-emergency"></div>
+                <span>Emergency: <strong id="count-emergency">0</strong></span>
+            </div>
+            <div class="alert-count">
+                <div class="alert-count-dot dot-watch"></div>
+                <span>Watch & Act: <strong id="count-watch">0</strong></span>
+            </div>
+            <div class="alert-count">
+                <div class="alert-count-dot dot-advice"></div>
+                <span>Advice: <strong id="count-advice">0</strong></span>
+            </div>
+            <div class="alert-count">
+                <div class="alert-count-dot dot-not-applicable"></div>
+                <span>Not Applicable: <strong id="count-na">0</strong></span>
+            </div>
+        </div>
     </div>
 
     <button class="refresh-btn" id="refresh-button">🔄 Refresh</button>
@@ -292,6 +354,12 @@
         var map;
         var vectorSource;
         var vectorLayer;
+        var alertCounts = {
+            emergency: 0,
+            watch: 0,
+            advice: 0,
+            notApplicable: 0
+        };
 
         // Initialize when page loads
         window.addEventListener('load', function() {
@@ -379,6 +447,27 @@
             }
         });
 
+        function updateAlertCounts() {
+            document.getElementById('count-emergency').textContent = alertCounts.emergency;
+            document.getElementById('count-watch').textContent = alertCounts.watch;
+            document.getElementById('count-advice').textContent = alertCounts.advice;
+            document.getElementById('count-na').textContent = alertCounts.notApplicable;
+        }
+
+        function categorizeAlert(alertLevel) {
+            var alert = (alertLevel || '').toLowerCase().trim();
+            
+            if (alert.includes('emergency')) {
+                return 'emergency';
+            } else if (alert.includes('watch')) {
+                return 'watch';
+            } else if (alert.includes('advice')) {
+                return 'advice';
+            } else {
+                return 'notApplicable';
+            }
+        }
+
         function getAlertColor(props) {
             // The property is called 'alert-level' with a hyphen
             var alertLevel = props['alert-level'] || '';
@@ -438,6 +527,10 @@
             var geom = feature.geometry;
             
             if (!geom) return;
+
+            // Count alert levels
+            var category = categorizeAlert(props['alert-level']);
+            alertCounts[category]++;
 
             var color = getAlertColor(props);
 
@@ -507,6 +600,14 @@
                 vectorSource.clear();
             }
 
+            // Reset alert counts
+            alertCounts = {
+                emergency: 0,
+                watch: 0,
+                advice: 0,
+                notApplicable: 0
+            };
+
             fetch('https://www.beyondtracks.com/contrib/nsw-rfs-majorincidents.geojson')
                 .then(function(response) {
                     if (!response.ok) {
@@ -515,6 +616,8 @@
                     return response.json();
                 })
                 .then(function(data) {
+                    console.log('Loaded data with', data.features.length, 'features');
+                    
                     if (data.features && data.features.length > 0) {
                         data.features.forEach(function(feature) {
                             addFireToMap(feature);
@@ -522,6 +625,12 @@
 
                         document.getElementById('incident-count').textContent = data.features.length;
                         document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+
+                        // Update alert counts display
+                        updateAlertCounts();
+
+                        // Log alert level breakdown to console
+                        console.log('Alert Level Breakdown:', alertCounts);
 
                         // Fit map to show all fires
                         var extent = vectorSource.getExtent();
@@ -532,6 +641,7 @@
                     } else {
                         document.getElementById('incident-count').textContent = '0';
                         document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+                        updateAlertCounts();
                     }
 
                     loading.style.display = 'none';
@@ -611,8 +721,10 @@
             
             document.getElementById('incident-count').textContent = demoFires.length + ' (Demo)';
             document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+            updateAlertCounts();
         }
     </script>
 </body>
 </html>
+
 
