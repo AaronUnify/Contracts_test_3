@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLD Bushfire Overlay Map</title>
+    <title>QLD Bushfire Monitor - Beast Mode</title>
     
     <!-- OpenLayers CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
@@ -34,7 +34,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
-            max-width: 280px;
+            max-width: 300px;
         }
 
         .info-panel h2 {
@@ -54,6 +54,71 @@
 
         .info-panel .stat-label {
             font-weight: 600;
+        }
+
+        .weather-info {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+        }
+
+        .weather-info .weather-item {
+            margin: 4px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .wind-arrow {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            font-size: 16px;
+        }
+
+        .control-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-btn {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .control-btn:hover {
+            background: #f0f0f0;
+            border-color: #999;
+        }
+
+        .control-btn.active {
+            background: #2196F3;
+            color: white;
+            border-color: #2196F3;
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
         }
 
         .legend {
@@ -122,29 +187,6 @@
 
         .alert-not-applicable {
             background-color: #90caf9;
-        }
-
-        .refresh-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            cursor: pointer;
-            z-index: 1000;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .refresh-btn:hover {
-            background: #f0f0f0;
-        }
-
-        .refresh-btn:active {
-            transform: scale(0.95);
         }
 
         .ol-popup {
@@ -239,6 +281,28 @@
             background-color: #90caf9;
             color: #333;
         }
+
+        .distance-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .measure-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -261,9 +325,38 @@
                 <div id="last-update">-</div>
             </div>
         </div>
+        <div class="weather-info" id="weather-info" style="display: none;">
+            <div style="font-weight: 600; margin-bottom: 5px;">Weather Conditions:</div>
+            <div class="weather-item">
+                <span>🌡️ Temp: <span id="weather-temp">--</span>°C</span>
+            </div>
+            <div class="weather-item">
+                <span>💨 Wind: <span id="weather-wind">--</span> km/h</span>
+                <span class="wind-arrow" id="wind-arrow">↑</span>
+            </div>
+            <div class="weather-item">
+                <span>💧 Humidity: <span id="weather-humidity">--</span>%</span>
+            </div>
+        </div>
     </div>
 
-    <button class="refresh-btn" id="refresh-button">🔄 Refresh</button>
+    <div class="control-panel">
+        <button class="control-btn" id="btn-refresh" title="Refresh fire data">
+            🔄 Refresh
+        </button>
+        <button class="control-btn" id="btn-location" title="Show my location">
+            📍 My Location
+        </button>
+        <button class="control-btn" id="btn-measure" title="Measure distance">
+            📏 Measure
+        </button>
+        <button class="control-btn" id="btn-satellite" title="Toggle satellite view">
+            🛰️ Satellite
+        </button>
+        <button class="control-btn" id="btn-weather" title="Toggle weather overlay">
+            🌤️ Weather
+        </button>
+    </div>
 
     <div class="legend">
         <h3>Severity Levels</h3>
@@ -294,6 +387,16 @@
         var map;
         var vectorSource;
         var vectorLayer;
+        var userLocation = null;
+        var measureActive = false;
+        var measureSource;
+        var measureLayer;
+        var sketch;
+        var draw;
+        var satelliteLayer;
+        var osmLayer;
+        var isSatelliteView = false;
+        var weatherEnabled = false;
 
         window.addEventListener('load', function() {
             try {
@@ -306,12 +409,44 @@
                 vectorSource = new ol.source.Vector();
                 vectorLayer = new ol.layer.Vector({ source: vectorSource });
 
+                // OSM base layer
+                osmLayer = new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                });
+
+                // Satellite layer (using Esri World Imagery)
+                satelliteLayer = new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                        attributions: 'Tiles © Esri'
+                    }),
+                    visible: false
+                });
+
+                // Measure layer
+                measureSource = new ol.source.Vector();
+                measureLayer = new ol.layer.Vector({
+                    source: measureSource,
+                    style: new ol.style.Style({
+                        fill: new ol.style.Fill({
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: '#ffcc33',
+                            width: 3
+                        }),
+                        image: new ol.style.Circle({
+                            radius: 7,
+                            fill: new ol.style.Fill({
+                                color: '#ffcc33'
+                            })
+                        })
+                    })
+                });
+
                 map = new ol.Map({
                     target: 'map',
-                    layers: [
-                        new ol.layer.Tile({ source: new ol.source.OSM() }),
-                        vectorLayer
-                    ],
+                    layers: [osmLayer, satelliteLayer, vectorLayer, measureLayer],
                     view: new ol.View({
                         center: ol.proj.fromLonLat([145.0, -20.0]),
                         zoom: 6
@@ -336,23 +471,34 @@
                 };
 
                 map.on('click', function(evt) {
+                    if (measureActive) return; // Don't show popups while measuring
+                    
                     var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
                         return feature;
                     }, {
-                        hitTolerance: 10  // Makes clicking easier - 10 pixel tolerance
+                        hitTolerance: 10,
+                        layerFilter: function(layer) {
+                            return layer === vectorLayer; // Only check fire layer
+                        }
                     });
                     
                     if (feature) {
                         var props = feature.get('properties');
                         var coordinate = evt.coordinate;
-                        content.innerHTML = createPopupContent(props);
+                        content.innerHTML = createPopupContent(props, coordinate);
                         overlay.setPosition(coordinate);
                     } else {
                         overlay.setPosition(undefined);
                     }
                 });
 
-                document.getElementById('refresh-button').addEventListener('click', loadBushfireData);
+                // Control buttons
+                document.getElementById('btn-refresh').addEventListener('click', loadBushfireData);
+                document.getElementById('btn-location').addEventListener('click', showMyLocation);
+                document.getElementById('btn-measure').addEventListener('click', toggleMeasure);
+                document.getElementById('btn-satellite').addEventListener('click', toggleSatellite);
+                document.getElementById('btn-weather').addEventListener('click', toggleWeather);
+
                 loadBushfireData();
                 setInterval(loadBushfireData, 5 * 60 * 1000);
 
@@ -362,6 +508,215 @@
                 document.getElementById('loading').classList.add('error');
             }
         });
+
+        function showMyLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    userLocation = [position.coords.longitude, position.coords.latitude];
+                    
+                    // Add user location marker
+                    var locationCoords = ol.proj.fromLonLat(userLocation);
+                    
+                    // Remove old location marker if exists
+                    var features = measureSource.getFeatures();
+                    features.forEach(function(f) {
+                        if (f.get('type') === 'userLocation') {
+                            measureSource.removeFeature(f);
+                        }
+                    });
+                    
+                    var locationFeature = new ol.Feature({
+                        geometry: new ol.geom.Point(locationCoords),
+                        type: 'userLocation'
+                    });
+                    
+                    locationFeature.setStyle(new ol.style.Style({
+                        image: new ol.style.Circle({
+                            radius: 10,
+                            fill: new ol.style.Fill({
+                                color: '#2196F3'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: 'white',
+                                width: 3
+                            })
+                        })
+                    }));
+                    
+                    measureSource.addFeature(locationFeature);
+                    
+                    // Center map on user location
+                    map.getView().animate({
+                        center: locationCoords,
+                        zoom: 10,
+                        duration: 1000
+                    });
+                    
+                    // Update fire distances
+                    updateFireDistances();
+                    
+                    // Get weather for user location
+                    if (weatherEnabled) {
+                        getWeather(position.coords.latitude, position.coords.longitude);
+                    }
+                    
+                }, function(error) {
+                    alert('Could not get your location: ' + error.message);
+                });
+            } else {
+                alert('Geolocation is not supported by your browser');
+            }
+        }
+
+        function toggleMeasure() {
+            measureActive = !measureActive;
+            var btn = document.getElementById('btn-measure');
+            
+            if (measureActive) {
+                btn.classList.add('active');
+                addMeasureInteraction();
+            } else {
+                btn.classList.remove('active');
+                map.removeInteraction(draw);
+                measureSource.clear();
+            }
+        }
+
+        function addMeasureInteraction() {
+            draw = new ol.interaction.Draw({
+                source: measureSource,
+                type: 'LineString',
+                style: new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.5)',
+                        lineDash: [10, 10],
+                        width: 2
+                    }),
+                    image: new ol.style.Circle({
+                        radius: 5,
+                        stroke: new ol.style.Stroke({
+                            color: 'rgba(0, 0, 0, 0.7)'
+                        }),
+                        fill: new ol.style.Fill({
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        })
+                    })
+                })
+            });
+            
+            map.addInteraction(draw);
+            
+            var listener;
+            draw.on('drawstart', function(evt) {
+                sketch = evt.feature;
+                var tooltipCoord = evt.coordinate;
+                
+                listener = sketch.getGeometry().on('change', function(evt) {
+                    var geom = evt.target;
+                    var output = formatLength(geom);
+                    tooltipCoord = geom.getLastCoordinate();
+                });
+            });
+            
+            draw.on('drawend', function(evt) {
+                var geom = evt.feature.getGeometry();
+                var length = formatLength(geom);
+                alert('Distance: ' + length);
+                
+                ol.Observable.unByKey(listener);
+                sketch = null;
+            });
+        }
+
+        function formatLength(line) {
+            var length = ol.sphere.getLength(line);
+            var output;
+            if (length > 1000) {
+                output = (Math.round(length / 1000 * 100) / 100) + ' km';
+            } else {
+                output = (Math.round(length * 100) / 100) + ' m';
+            }
+            return output;
+        }
+
+        function toggleSatellite() {
+            isSatelliteView = !isSatelliteView;
+            var btn = document.getElementById('btn-satellite');
+            
+            if (isSatelliteView) {
+                osmLayer.setVisible(false);
+                satelliteLayer.setVisible(true);
+                btn.classList.add('active');
+            } else {
+                osmLayer.setVisible(true);
+                satelliteLayer.setVisible(false);
+                btn.classList.remove('active');
+            }
+        }
+
+        function toggleWeather() {
+            weatherEnabled = !weatherEnabled;
+            var btn = document.getElementById('btn-weather');
+            var weatherInfo = document.getElementById('weather-info');
+            
+            if (weatherEnabled) {
+                btn.classList.add('active');
+                weatherInfo.style.display = 'block';
+                
+                // Get weather for user location or map center
+                if (userLocation) {
+                    getWeather(userLocation[1], userLocation[0]);
+                } else {
+                    var center = ol.proj.toLonLat(map.getView().getCenter());
+                    getWeather(center[1], center[0]);
+                }
+            } else {
+                btn.classList.remove('active');
+                weatherInfo.style.display = 'none';
+            }
+        }
+
+        function getWeather(lat, lon) {
+            // Using Open-Meteo API (free, no API key required)
+            fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    var current = data.current;
+                    document.getElementById('weather-temp').textContent = Math.round(current.temperature_2m);
+                    document.getElementById('weather-wind').textContent = Math.round(current.wind_speed_10m);
+                    document.getElementById('weather-humidity').textContent = Math.round(current.relative_humidity_2m);
+                    
+                    // Update wind arrow direction
+                    var windArrow = document.getElementById('wind-arrow');
+                    windArrow.style.transform = 'rotate(' + current.wind_direction_10m + 'deg)';
+                })
+                .catch(function(error) {
+                    console.error('Error getting weather:', error);
+                });
+        }
+
+        function calculateDistance(lon1, lat1, lon2, lat2) {
+            var point1 = ol.proj.fromLonLat([lon1, lat1]);
+            var point2 = ol.proj.fromLonLat([lon2, lat2]);
+            var line = new ol.geom.LineString([point1, point2]);
+            var length = ol.sphere.getLength(line);
+            
+            if (length > 1000) {
+                return (Math.round(length / 1000 * 10) / 10) + ' km';
+            } else {
+                return Math.round(length) + ' m';
+            }
+        }
+
+        function updateFireDistances() {
+            // This will be called when location is set
+            // Distances are calculated on-demand in popup
+        }
 
         function getAlertColor(severity) {
             var sev = (severity || '').toLowerCase().trim();
@@ -391,12 +746,19 @@
             }
         }
 
-        function createPopupContent(props) {
+        function createPopupContent(props, coordinate) {
             var severity = props.severity || 'Unknown';
             var badgeClass = getAlertBadgeClass(severity);
             
             var html = '<h3>' + (props.headline || 'Bushfire Incident');
             html += '<span class="alert-badge ' + badgeClass + '">' + severity + '</span></h3>';
+            
+            // Show distance if user location is known
+            if (userLocation) {
+                var lonLat = ol.proj.toLonLat(coordinate);
+                var distance = calculateDistance(userLocation[0], userLocation[1], lonLat[0], lonLat[1]);
+                html += '<div class="distance-badge">📍 ' + distance + ' from your location</div>';
+            }
             
             if (props.description) {
                 html += '<div class="detail" style="margin: 10px 0; padding: 8px; background: #f5f5f5; border-radius: 4px; font-size: 11px;">' + 
@@ -414,10 +776,8 @@
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(xmlText, 'text/xml');
             
-            // Look for cap:alert elements (with namespace)
             var alerts = xmlDoc.getElementsByTagNameNS('urn:oasis:names:tc:emergency:cap:1.2', 'alert');
             
-            // Fallback: try without namespace
             if (alerts.length === 0) {
                 alerts = xmlDoc.getElementsByTagName('cap:alert');
             }
@@ -520,7 +880,7 @@
 
                 circleFeature.setStyle(new ol.style.Style({
                     image: new ol.style.Circle({
-                        radius: 12,  // Increased from 8 to 12 for easier clicking
+                        radius: 12,
                         fill: new ol.style.Fill({ color: color }),
                         stroke: new ol.style.Stroke({
                             color: [color[0], color[1], color[2], 1],
@@ -545,7 +905,7 @@
                     fill: new ol.style.Fill({ color: color }),
                     stroke: new ol.style.Stroke({
                         color: [color[0], color[1], color[2], 1],
-                        width: 3  // Increased from 2 to 3 for more visible borders
+                        width: 3
                     })
                 }));
 
@@ -616,4 +976,3 @@
     </script>
 </body>
 </html>
-
