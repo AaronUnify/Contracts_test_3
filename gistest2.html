@@ -318,6 +318,33 @@
             white-space: nowrap;
             transform: translate(-50%, -50%);
         }
+
+        .popup-weather {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .popup-weather h4 {
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .popup-weather .weather-item {
+            margin: 4px 0;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+        }
+
+        .popup-weather .wind-arrow {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -413,6 +440,7 @@
         var windEnabled = false;
         var windOverlays = [];
         var fireWindData = {};
+        var popupOverlay;
 
         window.addEventListener('load', function() {
             try {
@@ -461,15 +489,15 @@
                 var content = document.getElementById('popup-content');
                 var closer = document.getElementById('popup-closer');
 
-                var overlay = new ol.Overlay({
+                popupOverlay = new ol.Overlay({
                     element: container,
                     autoPan: true,
                     autoPanAnimation: { duration: 250 }
                 });
-                map.addOverlay(overlay);
+                map.addOverlay(popupOverlay);
 
                 closer.onclick = function() {
-                    overlay.setPosition(undefined);
+                    popupOverlay.setPosition(undefined);
                     closer.blur();
                     return false;
                 };
@@ -487,10 +515,32 @@
                     if (feature) {
                         var props = feature.get('properties');
                         var coordinate = evt.coordinate;
-                        content.innerHTML = createPopupContent(props, coordinate);
-                        overlay.setPosition(coordinate);
+                        var lonLat = ol.proj.toLonLat(coordinate);
+                        
+                        // Show popup with loading weather
+                        content.innerHTML = createPopupContent(props, coordinate, null);
+                        popupOverlay.setPosition(coordinate);
+                        
+                        // Fetch weather for this fire location
+                        fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lonLat[1] + '&longitude=' + lonLat[0] + '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m')
+                            .then(function(response) {
+                                return response.json();
+                            })
+                            .then(function(data) {
+                                var weatherData = {
+                                    temp: Math.round(data.current.temperature_2m),
+                                    humidity: Math.round(data.current.relative_humidity_2m),
+                                    windSpeed: Math.round(data.current.wind_speed_10m),
+                                    windDirection: data.current.wind_direction_10m,
+                                    windDirectionText: getCompassDirection(data.current.wind_direction_10m)
+                                };
+                                content.innerHTML = createPopupContent(props, coordinate, weatherData);
+                            })
+                            .catch(function(error) {
+                                console.error('Error getting weather for fire:', error);
+                            });
                     } else {
-                        overlay.setPosition(undefined);
+                        popupOverlay.setPosition(undefined);
                     }
                 });
 
@@ -774,8 +824,11 @@
                 measureSource.addFeature(windFeature);
                 
                 // Arrow at the end
+                // ➤ points right (East) by default, so we need to adjust rotation
+                // windToDirection is compass bearing, CSS rotation needs adjustment
+                var arrowRotation = windToDirection - 90;
                 var arrowDiv = document.createElement('div');
-                arrowDiv.style.cssText = 'font-size: 24px; transform: rotate(' + windToDirection + 'deg);';
+                arrowDiv.style.cssText = 'font-size: 24px; transform: rotate(' + arrowRotation + 'deg);';
                 arrowDiv.textContent = '➤';
                 
                 var arrowOverlay = new ol.Overlay({
@@ -886,7 +939,7 @@
             }
         }
 
-        function createPopupContent(props, coordinate) {
+        function createPopupContent(props, coordinate, weatherData) {
             var severity = props.severity || 'Unknown';
             var badgeClass = getAlertBadgeClass(severity);
             
@@ -907,6 +960,29 @@
             if (props.certainty) html += '<div class="detail"><strong>Certainty:</strong> ' + props.certainty + '</div>';
             if (props.effective) html += '<div class="detail"><strong>Effective:</strong> ' + new Date(props.effective).toLocaleString() + '</div>';
             if (props.expires) html += '<div class="detail"><strong>Expires:</strong> ' + new Date(props.expires).toLocaleString() + '</div>';
+            
+            // Add weather section
+            if (weatherData) {
+                var windToDirection = (weatherData.windDirection + 180) % 360;
+                html += '<div class="popup-weather">';
+                html += '<h4>🌤️ Current Conditions at Fire Location</h4>';
+                html += '<div class="weather-item">';
+                html += '<span>💨 Wind: ' + weatherData.windSpeed + ' km/h</span>';
+                html += '<span class="wind-arrow" style="transform: rotate(' + windToDirection + 'deg);">↑</span>';
+                html += '<span style="margin-left: 8px;">(' + weatherData.windDirectionText + ')</span>';
+                html += '</div>';
+                html += '<div class="weather-item">';
+                html += '<span>🌡️ Temperature: ' + weatherData.temp + '°C</span>';
+                html += '</div>';
+                html += '<div class="weather-item">';
+                html += '<span>💧 Humidity: ' + weatherData.humidity + '%</span>';
+                html += '</div>';
+                html += '</div>';
+            } else {
+                html += '<div class="popup-weather">';
+                html += '<h4>🌤️ Loading weather data...</h4>';
+                html += '</div>';
+            }
             
             return html;
         }
@@ -1123,3 +1199,4 @@
     </script>
 </body>
 </html>
+
