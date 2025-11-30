@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLD Bushfire Overlay Map</title>
+    <title>QLD Bushfire Map - Diagnostic</title>
     
     <!-- OpenLayers CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
@@ -54,6 +54,37 @@
 
         .info-panel .stat-label {
             font-weight: 600;
+        }
+
+        .debug-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            font-size: 11px;
+        }
+
+        .debug-panel h3 {
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: #d32f2f;
+        }
+
+        .debug-panel pre {
+            background: #f5f5f5;
+            padding: 8px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .legend {
@@ -126,8 +157,8 @@
 
         .refresh-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 120px;
+            left: 10px;
             background: white;
             border: none;
             padding: 10px 15px;
@@ -141,10 +172,6 @@
 
         .refresh-btn:hover {
             background: #f0f0f0;
-        }
-
-        .refresh-btn:active {
-            transform: scale(0.95);
         }
 
         .ol-popup {
@@ -206,38 +233,6 @@
             margin: 5px 0;
             font-size: 12px;
         }
-
-        .popup-content .detail strong {
-            display: inline-block;
-            min-width: 90px;
-        }
-
-        .popup-content .alert-badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: bold;
-            color: white;
-            margin-left: 5px;
-        }
-
-        .badge-emergency {
-            background-color: #d32f2f;
-        }
-
-        .badge-watch {
-            background-color: #f57c00;
-        }
-
-        .badge-advice {
-            background-color: #ffa000;
-        }
-
-        .badge-not-applicable {
-            background-color: #90caf9;
-            color: #333;
-        }
     </style>
 </head>
 <body>
@@ -260,6 +255,11 @@
                 <div id="last-update">-</div>
             </div>
         </div>
+    </div>
+
+    <div class="debug-panel">
+        <h3>🔍 Debug Info</h3>
+        <div id="debug-content">Waiting for data...</div>
     </div>
 
     <button class="refresh-btn" id="refresh-button">🔄 Refresh</button>
@@ -294,40 +294,29 @@
         var vectorSource;
         var vectorLayer;
 
-        // Initialize when page loads
         window.addEventListener('load', function() {
             try {
-                // Check if OpenLayers loaded
                 if (typeof ol === 'undefined') {
-                    document.getElementById('loading').textContent = 'Error: Map library failed to load. Please check your connection.';
+                    document.getElementById('loading').textContent = 'Error: Map library failed to load.';
                     document.getElementById('loading').classList.add('error');
                     return;
                 }
 
-                // Create vector source for fire data
                 vectorSource = new ol.source.Vector();
+                vectorLayer = new ol.layer.Vector({ source: vectorSource });
 
-                // Create vector layer
-                vectorLayer = new ol.layer.Vector({
-                    source: vectorSource
-                });
-
-                // Initialize map - centered on Queensland
                 map = new ol.Map({
                     target: 'map',
                     layers: [
-                        new ol.layer.Tile({
-                            source: new ol.source.OSM()
-                        }),
+                        new ol.layer.Tile({ source: new ol.source.OSM() }),
                         vectorLayer
                     ],
                     view: new ol.View({
-                        center: ol.proj.fromLonLat([145.0, -20.0]), // Queensland center
+                        center: ol.proj.fromLonLat([145.0, -20.0]),
                         zoom: 6
                     })
                 });
 
-                // Set up popup
                 var container = document.getElementById('popup');
                 var content = document.getElementById('popup-content');
                 var closer = document.getElementById('popup-closer');
@@ -335,9 +324,7 @@
                 var overlay = new ol.Overlay({
                     element: container,
                     autoPan: true,
-                    autoPanAnimation: {
-                        duration: 250
-                    }
+                    autoPanAnimation: { duration: 250 }
                 });
                 map.addOverlay(overlay);
 
@@ -347,7 +334,6 @@
                     return false;
                 };
 
-                // Click handler for popups
                 map.on('click', function(evt) {
                     var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
                         return feature;
@@ -356,158 +342,165 @@
                     if (feature) {
                         var props = feature.get('properties');
                         var coordinate = evt.coordinate;
-                        
-                        content.innerHTML = createPopupContent(props);
+                        content.innerHTML = '<pre>' + JSON.stringify(props, null, 2) + '</pre>';
                         overlay.setPosition(coordinate);
                     } else {
                         overlay.setPosition(undefined);
                     }
                 });
 
-                // Set up refresh button
                 document.getElementById('refresh-button').addEventListener('click', loadBushfireData);
-
-                // Load initial data
                 loadBushfireData();
-
-                // Auto-refresh every 5 minutes
-                setInterval(loadBushfireData, 5 * 60 * 1000);
 
             } catch (e) {
                 console.error('Error initializing map:', e);
-                document.getElementById('loading').textContent = 'Error initializing map: ' + e.message;
+                document.getElementById('loading').textContent = 'Error: ' + e.message;
                 document.getElementById('loading').classList.add('error');
             }
         });
 
-        function getAlertColor(category) {
-            var cat = (category || '').toLowerCase().trim();
+        function updateDebug(message) {
+            var debug = document.getElementById('debug-content');
+            debug.innerHTML += '<div>' + message + '</div>';
+        }
+
+        function getAlertColor(severity) {
+            var sev = (severity || '').toLowerCase().trim();
             
-            if (cat.includes('emergency')) {
+            if (sev.includes('extreme') || sev.includes('severe')) {
                 return [211, 47, 47, 0.6];
-            } else if (cat.includes('watch')) {
+            } else if (sev.includes('moderate')) {
                 return [245, 124, 0, 0.6];
-            } else if (cat.includes('advice')) {
+            } else if (sev.includes('minor')) {
                 return [255, 215, 0, 0.6];
             } else {
                 return [144, 202, 249, 0.6];
             }
         }
 
-        function getAlertBadgeClass(category) {
-            var cat = (category || '').toLowerCase().trim();
-            
-            if (cat.includes('emergency')) {
-                return 'badge-emergency';
-            } else if (cat.includes('watch')) {
-                return 'badge-watch';
-            } else if (cat.includes('advice')) {
-                return 'badge-advice';
-            } else {
-                return 'badge-not-applicable';
-            }
-        }
-
-        function createPopupContent(props) {
-            var category = props.category || props.Category || props.severity || props.Severity || 'Not Applicable';
-            var badgeClass = getAlertBadgeClass(category);
-            
-            var html = '<h3>' + (props.headline || props.title || props.event || 'Incident');
-            if (category && category !== 'Not Applicable') {
-                html += '<span class="alert-badge ' + badgeClass + '">' + category + '</span>';
-            }
-            html += '</h3>';
-            
-            if (props.description) html += '<div class="detail">' + props.description.substring(0, 200) + (props.description.length > 200 ? '...' : '') + '</div>';
-            if (props.areaDesc) html += '<div class="detail"><strong>Area:</strong> ' + props.areaDesc + '</div>';
-            if (props.effective) html += '<div class="detail"><strong>Effective:</strong> ' + new Date(props.effective).toLocaleString() + '</div>';
-            
-            return html;
-        }
-
         function parseCapXMLToGeoJSON(xmlText) {
+            updateDebug('<strong>Parsing XML...</strong>');
+            updateDebug('XML length: ' + xmlText.length + ' characters');
+            
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(xmlText, 'text/xml');
             
-            // Check for parse errors
             var parseError = xmlDoc.getElementsByTagName('parsererror');
             if (parseError.length > 0) {
-                console.error('XML Parse Error:', parseError[0].textContent);
+                updateDebug('<span style="color:red">XML Parse Error!</span>');
                 return { type: 'FeatureCollection', features: [] };
             }
             
-            var alerts = xmlDoc.getElementsByTagName('alert');
-            var features = [];
+            updateDebug('XML parsed successfully');
             
-            console.log('Found', alerts.length, 'alerts in CAP XML');
+            // Show first 500 chars of XML
+            updateDebug('<strong>XML Sample:</strong><pre>' + xmlText.substring(0, 500) + '...</pre>');
+            
+            // Try multiple possible element names
+            var alerts = xmlDoc.getElementsByTagName('alert');
+            if (alerts.length === 0) {
+                alerts = xmlDoc.getElementsByTagName('Alert');
+            }
+            if (alerts.length === 0) {
+                alerts = xmlDoc.querySelectorAll('*[local-name="alert"]');
+            }
+            
+            updateDebug('Found ' + alerts.length + ' alert elements');
+            
+            var features = [];
             
             for (var i = 0; i < alerts.length; i++) {
                 var alert = alerts[i];
+                updateDebug('<strong>Alert ' + (i+1) + ':</strong>');
                 
-                // Get info element
                 var info = alert.getElementsByTagName('info')[0];
-                if (!info) continue;
-                
-                // Get area element
-                var area = info.getElementsByTagName('area')[0];
-                if (!area) continue;
-                
-                // Get polygon or circle coordinates
-                var polygon = area.getElementsByTagName('polygon')[0];
-                var circle = area.getElementsByTagName('circle')[0];
-                
-                var geometry = null;
-                
-                if (polygon) {
-                    // Parse polygon coordinates
-                    var coordsText = polygon.textContent.trim();
-                    var points = coordsText.split(' ');
-                    var coordinates = points.map(function(point) {
-                        var parts = point.split(',');
-                        return [parseFloat(parts[1]), parseFloat(parts[0])]; // lon, lat
-                    });
-                    
-                    geometry = {
-                        type: 'Polygon',
-                        coordinates: [coordinates]
-                    };
-                } else if (circle) {
-                    // Parse circle (center point and radius)
-                    var circleText = circle.textContent.trim();
-                    var parts = circleText.split(' ');
-                    var centerParts = parts[0].split(',');
-                    
-                    geometry = {
-                        type: 'Point',
-                        coordinates: [parseFloat(centerParts[1]), parseFloat(centerParts[0])] // lon, lat
-                    };
+                if (!info) {
+                    updateDebug('  - No info element');
+                    continue;
                 }
                 
-                if (!geometry) continue;
+                var area = info.getElementsByTagName('area')[0];
+                if (!area) {
+                    updateDebug('  - No area element');
+                    continue;
+                }
                 
-                // Extract properties
                 var getElementText = function(parent, tagName) {
                     var elem = parent.getElementsByTagName(tagName)[0];
                     return elem ? elem.textContent.trim() : '';
                 };
                 
+                var polygon = area.getElementsByTagName('polygon')[0];
+                var circle = area.getElementsByTagName('circle')[0];
+                
+                updateDebug('  - Polygon: ' + (polygon ? 'YES' : 'NO'));
+                updateDebug('  - Circle: ' + (circle ? 'YES' : 'NO'));
+                
+                var geometry = null;
+                
+                if (polygon) {
+                    var coordsText = polygon.textContent.trim();
+                    updateDebug('  - Polygon coords: ' + coordsText.substring(0, 100));
+                    
+                    var points = coordsText.split(/\s+/);
+                    var coordinates = [];
+                    
+                    for (var j = 0; j < points.length; j++) {
+                        var parts = points[j].split(',');
+                        if (parts.length === 2) {
+                            coordinates.push([parseFloat(parts[1]), parseFloat(parts[0])]);
+                        }
+                    }
+                    
+                    if (coordinates.length > 0) {
+                        geometry = {
+                            type: 'Polygon',
+                            coordinates: [coordinates]
+                        };
+                    }
+                } else if (circle) {
+                    var circleText = circle.textContent.trim();
+                    updateDebug('  - Circle: ' + circleText);
+                    
+                    var parts = circleText.split(/\s+/);
+                    var centerParts = parts[0].split(',');
+                    
+                    geometry = {
+                        type: 'Point',
+                        coordinates: [parseFloat(centerParts[1]), parseFloat(centerParts[0])]
+                    };
+                }
+                
+                if (!geometry) {
+                    updateDebug('  - Could not create geometry');
+                    continue;
+                }
+                
+                var props = {
+                    event: getElementText(info, 'event'),
+                    category: getElementText(info, 'category'),
+                    severity: getElementText(info, 'severity'),
+                    certainty: getElementText(info, 'certainty'),
+                    headline: getElementText(info, 'headline'),
+                    description: getElementText(info, 'description'),
+                    instruction: getElementText(info, 'instruction'),
+                    areaDesc: getElementText(area, 'areaDesc'),
+                    effective: getElementText(info, 'effective'),
+                    expires: getElementText(info, 'expires')
+                };
+                
+                updateDebug('  - Event: ' + props.event);
+                updateDebug('  - Severity: ' + props.severity);
+                updateDebug('  - Area: ' + props.areaDesc);
+                
                 features.push({
                     type: 'Feature',
                     geometry: geometry,
-                    properties: {
-                        event: getElementText(info, 'event'),
-                        category: getElementText(info, 'category'),
-                        severity: getElementText(info, 'severity'),
-                        headline: getElementText(info, 'headline'),
-                        description: getElementText(info, 'description'),
-                        areaDesc: getElementText(area, 'areaDesc'),
-                        effective: getElementText(info, 'effective'),
-                        expires: getElementText(info, 'expires')
-                    }
+                    properties: props
                 });
             }
             
-            console.log('Parsed', features.length, 'features from CAP XML');
+            updateDebug('<strong>Total features created: ' + features.length + '</strong>');
             
             return {
                 type: 'FeatureCollection',
@@ -521,7 +514,7 @@
             
             if (!geom) return;
 
-            var color = getAlertColor(props.category || props.Category || props.severity || props.Severity);
+            var color = getAlertColor(props.severity);
 
             if (geom.type === 'Point') {
                 var coords = ol.proj.fromLonLat(geom.coordinates);
@@ -534,9 +527,7 @@
                 circleFeature.setStyle(new ol.style.Style({
                     image: new ol.style.Circle({
                         radius: 8,
-                        fill: new ol.style.Fill({
-                            color: color
-                        }),
+                        fill: new ol.style.Fill({ color: color }),
                         stroke: new ol.style.Stroke({
                             color: [color[0], color[1], color[2], 1],
                             width: 2
@@ -557,9 +548,7 @@
                 });
 
                 polygonFeature.setStyle(new ol.style.Style({
-                    fill: new ol.style.Fill({
-                        color: color
-                    }),
+                    fill: new ol.style.Fill({ color: color }),
                     stroke: new ol.style.Stroke({
                         color: [color[0], color[1], color[2], 1],
                         width: 2
@@ -576,31 +565,35 @@
             loading.classList.remove('error');
             loading.textContent = 'Loading QLD bushfire data...';
 
+            document.getElementById('debug-content').innerHTML = '';
+            
             if (vectorSource) {
                 vectorSource.clear();
             }
 
-            // Use CORS proxy to access the XML feed
             var corsProxy = 'https://corsproxy.io/?';
             var feedUrl = 'https://publiccontent-gis-psba-qld-gov-au.s3.amazonaws.com/content/Feeds/BushfireCurrentIncidents/bushfireAlert_capau.xml';
             
+            updateDebug('<strong>Fetching: </strong>' + feedUrl);
+            
             fetch(corsProxy + encodeURIComponent(feedUrl))
                 .then(function(response) {
+                    updateDebug('Response status: ' + response.status);
                     if (!response.ok) {
-                        throw new Error('Failed to fetch data');
+                        throw new Error('HTTP ' + response.status);
                     }
                     return response.text();
                 })
                 .then(function(xmlText) {
-                    console.log('Received XML data, parsing...');
+                    updateDebug('Received response');
                     var data = parseCapXMLToGeoJSON(xmlText);
                     processData(data);
                 })
                 .catch(function(error) {
-                    console.error('Error loading data:', error);
+                    console.error('Error:', error);
+                    updateDebug('<span style="color:red">Error: ' + error.message + '</span>');
                     loading.classList.add('error');
-                    loading.textContent = 'Could not load QLD data (CORS issue). The QLD feed does not allow direct browser access. You may need to set up a server-side proxy. Using demo mode for now.';
-                    loadDemoData();
+                    loading.textContent = 'Error loading data: ' + error.message;
                     setTimeout(function() {
                         loading.style.display = 'none';
                     }, 5000);
@@ -609,10 +602,7 @@
 
         function processData(data) {
             var loading = document.getElementById('loading');
-            
             var features = data.features || [];
-            
-            console.log('Processing', features.length, 'features');
             
             if (features.length > 0) {
                 features.forEach(function(feature) {
@@ -622,7 +612,6 @@
                 document.getElementById('incident-count').textContent = features.length;
                 document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
 
-                // Fit map to show all fires
                 var extent = vectorSource.getExtent();
                 if (extent[0] !== Infinity) {
                     map.getView().fit(extent, {
@@ -633,65 +622,9 @@
             } else {
                 document.getElementById('incident-count').textContent = '0';
                 document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
-                console.log('No incidents found in feed');
             }
 
             loading.style.display = 'none';
-        }
-
-        function loadDemoData() {
-            // Demo fires for Queensland locations
-            var demoFires = [
-                {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [153.0251, -27.4698] // Brisbane
-                    },
-                    properties: {
-                        headline: 'Demo Fire - Brisbane Area',
-                        severity: 'Advice',
-                        description: 'Demo bushfire for testing purposes',
-                        areaDesc: 'Near Brisbane',
-                        effective: new Date().toISOString()
-                    }
-                },
-                {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [145.7753, -16.9203] // Cairns
-                    },
-                    properties: {
-                        headline: 'Demo Fire - Far North QLD',
-                        severity: 'Watch and Act',
-                        description: 'Demo bushfire for testing purposes',
-                        areaDesc: 'West of Cairns',
-                        effective: new Date().toISOString()
-                    }
-                },
-                {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [149.1244, -21.1397] // Mackay
-                    },
-                    properties: {
-                        headline: 'Demo Fire - Mackay Region',
-                        severity: 'Emergency Warning',
-                        description: 'Demo bushfire for testing purposes',
-                        areaDesc: 'Mackay Region',
-                        effective: new Date().toISOString()
-                    }
-                }
-            ];
-
-            demoFires.forEach(function(fire) {
-                addFireToMap(fire);
-            });
-            
-            document.getElementById('incident-count').textContent = demoFires.length + ' (Demo)';
-            document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
         }
     </script>
 </body>
