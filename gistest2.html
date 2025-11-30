@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLD Bushfire Map - Diagnostic</title>
+    <title>QLD Bushfire Map - Full Diagnostic</title>
     
     <!-- OpenLayers CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
@@ -65,8 +65,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
-            max-width: 500px;
-            max-height: 80vh;
+            width: 600px;
+            max-height: 90vh;
             overflow-y: auto;
             font-size: 11px;
         }
@@ -85,6 +85,8 @@
             font-size: 10px;
             white-space: pre-wrap;
             word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
         .legend {
@@ -173,75 +175,10 @@
         .refresh-btn:hover {
             background: #f0f0f0;
         }
-
-        .ol-popup {
-            position: absolute;
-            background-color: white;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #cccccc;
-            bottom: 12px;
-            left: -50px;
-            min-width: 280px;
-        }
-
-        .ol-popup:after, .ol-popup:before {
-            top: 100%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-        }
-
-        .ol-popup:after {
-            border-top-color: white;
-            border-width: 10px;
-            left: 48px;
-            margin-left: -10px;
-        }
-
-        .ol-popup:before {
-            border-top-color: #cccccc;
-            border-width: 11px;
-            left: 48px;
-            margin-left: -11px;
-        }
-
-        .ol-popup-closer {
-            text-decoration: none;
-            position: absolute;
-            top: 2px;
-            right: 8px;
-            font-size: 20px;
-            color: #999;
-        }
-
-        .ol-popup-closer:after {
-            content: "✖";
-        }
-
-        .popup-content h3 {
-            margin-bottom: 10px;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .popup-content .detail {
-            margin: 5px 0;
-            font-size: 12px;
-        }
     </style>
 </head>
 <body>
     <div id="map"></div>
-    
-    <div id="popup" class="ol-popup">
-        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-        <div id="popup-content" class="popup-content"></div>
-    </div>
     
     <div class="info-panel">
         <h2>🔥 QLD Bushfire Monitor</h2>
@@ -258,7 +195,7 @@
     </div>
 
     <div class="debug-panel">
-        <h3>🔍 Debug Info</h3>
+        <h3>🔍 Full XML Structure</h3>
         <div id="debug-content">Waiting for data...</div>
     </div>
 
@@ -317,38 +254,6 @@
                     })
                 });
 
-                var container = document.getElementById('popup');
-                var content = document.getElementById('popup-content');
-                var closer = document.getElementById('popup-closer');
-
-                var overlay = new ol.Overlay({
-                    element: container,
-                    autoPan: true,
-                    autoPanAnimation: { duration: 250 }
-                });
-                map.addOverlay(overlay);
-
-                closer.onclick = function() {
-                    overlay.setPosition(undefined);
-                    closer.blur();
-                    return false;
-                };
-
-                map.on('click', function(evt) {
-                    var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-                        return feature;
-                    });
-                    
-                    if (feature) {
-                        var props = feature.get('properties');
-                        var coordinate = evt.coordinate;
-                        content.innerHTML = '<pre>' + JSON.stringify(props, null, 2) + '</pre>';
-                        overlay.setPosition(coordinate);
-                    } else {
-                        overlay.setPosition(undefined);
-                    }
-                });
-
                 document.getElementById('refresh-button').addEventListener('click', loadBushfireData);
                 loadBushfireData();
 
@@ -358,206 +263,6 @@
                 document.getElementById('loading').classList.add('error');
             }
         });
-
-        function updateDebug(message) {
-            var debug = document.getElementById('debug-content');
-            debug.innerHTML += '<div>' + message + '</div>';
-        }
-
-        function getAlertColor(severity) {
-            var sev = (severity || '').toLowerCase().trim();
-            
-            if (sev.includes('extreme') || sev.includes('severe')) {
-                return [211, 47, 47, 0.6];
-            } else if (sev.includes('moderate')) {
-                return [245, 124, 0, 0.6];
-            } else if (sev.includes('minor')) {
-                return [255, 215, 0, 0.6];
-            } else {
-                return [144, 202, 249, 0.6];
-            }
-        }
-
-        function parseCapXMLToGeoJSON(xmlText) {
-            updateDebug('<strong>Parsing XML...</strong>');
-            updateDebug('XML length: ' + xmlText.length + ' characters');
-            
-            var parser = new DOMParser();
-            var xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-            
-            var parseError = xmlDoc.getElementsByTagName('parsererror');
-            if (parseError.length > 0) {
-                updateDebug('<span style="color:red">XML Parse Error!</span>');
-                return { type: 'FeatureCollection', features: [] };
-            }
-            
-            updateDebug('XML parsed successfully');
-            
-            // Show first 500 chars of XML
-            updateDebug('<strong>XML Sample:</strong><pre>' + xmlText.substring(0, 500) + '...</pre>');
-            
-            // Try multiple possible element names
-            var alerts = xmlDoc.getElementsByTagName('alert');
-            if (alerts.length === 0) {
-                alerts = xmlDoc.getElementsByTagName('Alert');
-            }
-            if (alerts.length === 0) {
-                alerts = xmlDoc.querySelectorAll('*[local-name="alert"]');
-            }
-            
-            updateDebug('Found ' + alerts.length + ' alert elements');
-            
-            var features = [];
-            
-            for (var i = 0; i < alerts.length; i++) {
-                var alert = alerts[i];
-                updateDebug('<strong>Alert ' + (i+1) + ':</strong>');
-                
-                var info = alert.getElementsByTagName('info')[0];
-                if (!info) {
-                    updateDebug('  - No info element');
-                    continue;
-                }
-                
-                var area = info.getElementsByTagName('area')[0];
-                if (!area) {
-                    updateDebug('  - No area element');
-                    continue;
-                }
-                
-                var getElementText = function(parent, tagName) {
-                    var elem = parent.getElementsByTagName(tagName)[0];
-                    return elem ? elem.textContent.trim() : '';
-                };
-                
-                var polygon = area.getElementsByTagName('polygon')[0];
-                var circle = area.getElementsByTagName('circle')[0];
-                
-                updateDebug('  - Polygon: ' + (polygon ? 'YES' : 'NO'));
-                updateDebug('  - Circle: ' + (circle ? 'YES' : 'NO'));
-                
-                var geometry = null;
-                
-                if (polygon) {
-                    var coordsText = polygon.textContent.trim();
-                    updateDebug('  - Polygon coords: ' + coordsText.substring(0, 100));
-                    
-                    var points = coordsText.split(/\s+/);
-                    var coordinates = [];
-                    
-                    for (var j = 0; j < points.length; j++) {
-                        var parts = points[j].split(',');
-                        if (parts.length === 2) {
-                            coordinates.push([parseFloat(parts[1]), parseFloat(parts[0])]);
-                        }
-                    }
-                    
-                    if (coordinates.length > 0) {
-                        geometry = {
-                            type: 'Polygon',
-                            coordinates: [coordinates]
-                        };
-                    }
-                } else if (circle) {
-                    var circleText = circle.textContent.trim();
-                    updateDebug('  - Circle: ' + circleText);
-                    
-                    var parts = circleText.split(/\s+/);
-                    var centerParts = parts[0].split(',');
-                    
-                    geometry = {
-                        type: 'Point',
-                        coordinates: [parseFloat(centerParts[1]), parseFloat(centerParts[0])]
-                    };
-                }
-                
-                if (!geometry) {
-                    updateDebug('  - Could not create geometry');
-                    continue;
-                }
-                
-                var props = {
-                    event: getElementText(info, 'event'),
-                    category: getElementText(info, 'category'),
-                    severity: getElementText(info, 'severity'),
-                    certainty: getElementText(info, 'certainty'),
-                    headline: getElementText(info, 'headline'),
-                    description: getElementText(info, 'description'),
-                    instruction: getElementText(info, 'instruction'),
-                    areaDesc: getElementText(area, 'areaDesc'),
-                    effective: getElementText(info, 'effective'),
-                    expires: getElementText(info, 'expires')
-                };
-                
-                updateDebug('  - Event: ' + props.event);
-                updateDebug('  - Severity: ' + props.severity);
-                updateDebug('  - Area: ' + props.areaDesc);
-                
-                features.push({
-                    type: 'Feature',
-                    geometry: geometry,
-                    properties: props
-                });
-            }
-            
-            updateDebug('<strong>Total features created: ' + features.length + '</strong>');
-            
-            return {
-                type: 'FeatureCollection',
-                features: features
-            };
-        }
-
-        function addFireToMap(feature) {
-            var props = feature.properties;
-            var geom = feature.geometry;
-            
-            if (!geom) return;
-
-            var color = getAlertColor(props.severity);
-
-            if (geom.type === 'Point') {
-                var coords = ol.proj.fromLonLat(geom.coordinates);
-                
-                var circleFeature = new ol.Feature({
-                    geometry: new ol.geom.Point(coords),
-                    properties: props
-                });
-
-                circleFeature.setStyle(new ol.style.Style({
-                    image: new ol.style.Circle({
-                        radius: 8,
-                        fill: new ol.style.Fill({ color: color }),
-                        stroke: new ol.style.Stroke({
-                            color: [color[0], color[1], color[2], 1],
-                            width: 2
-                        })
-                    })
-                }));
-
-                vectorSource.addFeature(circleFeature);
-                
-            } else if (geom.type === 'Polygon') {
-                var coordinates = geom.coordinates[0].map(function(coord) {
-                    return ol.proj.fromLonLat(coord);
-                });
-                
-                var polygonFeature = new ol.Feature({
-                    geometry: new ol.geom.Polygon([coordinates]),
-                    properties: props
-                });
-
-                polygonFeature.setStyle(new ol.style.Style({
-                    fill: new ol.style.Fill({ color: color }),
-                    stroke: new ol.style.Stroke({
-                        color: [color[0], color[1], color[2], 1],
-                        width: 2
-                    })
-                }));
-
-                vectorSource.addFeature(polygonFeature);
-            }
-        }
 
         function loadBushfireData() {
             var loading = document.getElementById('loading');
@@ -574,57 +279,52 @@
             var corsProxy = 'https://corsproxy.io/?';
             var feedUrl = 'https://publiccontent-gis-psba-qld-gov-au.s3.amazonaws.com/content/Feeds/BushfireCurrentIncidents/bushfireAlert_capau.xml';
             
-            updateDebug('<strong>Fetching: </strong>' + feedUrl);
-            
             fetch(corsProxy + encodeURIComponent(feedUrl))
                 .then(function(response) {
-                    updateDebug('Response status: ' + response.status);
                     if (!response.ok) {
                         throw new Error('HTTP ' + response.status);
                     }
                     return response.text();
                 })
                 .then(function(xmlText) {
-                    updateDebug('Received response');
-                    var data = parseCapXMLToGeoJSON(xmlText);
-                    processData(data);
+                    var debug = document.getElementById('debug-content');
+                    
+                    // Show full XML
+                    debug.innerHTML = '<p><strong>XML Length:</strong> ' + xmlText.length + ' characters</p>';
+                    debug.innerHTML += '<p><strong>Full XML Content:</strong></p>';
+                    debug.innerHTML += '<pre>' + xmlText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>';
+                    
+                    // Parse and show structure
+                    var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                    
+                    debug.innerHTML += '<p><strong>Root Element:</strong> ' + xmlDoc.documentElement.nodeName + '</p>';
+                    
+                    // List all element types in document
+                    var allElements = xmlDoc.getElementsByTagName('*');
+                    var elementTypes = {};
+                    for (var i = 0; i < allElements.length; i++) {
+                        var name = allElements[i].nodeName;
+                        elementTypes[name] = (elementTypes[name] || 0) + 1;
+                    }
+                    
+                    debug.innerHTML += '<p><strong>Element Types Found:</strong></p><pre>' + 
+                        JSON.stringify(elementTypes, null, 2) + '</pre>';
+                    
+                    document.getElementById('incident-count').textContent = '0 (See XML in debug panel)';
+                    document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+                    loading.style.display = 'none';
                 })
                 .catch(function(error) {
                     console.error('Error:', error);
-                    updateDebug('<span style="color:red">Error: ' + error.message + '</span>');
+                    var debug = document.getElementById('debug-content');
+                    debug.innerHTML = '<span style="color:red">Error: ' + error.message + '</span>';
                     loading.classList.add('error');
                     loading.textContent = 'Error loading data: ' + error.message;
                     setTimeout(function() {
                         loading.style.display = 'none';
                     }, 5000);
                 });
-        }
-
-        function processData(data) {
-            var loading = document.getElementById('loading');
-            var features = data.features || [];
-            
-            if (features.length > 0) {
-                features.forEach(function(feature) {
-                    addFireToMap(feature);
-                });
-
-                document.getElementById('incident-count').textContent = features.length;
-                document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
-
-                var extent = vectorSource.getExtent();
-                if (extent[0] !== Infinity) {
-                    map.getView().fit(extent, {
-                        padding: [50, 50, 50, 50],
-                        maxZoom: 12
-                    });
-                }
-            } else {
-                document.getElementById('incident-count').textContent = '0';
-                document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
-            }
-
-            loading.style.display = 'none';
         }
     </script>
 </body>
