@@ -266,22 +266,22 @@
     <button class="refresh-btn" id="refresh-button">🔄 Refresh</button>
 
     <div class="legend">
-        <h3>Alert Levels</h3>
+        <h3>Severity Levels</h3>
         <div class="legend-item">
             <div class="legend-color alert-emergency"></div>
-            <span>Emergency</span>
+            <span>Extreme/Severe</span>
         </div>
         <div class="legend-item">
             <div class="legend-color alert-watch"></div>
-            <span>Watch & Act</span>
+            <span>Moderate</span>
         </div>
         <div class="legend-item">
             <div class="legend-color alert-advice"></div>
-            <span>Advice</span>
+            <span>Minor</span>
         </div>
         <div class="legend-item">
             <div class="legend-color alert-not-applicable"></div>
-            <span>Not Applicable</span>
+            <span>Unknown</span>
         </div>
     </div>
 
@@ -338,6 +338,8 @@
                 map.on('click', function(evt) {
                     var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
                         return feature;
+                    }, {
+                        hitTolerance: 10  // Makes clicking easier - 10 pixel tolerance
                     });
                     
                     if (feature) {
@@ -518,7 +520,7 @@
 
                 circleFeature.setStyle(new ol.style.Style({
                     image: new ol.style.Circle({
-                        radius: 8,
+                        radius: 12,  // Increased from 8 to 12 for easier clicking
                         fill: new ol.style.Fill({ color: color }),
                         stroke: new ol.style.Stroke({
                             color: [color[0], color[1], color[2], 1],
@@ -543,7 +545,7 @@
                     fill: new ol.style.Fill({ color: color }),
                     stroke: new ol.style.Stroke({
                         color: [color[0], color[1], color[2], 1],
-                        width: 2
+                        width: 3  // Increased from 2 to 3 for more visible borders
                     })
                 }));
 
@@ -614,3 +616,4 @@
     </script>
 </body>
 </html>
+
