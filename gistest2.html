@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -293,15 +295,17 @@
             margin-top: 5px;
         }
 
-        .measure-tooltip {
+        .distance-label {
             position: absolute;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 12px;
+            font-weight: bold;
             pointer-events: none;
             white-space: nowrap;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -326,16 +330,16 @@
             </div>
         </div>
         <div class="weather-info" id="weather-info" style="display: none;">
-            <div style="font-weight: 600; margin-bottom: 5px;">Weather Conditions:</div>
+            <div style="font-weight: 600; margin-bottom: 5px;">Wind Conditions:</div>
             <div class="weather-item">
-                <span>🌡️ Temp: <span id="weather-temp">--</span>°C</span>
-            </div>
-            <div class="weather-item">
-                <span>💨 Wind: <span id="weather-wind">--</span> km/h</span>
+                <span>💨 Speed: <span id="weather-wind">--</span> km/h</span>
                 <span class="wind-arrow" id="wind-arrow">↑</span>
             </div>
             <div class="weather-item">
-                <span>💧 Humidity: <span id="weather-humidity">--</span>%</span>
+                <span>🧭 Direction: <span id="wind-direction">--</span></span>
+            </div>
+            <div class="weather-item" style="margin-top: 5px; font-size: 11px; color: #666;">
+                <span>🌡️ <span id="weather-temp">--</span>°C | 💧 <span id="weather-humidity">--</span>%</span>
             </div>
         </div>
     </div>
@@ -347,14 +351,14 @@
         <button class="control-btn" id="btn-location" title="Show my location">
             📍 My Location
         </button>
-        <button class="control-btn" id="btn-measure" title="Measure distance">
+        <button class="control-btn" id="btn-measure" title="Show distances to fires within 100km">
             📏 Measure
+        </button>
+        <button class="control-btn" id="btn-wind" title="Show wind direction overlay">
+            💨 Wind
         </button>
         <button class="control-btn" id="btn-satellite" title="Toggle satellite view">
             🛰️ Satellite
-        </button>
-        <button class="control-btn" id="btn-weather" title="Toggle weather overlay">
-            🌤️ Weather
         </button>
     </div>
 
@@ -391,12 +395,13 @@
         var measureActive = false;
         var measureSource;
         var measureLayer;
-        var sketch;
-        var draw;
+        var distanceOverlays = [];
         var satelliteLayer;
         var osmLayer;
         var isSatelliteView = false;
-        var weatherEnabled = false;
+        var windEnabled = false;
+        var windOverlays = [];
+        var currentWindData = null;
 
         window.addEventListener('load', function() {
             try {
@@ -409,12 +414,10 @@
                 vectorSource = new ol.source.Vector();
                 vectorLayer = new ol.layer.Vector({ source: vectorSource });
 
-                // OSM base layer
                 osmLayer = new ol.layer.Tile({
                     source: new ol.source.OSM()
                 });
 
-                // Satellite layer (using Esri World Imagery)
                 satelliteLayer = new ol.layer.Tile({
                     source: new ol.source.XYZ({
                         url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -423,23 +426,13 @@
                     visible: false
                 });
 
-                // Measure layer
                 measureSource = new ol.source.Vector();
                 measureLayer = new ol.layer.Vector({
                     source: measureSource,
                     style: new ol.style.Style({
-                        fill: new ol.style.Fill({
-                            color: 'rgba(255, 255, 255, 0.2)'
-                        }),
                         stroke: new ol.style.Stroke({
-                            color: '#ffcc33',
+                            color: '#FF5722',
                             width: 3
-                        }),
-                        image: new ol.style.Circle({
-                            radius: 7,
-                            fill: new ol.style.Fill({
-                                color: '#ffcc33'
-                            })
                         })
                     })
                 });
@@ -471,14 +464,12 @@
                 };
 
                 map.on('click', function(evt) {
-                    if (measureActive) return; // Don't show popups while measuring
-                    
                     var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
                         return feature;
                     }, {
                         hitTolerance: 10,
                         layerFilter: function(layer) {
-                            return layer === vectorLayer; // Only check fire layer
+                            return layer === vectorLayer;
                         }
                     });
                     
@@ -492,12 +483,11 @@
                     }
                 });
 
-                // Control buttons
                 document.getElementById('btn-refresh').addEventListener('click', loadBushfireData);
                 document.getElementById('btn-location').addEventListener('click', showMyLocation);
                 document.getElementById('btn-measure').addEventListener('click', toggleMeasure);
+                document.getElementById('btn-wind').addEventListener('click', toggleWind);
                 document.getElementById('btn-satellite').addEventListener('click', toggleSatellite);
-                document.getElementById('btn-weather').addEventListener('click', toggleWeather);
 
                 loadBushfireData();
                 setInterval(loadBushfireData, 5 * 60 * 1000);
@@ -514,10 +504,8 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
                     userLocation = [position.coords.longitude, position.coords.latitude];
                     
-                    // Add user location marker
                     var locationCoords = ol.proj.fromLonLat(userLocation);
                     
-                    // Remove old location marker if exists
                     var features = measureSource.getFeatures();
                     features.forEach(function(f) {
                         if (f.get('type') === 'userLocation') {
@@ -545,19 +533,16 @@
                     
                     measureSource.addFeature(locationFeature);
                     
-                    // Center map on user location
                     map.getView().animate({
                         center: locationCoords,
                         zoom: 10,
                         duration: 1000
                     });
                     
-                    // Update fire distances
-                    updateFireDistances();
+                    getWeather(position.coords.latitude, position.coords.longitude);
                     
-                    // Get weather for user location
-                    if (weatherEnabled) {
-                        getWeather(position.coords.latitude, position.coords.longitude);
+                    if (measureActive) {
+                        drawDistanceLines();
                     }
                     
                 }, function(error) {
@@ -569,77 +554,99 @@
         }
 
         function toggleMeasure() {
+            if (!userLocation) {
+                alert('Please set your location first by clicking "My Location"');
+                return;
+            }
+            
             measureActive = !measureActive;
             var btn = document.getElementById('btn-measure');
             
             if (measureActive) {
                 btn.classList.add('active');
-                addMeasureInteraction();
+                drawDistanceLines();
             } else {
                 btn.classList.remove('active');
-                map.removeInteraction(draw);
-                measureSource.clear();
+                clearDistanceLines();
             }
         }
 
-        function addMeasureInteraction() {
-            draw = new ol.interaction.Draw({
-                source: measureSource,
-                type: 'LineString',
-                style: new ol.style.Style({
-                    fill: new ol.style.Fill({
-                        color: 'rgba(255, 255, 255, 0.2)'
-                    }),
-                    stroke: new ol.style.Stroke({
-                        color: 'rgba(0, 0, 0, 0.5)',
-                        lineDash: [10, 10],
-                        width: 2
-                    }),
-                    image: new ol.style.Circle({
-                        radius: 5,
+        function drawDistanceLines() {
+            clearDistanceLines();
+            
+            var userCoords = ol.proj.fromLonLat(userLocation);
+            var fires = vectorSource.getFeatures();
+            
+            fires.forEach(function(fire) {
+                var fireGeom = fire.getGeometry();
+                var fireCoords;
+                
+                if (fireGeom.getType() === 'Point') {
+                    fireCoords = fireGeom.getCoordinates();
+                } else if (fireGeom.getType() === 'Polygon') {
+                    fireCoords = fireGeom.getInteriorPoint().getCoordinates();
+                }
+                
+                if (!fireCoords) return;
+                
+                var line = new ol.geom.LineString([userCoords, fireCoords]);
+                var length = ol.sphere.getLength(line);
+                
+                if (length <= 100000) {
+                    var lineFeature = new ol.Feature({
+                        geometry: line,
+                        type: 'distanceLine'
+                    });
+                    
+                    lineFeature.setStyle(new ol.style.Style({
                         stroke: new ol.style.Stroke({
-                            color: 'rgba(0, 0, 0, 0.7)'
-                        }),
-                        fill: new ol.style.Fill({
-                            color: 'rgba(255, 255, 255, 0.2)'
+                            color: 'rgba(255, 87, 34, 0.8)',
+                            width: 2,
+                            lineDash: [5, 5]
                         })
-                    })
-                })
-            });
-            
-            map.addInteraction(draw);
-            
-            var listener;
-            draw.on('drawstart', function(evt) {
-                sketch = evt.feature;
-                var tooltipCoord = evt.coordinate;
-                
-                listener = sketch.getGeometry().on('change', function(evt) {
-                    var geom = evt.target;
-                    var output = formatLength(geom);
-                    tooltipCoord = geom.getLastCoordinate();
-                });
-            });
-            
-            draw.on('drawend', function(evt) {
-                var geom = evt.feature.getGeometry();
-                var length = formatLength(geom);
-                alert('Distance: ' + length);
-                
-                ol.Observable.unByKey(listener);
-                sketch = null;
+                    }));
+                    
+                    measureSource.addFeature(lineFeature);
+                    
+                    var midPoint = [(userCoords[0] + fireCoords[0]) / 2, (userCoords[1] + fireCoords[1]) / 2];
+                    var distanceText = formatDistance(length);
+                    
+                    var labelDiv = document.createElement('div');
+                    labelDiv.className = 'distance-label';
+                    labelDiv.textContent = distanceText;
+                    
+                    var labelOverlay = new ol.Overlay({
+                        element: labelDiv,
+                        position: midPoint,
+                        positioning: 'center-center'
+                    });
+                    
+                    map.addOverlay(labelOverlay);
+                    distanceOverlays.push(labelOverlay);
+                }
             });
         }
 
-        function formatLength(line) {
-            var length = ol.sphere.getLength(line);
-            var output;
-            if (length > 1000) {
-                output = (Math.round(length / 1000 * 100) / 100) + ' km';
+        function clearDistanceLines() {
+            var features = measureSource.getFeatures().slice();
+            features.forEach(function(f) {
+                if (f.get('type') === 'distanceLine') {
+                    measureSource.removeFeature(f);
+                }
+            });
+            
+            distanceOverlays.forEach(function(overlay) {
+                map.removeOverlay(overlay);
+            });
+            distanceOverlays = [];
+        }
+
+        function formatDistance(meters) {
+            if (meters > 1000) {
+                return (Math.round(meters / 100) / 10) + ' km';
             } else {
-                output = (Math.round(length * 100) / 100) + ' m';
+                return Math.round(meters) + ' m';
             }
-            return output;
         }
 
         function toggleSatellite() {
@@ -657,47 +664,130 @@
             }
         }
 
-        function toggleWeather() {
-            weatherEnabled = !weatherEnabled;
-            var btn = document.getElementById('btn-weather');
+        function toggleWind() {
+            windEnabled = !windEnabled;
+            var btn = document.getElementById('btn-wind');
             var weatherInfo = document.getElementById('weather-info');
             
-            if (weatherEnabled) {
+            if (windEnabled) {
                 btn.classList.add('active');
                 weatherInfo.style.display = 'block';
                 
-                // Get weather for user location or map center
-                if (userLocation) {
-                    getWeather(userLocation[1], userLocation[0]);
-                } else {
-                    var center = ol.proj.toLonLat(map.getView().getCenter());
-                    getWeather(center[1], center[0]);
+                if (currentWindData) {
+                    drawWindOverlay();
                 }
             } else {
                 btn.classList.remove('active');
                 weatherInfo.style.display = 'none';
+                clearWindOverlay();
             }
         }
 
+        function drawWindOverlay() {
+            clearWindOverlay();
+            
+            if (!currentWindData) return;
+            
+            var fires = vectorSource.getFeatures();
+            
+            fires.forEach(function(fire) {
+                var fireGeom = fire.getGeometry();
+                var fireCoords;
+                
+                if (fireGeom.getType() === 'Point') {
+                    fireCoords = fireGeom.getCoordinates();
+                } else if (fireGeom.getType() === 'Polygon') {
+                    fireCoords = fireGeom.getInteriorPoint().getCoordinates();
+                }
+                
+                if (!fireCoords) return;
+                
+                var windSpeed = currentWindData.wind_speed_10m;
+                var windDir = currentWindData.wind_direction_10m;
+                
+                var arrowLength = 50000 * (windSpeed / 20);
+                var angleRad = (windDir - 90) * Math.PI / 180;
+                
+                var endX = fireCoords[0] + arrowLength * Math.cos(angleRad);
+                var endY = fireCoords[1] + arrowLength * Math.sin(angleRad);
+                
+                var windLine = new ol.geom.LineString([fireCoords, [endX, endY]]);
+                
+                var windFeature = new ol.Feature({
+                    geometry: windLine,
+                    type: 'windArrow'
+                });
+                
+                windFeature.setStyle(new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(33, 150, 243, 0.8)',
+                        width: 4
+                    })
+                }));
+                
+                measureSource.addFeature(windFeature);
+                
+                var arrowDiv = document.createElement('div');
+                arrowDiv.style.cssText = 'font-size: 24px; transform: rotate(' + windDir + 'deg);';
+                arrowDiv.textContent = '➤';
+                
+                var arrowOverlay = new ol.Overlay({
+                    element: arrowDiv,
+                    position: [endX, endY],
+                    positioning: 'center-center'
+                });
+                
+                map.addOverlay(arrowOverlay);
+                windOverlays.push(arrowOverlay);
+            });
+        }
+
+        function clearWindOverlay() {
+            var features = measureSource.getFeatures().slice();
+            features.forEach(function(f) {
+                if (f.get('type') === 'windArrow') {
+                    measureSource.removeFeature(f);
+                }
+            });
+            
+            windOverlays.forEach(function(overlay) {
+                map.removeOverlay(overlay);
+            });
+            windOverlays = [];
+        }
+
         function getWeather(lat, lon) {
-            // Using Open-Meteo API (free, no API key required)
             fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m')
                 .then(function(response) {
                     return response.json();
                 })
                 .then(function(data) {
-                    var current = data.current;
-                    document.getElementById('weather-temp').textContent = Math.round(current.temperature_2m);
-                    document.getElementById('weather-wind').textContent = Math.round(current.wind_speed_10m);
-                    document.getElementById('weather-humidity').textContent = Math.round(current.relative_humidity_2m);
+                    currentWindData = data.current;
                     
-                    // Update wind arrow direction
+                    document.getElementById('weather-temp').textContent = Math.round(data.current.temperature_2m);
+                    document.getElementById('weather-wind').textContent = Math.round(data.current.wind_speed_10m);
+                    document.getElementById('weather-humidity').textContent = Math.round(data.current.relative_humidity_2m);
+                    
+                    var windDir = data.current.wind_direction_10m;
+                    var compassDir = getCompassDirection(windDir);
+                    document.getElementById('wind-direction').textContent = compassDir;
+                    
                     var windArrow = document.getElementById('wind-arrow');
-                    windArrow.style.transform = 'rotate(' + current.wind_direction_10m + 'deg)';
+                    windArrow.style.transform = 'rotate(' + windDir + 'deg)';
+                    
+                    if (windEnabled) {
+                        drawWindOverlay();
+                    }
                 })
                 .catch(function(error) {
                     console.error('Error getting weather:', error);
                 });
+        }
+
+        function getCompassDirection(degrees) {
+            var directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+            var index = Math.round(degrees / 22.5) % 16;
+            return directions[index];
         }
 
         function calculateDistance(lon1, lat1, lon2, lat2) {
@@ -705,17 +795,7 @@
             var point2 = ol.proj.fromLonLat([lon2, lat2]);
             var line = new ol.geom.LineString([point1, point2]);
             var length = ol.sphere.getLength(line);
-            
-            if (length > 1000) {
-                return (Math.round(length / 1000 * 10) / 10) + ' km';
-            } else {
-                return Math.round(length) + ' m';
-            }
-        }
-
-        function updateFireDistances() {
-            // This will be called when location is set
-            // Distances are calculated on-demand in popup
+            return formatDistance(length);
         }
 
         function getAlertColor(severity) {
@@ -753,11 +833,10 @@
             var html = '<h3>' + (props.headline || 'Bushfire Incident');
             html += '<span class="alert-badge ' + badgeClass + '">' + severity + '</span></h3>';
             
-            // Show distance if user location is known
             if (userLocation) {
                 var lonLat = ol.proj.toLonLat(coordinate);
                 var distance = calculateDistance(userLocation[0], userLocation[1], lonLat[0], lonLat[1]);
-                html += '<div class="distance-badge">📍 ' + distance + ' from your location</div>';
+                html += '<div class="distance-badge">📍 ' + distance + ' from you</div>';
             }
             
             if (props.description) {
@@ -959,8 +1038,16 @@
                 document.getElementById('incident-count').textContent = features.length;
                 document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
 
+                if (measureActive) {
+                    drawDistanceLines();
+                }
+                
+                if (windEnabled && currentWindData) {
+                    drawWindOverlay();
+                }
+
                 var extent = vectorSource.getExtent();
-                if (extent[0] !== Infinity) {
+                if (extent[0] !== Infinity && !userLocation) {
                     map.getView().fit(extent, {
                         padding: [50, 50, 50, 50],
                         maxZoom: 12
