@@ -792,9 +792,6 @@
                 var windSpeed = data.windSpeed;
                 var windDir = data.windDirection;
                 
-                // Wind direction is "from" direction, so we add 180 to get "to" direction
-                var windToDirection = (windDir + 180) % 360;
-                
                 // Arrow length: windSpeed km/h = windSpeed km = windSpeed * 1000 meters
                 var arrowLength = windSpeed * 1000;
                 
@@ -802,7 +799,7 @@
                 // Compass: 0° = North, 90° = East, 180° = South, 270° = West
                 // Math: 0° = East, 90° = North, 180° = West, 270° = South
                 // Conversion: mathAngle = 90° - compassAngle
-                var angleRad = (90 - windToDirection) * Math.PI / 180;
+                var angleRad = (90 - windDir) * Math.PI / 180;
                 
                 var endX = fireCoords[0] + arrowLength * Math.cos(angleRad);
                 var endY = fireCoords[1] + arrowLength * Math.sin(angleRad);
@@ -825,8 +822,8 @@
                 
                 // Arrow at the end
                 // ➤ points right (East) by default, so we need to adjust rotation
-                // windToDirection is compass bearing, CSS rotation needs adjustment
-                var arrowRotation = windToDirection - 90;
+                // windDir is compass bearing, CSS rotation needs adjustment
+                var arrowRotation = windDir - 90;
                 var arrowDiv = document.createElement('div');
                 arrowDiv.style.cssText = 'font-size: 24px; transform: rotate(' + arrowRotation + 'deg);';
                 arrowDiv.textContent = '➤';
@@ -887,10 +884,9 @@
                     var compassDir = getCompassDirection(current.wind_direction_10m);
                     document.getElementById('wind-direction').textContent = compassDir;
                     
-                    // Arrow should point "to" direction (where wind is going)
-                    var windToDirection = (current.wind_direction_10m + 180) % 360;
+                    // Arrow should point in the "from" direction
                     var windArrow = document.getElementById('wind-arrow');
-                    windArrow.style.transform = 'rotate(' + windToDirection + 'deg)';
+                    windArrow.style.transform = 'rotate(' + current.wind_direction_10m + 'deg)';
                 })
                 .catch(function(error) {
                     console.error('Error getting weather:', error);
@@ -963,12 +959,11 @@
             
             // Add weather section
             if (weatherData) {
-                var windToDirection = (weatherData.windDirection + 180) % 360;
                 html += '<div class="popup-weather">';
                 html += '<h4>🌤️ Current Conditions at Fire Location</h4>';
                 html += '<div class="weather-item">';
                 html += '<span>💨 Wind: ' + weatherData.windSpeed + ' km/h</span>';
-                html += '<span class="wind-arrow" style="transform: rotate(' + windToDirection + 'deg);">↑</span>';
+                html += '<span class="wind-arrow" style="transform: rotate(' + weatherData.windDirection + 'deg);">↑</span>';
                 html += '<span style="margin-left: 8px;">(' + weatherData.windDirectionText + ')</span>';
                 html += '</div>';
                 html += '<div class="weather-item">';
