@@ -100,6 +100,7 @@
             z-index: 2000;
             font-size: 14px;
             text-align: center;
+            max-width: 400px;
         }
 
         .error {
@@ -380,23 +381,15 @@
         });
 
         function getAlertColor(category) {
-            // Normalize the string for comparison
             var cat = (category || '').toLowerCase().trim();
             
-            // Check for Emergency Warning
             if (cat.includes('emergency')) {
                 return [211, 47, 47, 0.6];
-            }
-            // Check for Watch and Act
-            else if (cat.includes('watch')) {
+            } else if (cat.includes('watch')) {
                 return [245, 124, 0, 0.6];
-            }
-            // Check for Advice
-            else if (cat.includes('advice')) {
+            } else if (cat.includes('advice')) {
                 return [255, 215, 0, 0.6];
-            }
-            // Default/Not Applicable
-            else {
+            } else {
                 return [144, 202, 249, 0.6];
             }
         }
@@ -416,66 +409,105 @@
         }
 
         function createPopupContent(props) {
-            var category = props.category || props.Category || 'Not Applicable';
+            var category = props.category || props.Category || props.severity || props.Severity || 'Not Applicable';
             var badgeClass = getAlertBadgeClass(category);
             
-            var html = '<h3>' + (props.name || props.title || props.Title || 'Incident');
+            var html = '<h3>' + (props.headline || props.title || props.event || 'Incident');
             if (category && category !== 'Not Applicable') {
                 html += '<span class="alert-badge ' + badgeClass + '">' + category + '</span>';
             }
             html += '</h3>';
             
-            if (props.type || props.Type) html += '<div class="detail"><strong>Type:</strong> ' + (props.type || props.Type) + '</div>';
-            if (props.status || props.Status) html += '<div class="detail"><strong>Status:</strong> ' + (props.status || props.Status) + '</div>';
-            if (props.location || props.Location) html += '<div class="detail"><strong>Location:</strong> ' + (props.location || props.Location) + '</div>';
-            if (props.region || props.Region) html += '<div class="detail"><strong>Region:</strong> ' + (props.region || props.Region) + '</div>';
-            if (props.size || props.Size) html += '<div class="detail"><strong>Size:</strong> ' + (props.size || props.Size) + '</div>';
-            if (props.updated || props.Updated) html += '<div class="detail"><strong>Updated:</strong> ' + new Date(props.updated || props.Updated).toLocaleString() + '</div>';
+            if (props.description) html += '<div class="detail">' + props.description.substring(0, 200) + (props.description.length > 200 ? '...' : '') + '</div>';
+            if (props.areaDesc) html += '<div class="detail"><strong>Area:</strong> ' + props.areaDesc + '</div>';
+            if (props.effective) html += '<div class="detail"><strong>Effective:</strong> ' + new Date(props.effective).toLocaleString() + '</div>';
             
             return html;
         }
 
-        function parseXMLToGeoJSON(xmlText) {
+        function parseCapXMLToGeoJSON(xmlText) {
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-            var items = xmlDoc.getElementsByTagName('item');
             
+            // Check for parse errors
+            var parseError = xmlDoc.getElementsByTagName('parsererror');
+            if (parseError.length > 0) {
+                console.error('XML Parse Error:', parseError[0].textContent);
+                return { type: 'FeatureCollection', features: [] };
+            }
+            
+            var alerts = xmlDoc.getElementsByTagName('alert');
             var features = [];
             
-            for (var i = 0; i < items.length; i++) {
-                var item = items[i];
+            console.log('Found', alerts.length, 'alerts in CAP XML');
+            
+            for (var i = 0; i < alerts.length; i++) {
+                var alert = alerts[i];
                 
-                // Extract coordinates
-                var point = item.getElementsByTagName('point')[0];
-                if (!point) continue;
+                // Get info element
+                var info = alert.getElementsByTagName('info')[0];
+                if (!info) continue;
                 
-                var coords = point.textContent.split(',');
-                var lat = parseFloat(coords[0]);
-                var lon = parseFloat(coords[1]);
+                // Get area element
+                var area = info.getElementsByTagName('area')[0];
+                if (!area) continue;
+                
+                // Get polygon or circle coordinates
+                var polygon = area.getElementsByTagName('polygon')[0];
+                var circle = area.getElementsByTagName('circle')[0];
+                
+                var geometry = null;
+                
+                if (polygon) {
+                    // Parse polygon coordinates
+                    var coordsText = polygon.textContent.trim();
+                    var points = coordsText.split(' ');
+                    var coordinates = points.map(function(point) {
+                        var parts = point.split(',');
+                        return [parseFloat(parts[1]), parseFloat(parts[0])]; // lon, lat
+                    });
+                    
+                    geometry = {
+                        type: 'Polygon',
+                        coordinates: [coordinates]
+                    };
+                } else if (circle) {
+                    // Parse circle (center point and radius)
+                    var circleText = circle.textContent.trim();
+                    var parts = circleText.split(' ');
+                    var centerParts = parts[0].split(',');
+                    
+                    geometry = {
+                        type: 'Point',
+                        coordinates: [parseFloat(centerParts[1]), parseFloat(centerParts[0])] // lon, lat
+                    };
+                }
+                
+                if (!geometry) continue;
                 
                 // Extract properties
-                var getElementText = function(tagName) {
-                    var elem = item.getElementsByTagName(tagName)[0];
-                    return elem ? elem.textContent : '';
+                var getElementText = function(parent, tagName) {
+                    var elem = parent.getElementsByTagName(tagName)[0];
+                    return elem ? elem.textContent.trim() : '';
                 };
                 
                 features.push({
                     type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [lon, lat]
-                    },
+                    geometry: geometry,
                     properties: {
-                        title: getElementText('title'),
-                        category: getElementText('category'),
-                        location: getElementText('location'),
-                        status: getElementText('status'),
-                        type: getElementText('type'),
-                        size: getElementText('size'),
-                        updated: getElementText('pubDate')
+                        event: getElementText(info, 'event'),
+                        category: getElementText(info, 'category'),
+                        severity: getElementText(info, 'severity'),
+                        headline: getElementText(info, 'headline'),
+                        description: getElementText(info, 'description'),
+                        areaDesc: getElementText(area, 'areaDesc'),
+                        effective: getElementText(info, 'effective'),
+                        expires: getElementText(info, 'expires')
                     }
                 });
             }
+            
+            console.log('Parsed', features.length, 'features from CAP XML');
             
             return {
                 type: 'FeatureCollection',
@@ -489,7 +521,7 @@
             
             if (!geom) return;
 
-            var color = getAlertColor(props.category || props.Category);
+            var color = getAlertColor(props.category || props.Category || props.severity || props.Severity);
 
             if (geom.type === 'Point') {
                 var coords = ol.proj.fromLonLat(geom.coordinates);
@@ -535,15 +567,6 @@
                 }));
 
                 vectorSource.addFeature(polygonFeature);
-                
-            } else if (geom.type === 'GeometryCollection') {
-                geom.geometries.forEach(function(subGeom) {
-                    addFireToMap({
-                        type: 'Feature',
-                        geometry: subGeom,
-                        properties: props
-                    });
-                });
             }
         }
 
@@ -557,66 +580,37 @@
                 vectorSource.clear();
             }
 
-            // Try JSON first, fallback to XML
-            fetch('https://publiccontent-gis-psba-qld-gov-au.s3.amazonaws.com/content/Feeds/BushfireCurrentIncidents/bushfireAlert.json')
+            // Use CORS proxy to access the XML feed
+            var corsProxy = 'https://corsproxy.io/?';
+            var feedUrl = 'https://publiccontent-gis-psba-qld-gov-au.s3.amazonaws.com/content/Feeds/BushfireCurrentIncidents/bushfireAlert_capau.xml';
+            
+            fetch(corsProxy + encodeURIComponent(feedUrl))
                 .then(function(response) {
                     if (!response.ok) {
-                        throw new Error('JSON feed unavailable');
+                        throw new Error('Failed to fetch data');
                     }
-                    return response.json();
+                    return response.text();
                 })
-                .then(function(data) {
-                    console.log('QLD JSON data:', data);
+                .then(function(xmlText) {
+                    console.log('Received XML data, parsing...');
+                    var data = parseCapXMLToGeoJSON(xmlText);
                     processData(data);
                 })
                 .catch(function(error) {
-                    console.log('JSON failed, trying XML...', error);
-                    
-                    // Try XML feed
-                    fetch('https://publiccontent-gis-psba-qld-gov-au.s3.amazonaws.com/content/Feeds/BushfireCurrentIncidents/bushfireAlert.xml')
-                        .then(function(response) {
-                            if (!response.ok) {
-                                throw new Error('XML feed unavailable');
-                            }
-                            return response.text();
-                        })
-                        .then(function(xmlText) {
-                            console.log('QLD XML data loaded');
-                            var data = parseXMLToGeoJSON(xmlText);
-                            processData(data);
-                        })
-                        .catch(function(error) {
-                            console.error('Both feeds failed:', error);
-                            loading.classList.add('error');
-                            loading.textContent = 'Could not load QLD data. Using demo mode.';
-                            loadDemoData();
-                            setTimeout(function() {
-                                loading.style.display = 'none';
-                            }, 3000);
-                        });
+                    console.error('Error loading data:', error);
+                    loading.classList.add('error');
+                    loading.textContent = 'Could not load QLD data (CORS issue). The QLD feed does not allow direct browser access. You may need to set up a server-side proxy. Using demo mode for now.';
+                    loadDemoData();
+                    setTimeout(function() {
+                        loading.style.display = 'none';
+                    }, 5000);
                 });
         }
 
         function processData(data) {
             var loading = document.getElementById('loading');
             
-            // Handle different data formats
-            var features = [];
-            
-            if (data.type === 'FeatureCollection' && data.features) {
-                features = data.features;
-            } else if (Array.isArray(data)) {
-                features = data.map(function(item) {
-                    return {
-                        type: 'Feature',
-                        geometry: item.geometry || {
-                            type: 'Point',
-                            coordinates: [parseFloat(item.longitude || item.lon), parseFloat(item.latitude || item.lat)]
-                        },
-                        properties: item
-                    };
-                });
-            }
+            var features = data.features || [];
             
             console.log('Processing', features.length, 'features');
             
@@ -639,6 +633,7 @@
             } else {
                 document.getElementById('incident-count').textContent = '0';
                 document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+                console.log('No incidents found in feed');
             }
 
             loading.style.display = 'none';
@@ -654,13 +649,11 @@
                         coordinates: [153.0251, -27.4698] // Brisbane
                     },
                     properties: {
-                        title: 'Demo Fire - Brisbane Area',
-                        category: 'Advice',
-                        status: 'Under Control',
-                        location: 'Near Brisbane',
-                        size: '50ha',
-                        type: 'Bush Fire',
-                        updated: new Date().toISOString()
+                        headline: 'Demo Fire - Brisbane Area',
+                        severity: 'Advice',
+                        description: 'Demo bushfire for testing purposes',
+                        areaDesc: 'Near Brisbane',
+                        effective: new Date().toISOString()
                     }
                 },
                 {
@@ -670,13 +663,11 @@
                         coordinates: [145.7753, -16.9203] // Cairns
                     },
                     properties: {
-                        title: 'Demo Fire - Far North QLD',
-                        category: 'Watch and Act',
-                        status: 'Being Controlled',
-                        location: 'West of Cairns',
-                        size: '300ha',
-                        type: 'Bush Fire',
-                        updated: new Date().toISOString()
+                        headline: 'Demo Fire - Far North QLD',
+                        severity: 'Watch and Act',
+                        description: 'Demo bushfire for testing purposes',
+                        areaDesc: 'West of Cairns',
+                        effective: new Date().toISOString()
                     }
                 },
                 {
@@ -686,13 +677,11 @@
                         coordinates: [149.1244, -21.1397] // Mackay
                     },
                     properties: {
-                        title: 'Demo Fire - Mackay Region',
-                        category: 'Emergency Warning',
-                        status: 'Out of Control',
-                        location: 'Mackay Region',
-                        size: '800ha',
-                        type: 'Bush Fire',
-                        updated: new Date().toISOString()
+                        headline: 'Demo Fire - Mackay Region',
+                        severity: 'Emergency Warning',
+                        description: 'Demo bushfire for testing purposes',
+                        areaDesc: 'Mackay Region',
+                        effective: new Date().toISOString()
                     }
                 }
             ];
